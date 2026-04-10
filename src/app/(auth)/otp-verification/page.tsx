@@ -1,11 +1,12 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
 export default function OtpVerificationPage() {
   const [otp, setOtp] = useState<string[]>(Array(5).fill(""));
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
-
+  const router = useRouter();
   const handleChange = (index: number, value: string) => {
     if (!/^\d*$/.test(value)) return;
     const newOtp = [...otp];
@@ -42,6 +43,7 @@ export default function OtpVerificationPage() {
     if (code.length < 5) return;
     // Handle OTP verification logic here
     console.log("OTP submitted:", code);
+    router.push("/set-new-password");
   };
 
   const isComplete = otp.every((d) => d !== "");
