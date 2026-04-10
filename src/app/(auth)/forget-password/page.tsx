@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/dist/client/components/navigation";
 import { useForm } from "react-hook-form";
 
 type ForgotPasswordFormValues = {
@@ -12,10 +13,10 @@ export default function ForgotPasswordPage() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<ForgotPasswordFormValues>();
-
+  const router = useRouter();
   const onSubmit = async (data: ForgotPasswordFormValues) => {
-    // Handle OTP send logic here
     console.log(data);
+    router.push("/otp-verification");
   };
 
   return (
@@ -54,11 +55,7 @@ export default function ForgotPasswordPage() {
             )}
           </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full py-3 rounded-full bg-linear-to-b from-[#3556AE] to-[#1F3368] text-white font-medium text-base leading-[132%] tracking-[0.08px] transition disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
-          >
+          <button type="submit" disabled={isSubmitting} className="submit-btn">
             {isSubmitting ? "Sending..." : "Get an OTP code"}
           </button>
         </form>

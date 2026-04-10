@@ -148,14 +148,14 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-3 rounded-full bg-linear-to-b from-[#3556AE] to-[#1F3368] text-white font-medium text-base leading-[124%] tracking-[0.08px] transition mb-4 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+              className="submit-btn"
             >
               {isSubmitting ? "Logging in..." : "Log in"}
             </button>
           </form>
 
           {/* Forgot password */}
-          <div>
+          <div className="mt-4">
             <Link
               href="/forget-password"
               className="text-[#395CBC] text-sm underline underline-offset-4 leading-[100%] tracking-[0.07px]"
