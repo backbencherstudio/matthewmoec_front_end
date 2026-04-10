@@ -157,7 +157,7 @@ export default function LoginPage() {
           {/* Forgot password */}
           <div>
             <Link
-              href="#"
+              href="/forget-password"
               className="text-[#395CBC] text-sm underline underline-offset-4 leading-[100%] tracking-[0.07px]"
             >
               Forget Password?
