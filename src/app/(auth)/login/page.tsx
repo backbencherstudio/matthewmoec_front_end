@@ -1,0 +1,170 @@
+"use client";
+
+import CartIcon from "@/components/icons/CartIcon";
+import GoogleIcon from "@/components/icons/GoogleIcon";
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+
+type LoginFormValues = {
+  email: string;
+  password: string;
+};
+
+export default function LoginPage() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+  } = useForm<LoginFormValues>();
+
+  const onSubmit = async (data: LoginFormValues) => {
+    // Handle login logic here
+    console.log(data);
+  };
+
+  return (
+    <div className="flex flex-col md:grid md:grid-cols-4 h-screen ">
+      {/* Left panel */}
+      <div className="md:col-span-1 bg-linear-to-b from-[#385BBA] to-[#1F3266] px-8 py-10 md:px-20 md:pt-45 ">
+        <h1 className="text-white font-semibold text-2xl flex items-center gap-2">
+          <CartIcon className="text-white" />
+          <span>CartForGood</span>
+        </h1>
+        <div className="hidden md:block mt-6">
+          <h2 className="text-[#E9E9EA] text-xl font-medium">Admin Panel</h2>
+          <p className="mt-4 text-[#D2D2D5] text-sm leading-relaxed">
+            Efficiently manage stores, charity data, and analytics within a
+            single, integrated platform.
+          </p>
+        </div>
+      </div>
+
+      {/* Right panel */}
+      <div className="flex-1 md:col-span-3 bg-[#FFFFFF] flex items-center justify-center px-4 py-10 md:p-10 relative overflow-hidden">
+        <div className="h-50 w-75 bg-linear-to-b from-[#FFFF] to-[#A1BAFF] rounded-full absolute -top-20 -right-20 rotate-45 blur-[50px]" />
+        <div className="h-50 w-75 bg-linear-to-b from-[#A1BAFF] to-[#FFFF] rounded-full absolute -bottom-20 -right-30 rotate-45 blur-[50px]" />
+        <div className="bg-[#F9F9F9] rounded-2xl p-6 md:p-8 w-full max-w-sm shadow-sm border border-[#ECEFF3]">
+          {/* Logo */}
+          <div className="flex items-center gap-2 mb-6">
+            <CartIcon className="text-[#1A2A56]" />
+            <span className="text-[#1A2A56] font-semibold text-lg md:text-[28px] leading-[124%] tracking-[0.14px]">
+              CartForGood
+            </span>
+          </div>
+
+          <h1 className="text-[#395CBC] text-2xl font-semibold leading-[116%] tracking-[0.12px] mb-5">
+            Login
+          </h1>
+
+          {/* Google button */}
+          <button
+            type="button"
+            className="w-full flex items-center justify-center gap-2 py-4 px-8 rounded-full border bg-white border-[#ECEFF3] text-sm font-medium hover:bg-gray-50 transition mb-4 cursor-pointer"
+          >
+            <GoogleIcon />
+            <span className="text-[#1A2A56] text-base font-medium">
+              Continue with Google
+            </span>
+          </button>
+
+          {/* Divider */}
+          <div className="flex items-center gap-3 mb-4">
+            <div className="flex-1 h-px bg-gray-200" />
+            <span className="text-xs text-gray-400">or</span>
+            <div className="flex-1 h-px bg-gray-200" />
+          </div>
+
+          <form onSubmit={handleSubmit(onSubmit)} noValidate>
+            {/* Email */}
+            <div className="mb-4">
+              <label className="block text-lg leading-[132%] tracking-[0.09px] text-[#A5A5AB] mb-4">
+                Email
+              </label>
+              <input
+                type="email"
+                placeholder="admin@cartforgood.com"
+                className={`w-full p-4 rounded-full border bg-white text-sm focus:outline-none focus:ring-0 ${
+                  errors.email ? "border-red-400" : "border-[#E9E9EA]"
+                }`}
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: "Enter a valid email address",
+                  },
+                })}
+              />
+              {errors.email && (
+                <p className="mt-1 text-xs text-red-500 pl-2">
+                  {errors.email.message}
+                </p>
+              )}
+            </div>
+
+            {/* Password */}
+            <div className="mb-5">
+              <label className="block text-lg leading-[132%] tracking-[0.09px] text-[#A5A5AB] mb-4">
+                Password
+              </label>
+              <div className="relative">
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="**********************"
+                  className={`w-full p-4 rounded-full border bg-white text-sm focus:outline-none focus:ring-0 ${
+                    errors.password ? "border-red-400" : "border-[#E9E9EA]"
+                  }`}
+                  {...register("password", {
+                    required: "Password is required",
+                    minLength: {
+                      value: 6,
+                      message: "Password must be at least 6 characters",
+                    },
+                  })}
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer"
+                >
+                  {showPassword ? (
+                    <EyeOffIcon size={16} />
+                  ) : (
+                    <EyeIcon size={16} />
+                  )}
+                </button>
+              </div>
+              {errors.password && (
+                <p className="mt-1 text-xs text-red-500 pl-2">
+                  {errors.password.message}
+                </p>
+              )}
+            </div>
+
+            {/* Submit */}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full py-3 rounded-full bg-linear-to-b from-[#3556AE] to-[#1F3368] text-white font-medium text-base leading-[124%] tracking-[0.08px] transition mb-4 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
+            >
+              {isSubmitting ? "Logging in..." : "Log in"}
+            </button>
+          </form>
+
+          {/* Forgot password */}
+          <div>
+            <Link
+              href="#"
+              className="text-[#395CBC] text-sm underline underline-offset-4 leading-[100%] tracking-[0.07px]"
+            >
+              Forget Password?
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
