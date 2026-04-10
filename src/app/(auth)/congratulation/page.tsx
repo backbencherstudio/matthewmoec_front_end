@@ -3,7 +3,8 @@ import Link from "next/link";
 
 export default function CongratulationPage() {
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4 relative overflow-hidden">
+      <div className="h-50 w-75 bg-linear-to-b from-[#A1BAFF] to-[#FFFF] rounded-full absolute -bottom-20 -right-30 rotate-45 blur-[50px]" />
       <div className="bg-[#F9F9F9] rounded-2xl p-8 md:p-10 w-full max-w-sm border border-[#ECEFF3] shadow-sm flex flex-col items-center">
         <h1 className="text-[#1A2A56] text-xl md:text-2xl font-semibold text-center leading-[124%] tracking-[0.14px] mb-6">
           Congratulation
