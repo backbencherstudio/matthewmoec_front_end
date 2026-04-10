@@ -1,6 +1,7 @@
 "use client";
 
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -18,7 +19,7 @@ export default function SetNewPassword() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<EnterPasswordFormValues>();
-
+  const router = useRouter();
   const onSubmit = async (data: EnterPasswordFormValues) => {
     // Handle password update logic here
     console.log(data);
@@ -27,6 +28,7 @@ export default function SetNewPassword() {
       alert("Passwords do not match!");
       return;
     }
+    router.push("/congratulation");
   };
 
   return (
