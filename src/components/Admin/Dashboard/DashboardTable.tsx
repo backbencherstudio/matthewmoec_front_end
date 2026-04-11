@@ -1,6 +1,7 @@
 "use client";
 
 import EditIcon from "@/components/icons/EditIcon";
+import EditModal from "@/components/reusable/EditModal";
 import Pagination from "@/components/reusable/Pagination";
 import ReuseAbleTable from "@/components/reusable/reuseable-table";
 import { Trash2 } from "lucide-react";
@@ -81,15 +82,77 @@ const storeData: StoreItem[] = [
   },
 ];
 
+const storeFields = [
+  {
+    name: "storeName",
+    label: "Store Name",
+    type: "text" as const,
+    placeholder: "Amazon",
+    validation: { required: "Store name is required" },
+  },
+  {
+    name: "storeLink",
+    label: "Store Link",
+    type: "url" as const,
+    placeholder: "https://target.com/ref?aid=123",
+    validation: {
+      required: "Store link is required",
+    },
+  },
+  {
+    name: "subTextNote",
+    placeholder: "Use for holiday campaigns",
+    label: "Sub text note",
+    type: "text" as const,
+  },
+  {
+    name: "disclosureText",
+    placeholder:
+      "This store participates in store programs and may earn commissions from purchases made through links on this site.",
+    label: "Disclosure Text",
+    type: "textarea" as const,
+  },
+  {
+    name: "status",
+    label: "Status",
+    type: "select" as const,
+    options: [
+      { label: "Published", value: "Published" },
+      { label: "Unpublished", value: "Unpublished" },
+    ],
+  },
+];
+
 const ITEMS_PER_PAGE = 7;
 
 const DashboardTable = () => {
   const [isLoading] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [selectedItem, setSelectedItem] = useState<StoreItem | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const currentItems = storeData.slice(
     (currentPage - 1) * ITEMS_PER_PAGE,
     currentPage * ITEMS_PER_PAGE,
   );
+
+  const defaultValues = selectedItem
+    ? {
+        storeName: selectedItem.name,
+        storeLink: "",
+        subTextNote: "",
+        disclosureText: "",
+        status: selectedItem.status,
+      }
+    : {};
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleUpdate = (data: any) => {
+    console.log("Updated Data:", data);
+
+    // Example update logic
+    if (selectedItem) {
+    }
+  };
 
   const tableHeader = ["Store", "Clicks", "Status", "Actions"];
 
@@ -135,7 +198,10 @@ const DashboardTable = () => {
     (item) => (
       <div className="flex items-center gap-3">
         <button
-          onClick={() => console.log("Edit", item.id)}
+          onClick={() => {
+            setSelectedItem(item);
+            setOpen(true);
+          }}
           className="text-[#385BBA] hover:text-[#1F3266] transition cursor-pointer"
         >
           <EditIcon />
@@ -168,6 +234,15 @@ const DashboardTable = () => {
         totalPages={2}
         currentPage={currentPage}
         onPageChange={setCurrentPage}
+      />
+
+      <EditModal
+        open={open}
+        onOpenChange={setOpen}
+        title="Edit Store"
+        fields={storeFields}
+        defaultValues={defaultValues}
+        onSubmit={handleUpdate}
       />
     </div>
   );

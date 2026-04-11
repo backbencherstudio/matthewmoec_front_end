@@ -7,7 +7,7 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("/fonts/Inter-VariableFont_opsz,wght.ttf") ;
+  src: url("/fonts/Inter-VariableFont_opsz,wght.ttf");
 }
 
 @theme inline {
@@ -55,7 +55,7 @@
 }
 
 body {
-  font-family:"Inter", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .container {
@@ -66,8 +66,12 @@ body {
 
 .submit-btn {
   @apply w-full py-4 px-8 rounded-full text-white font-medium text-base leading-[132%] tracking-[0.08px] transition cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed;
-  
-  background: linear-gradient(to bottom, #3556AE, #1F3368);
+
+  background: linear-gradient(to bottom, #3556ae, #1f3368);
+}
+
+.label-edit {
+  @apply block text-base leading-[132%] tracking-[0.08px] font-medium text-[#1A2A56] mb-3;
 }
 
 :root {
