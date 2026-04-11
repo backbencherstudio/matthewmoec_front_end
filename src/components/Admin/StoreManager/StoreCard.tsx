@@ -6,7 +6,7 @@ import EditModal from "@/components/reusable/EditModal";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import DeleteModal from "../reusable/DeleteModal";
+import DeleteModal from "../../reusable/DeleteModal";
 
 type StoreCard = {
   id: number;
