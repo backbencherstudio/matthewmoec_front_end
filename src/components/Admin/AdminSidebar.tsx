@@ -9,15 +9,16 @@ import {
   Percent,
   Receipt,
   Settings,
-  Store,
   X,
 } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
+import StoreIcon from "../icons/StoreIcon";
 
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
-  { label: "Store Manager", icon: Store, href: "/store-manager" },
+  { label: "Store Manager", icon: StoreIcon, href: "/store-manager" },
   { label: "Charity Panel", icon: Heart, href: "/charity-panel" },
   { label: "Monthly Receipts", icon: Receipt, href: "/monthly-receipts" },
   { label: "Store Commission", icon: Percent, href: "/store-commission" },
@@ -25,9 +26,8 @@ const navItems = [
   { label: "Settings", icon: Settings, href: "/settings" },
 ];
 
-const activeItem = "Dashboard";
-
 export default function Sidebar() {
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -77,7 +77,7 @@ export default function Sidebar() {
           {/* Nav */}
           <nav className="flex flex-col gap-1">
             {navItems.map(({ label, icon: Icon, href }) => {
-              const isActive = label === activeItem;
+              const isActive = pathname === href;
               return (
                 <Link
                   key={label}
