@@ -1,4 +1,4 @@
-import SetNewPasswordForm from "@/app/components/Auth/SetNewPasswordForm";
+import SetNewPasswordForm from "@/components/Auth/SetNewPasswordForm";
 
 export default function SetNewPassword() {
   return (

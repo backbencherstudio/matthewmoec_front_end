@@ -1,4 +1,4 @@
-import LoginForm from "@/app/components/Auth/LoginForm";
+import LoginForm from "@/components/Auth/LoginForm";
 import CartIcon from "@/components/icons/CartIcon";
 import GoogleIcon from "@/components/icons/GoogleIcon";
 import Link from "next/link";
