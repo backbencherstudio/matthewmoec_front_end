@@ -1,6 +1,7 @@
 "use client";
 
 import EditIcon from "@/components/icons/EditIcon";
+import DeleteModal from "@/components/reusable/DeleteModal";
 import EditModal from "@/components/reusable/EditModal";
 import Pagination from "@/components/reusable/Pagination";
 import ReuseAbleTable from "@/components/reusable/reuseable-table";
@@ -128,6 +129,8 @@ const ITEMS_PER_PAGE = 7;
 const DashboardTable = () => {
   const [isLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [deleteOpen, setDeleteOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState<StoreItem | null>(null);
   const [selectedItem, setSelectedItem] = useState<StoreItem | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const currentItems = storeData.slice(
@@ -152,6 +155,11 @@ const DashboardTable = () => {
     // Example update logic
     if (selectedItem) {
     }
+  };
+
+  const handleDelete = () => {
+    console.log("Deleted:", itemToDelete?.id);
+    // your delete logic here
   };
 
   const tableHeader = ["Store", "Clicks", "Status", "Actions"];
@@ -207,7 +215,10 @@ const DashboardTable = () => {
           <EditIcon />
         </button>
         <button
-          onClick={() => console.log("Delete", item.id)}
+          onClick={() => {
+            setItemToDelete(item);
+            setDeleteOpen(true);
+          }}
           className="text-[#F04438] hover:text-red-700 transition cursor-pointer"
         >
           <Trash2 size={17} />
@@ -243,6 +254,16 @@ const DashboardTable = () => {
         fields={storeFields}
         defaultValues={defaultValues}
         onSubmit={handleUpdate}
+      />
+
+      <DeleteModal
+        open={deleteOpen}
+        onOpenChange={setDeleteOpen}
+        title={`Are You sure want to Remove ${itemToDelete?.name}?`}
+        description="Removing this entry will permanently delete it from your system."
+        confirmLabel="Confirm"
+        cancelLabel="Cancel"
+        onConfirm={handleDelete}
       />
     </div>
   );

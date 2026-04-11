@@ -60,7 +60,7 @@ export default function EditModal({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-white rounded-[24px] p-8 w-full min-w-xl border border-[#ECEFF3] shadow-lg">
+      <DialogContent className="bg-white rounded-[24px] p-8 w-full md:min-w-xl border border-[#ECEFF3] shadow-lg">
         <DialogHeader className="mb-4">
           <DialogTitle className="text-[#1A2A56] text-xl lg:text-[28px] leading-[132%] tracking-[0.14px] font-semibold">
             {title}
