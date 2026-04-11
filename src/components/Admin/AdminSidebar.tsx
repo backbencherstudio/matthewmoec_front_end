@@ -7,20 +7,20 @@ import {
   LayoutDashboard,
   Menu,
   Percent,
-  Receipt,
   Settings,
   X,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import FileIcon from "../icons/FileIcon";
 import StoreIcon from "../icons/StoreIcon";
 
 const navItems = [
   { label: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
   { label: "Store Manager", icon: StoreIcon, href: "/store-manager" },
   { label: "Charity Panel", icon: Heart, href: "/charity-panel" },
-  { label: "Monthly Receipts", icon: Receipt, href: "/monthly-receipts" },
+  { label: "Monthly Receipts", icon: FileIcon, href: "/monthly-receipts" },
   { label: "Store Commission", icon: Percent, href: "/store-commission" },
   { label: "Analysis", icon: BarChart2, href: "/analysis" },
   { label: "Settings", icon: Settings, href: "/settings" },
