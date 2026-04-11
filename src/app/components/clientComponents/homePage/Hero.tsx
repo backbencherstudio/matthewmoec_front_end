@@ -5,7 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 const HeroSection = () => {
   return (
-    <div>
+    <div className="min-hscre">
       <section className="relative pt-24 overflow-hidden ">
         <Container>
           {/* Hero Content */}
@@ -31,7 +31,7 @@ const HeroSection = () => {
             </div>
 
             {/* Right Section (Phone Mockup and Donation Display) */}
-            <div className=" h-[578.3px] mt-6 md:mt-0 relative bottom-5 ">
+            <div className=" mt-6 md:mt-0 relative bottom-5 ">
               {/* Phone Image */}
               <img src="/heroImg2.png" alt="Phone mockup" className="w-full" />
 
@@ -62,7 +62,7 @@ const HeroSection = () => {
             <p className="text-[2rem]  font-bold ">$440</p>
             <ArrowRight className="text-[1.5rem] " />
              <p className="text-[1rem]   ">Springfield Food Pantry</p>
-            <p className="rounded-full border-2 p-0.5"> <button className=" lg:h-4  "> View Receipt →</button></p>
+            <p className="rounded-full border py-2 px-4"> <button className=" lg:h-4 cursor-pointer text-[1rem] "> View Receipt →</button></p>
             
           </div>
         </Container>
@@ -70,7 +70,7 @@ const HeroSection = () => {
 
 
 
-      <TrustedStores></TrustedStores>
+    
     </div>
   );
 };
