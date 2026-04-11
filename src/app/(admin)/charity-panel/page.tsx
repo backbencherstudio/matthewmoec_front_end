@@ -1,6 +1,7 @@
 "use client";
 
 import CharityPanelHeader from "@/components/Admin/CharityPanel/CharityPanelHeader";
+import UpdateSuccessModal from "@/components/Admin/CharityPanel/UpdateSuccessModal";
 import EditIcon from "@/components/icons/EditIcon";
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
@@ -55,6 +56,7 @@ const donationHistory: MonthRecord[] = [
 ];
 
 export default function CharityPanel() {
+  const [open, setOpen] = useState(false);
   const [charities, setCharities] = useState<Charity[]>([
     { id: 1, name: "Feeding America", amount: 1248 },
     { id: 2, name: "Local Shelter", amount: 750 },
@@ -222,12 +224,21 @@ export default function CharityPanel() {
                     className="w-full p-3.5 rounded-[8px] border border-[#ECEFF3] bg-[#F6F8FA] text-sm text-[#6B7A99] focus:outline-none focus:ring-2 focus:ring-[#1F3266]/20"
                   />
                 </div>
-                <button className="submit-btn">Save Changes</button>
+                <button className="submit-btn" onClick={() => setOpen(true)}>
+                  Save Changes
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <UpdateSuccessModal
+        open={open}
+        onOpenChange={setOpen}
+        previewMessage="Last month CartForGood donated $800 to Feeding America and $440 to Springfield Food Pantry."
+        onSave={() => console.log("Saved!")}
+      />
     </div>
   );
 }
