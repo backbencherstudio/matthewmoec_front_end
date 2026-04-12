@@ -5,7 +5,7 @@ import { IoArrowDownOutline } from "react-icons/io5";
 const TakeEveryWhere = () => {
     return (
         <div>
-            <section className="flex p-20 justify-center items-center  bg-linear-to-b from-[#395CBC] to-[#1A2A56]">
+            <section className="flex p-4 md:p-8 lg:p-20 justify-center items-center  bg-linear-to-b from-[#395CBC] to-[#1A2A56]">
                 <div className='grid grid-cols-1 gap-10 items-center justify-center'>
                     <div className="flex flex-col justify-center items-center gap-4 ">
 
