@@ -1,5 +1,6 @@
+import PointerIcon from "@/components/icons/PointerIcon";
 import React from "react";
-import PointerIcon from "../../icons/PointerIcon";
+
 
 const WhyPeopleUse = () => {
   return (
@@ -53,28 +54,28 @@ const WhyPeopleUse = () => {
           <div className="relative py:4 lg:py-0">
             <img src="/mobile.png" alt=""  className=""/>
            
-                <div className="absolute bottom-6  lg:-bottom-2 ml-4 -z-1 w-[286px] h-[67px] rounded-[286px] bg-gradient-to-b from-[#395CBC] to-[#1A2A56] filter blur-[36.2px]"></div>
+                <div className="absolute bottom-6  lg:-bottom-2 ml-4 -z-1 w-71.5 h-16.75 rounded-[286px] bg-linear-to-b from-[#395CBC] to-[#1A2A56] filter blur-[36.2px]"></div>
 
          
           </div>
 
           <div className="flex flex-col gap-4 justify-center items-center h-full">
             <div className="flex  items-center gap-4 p-2 md:p-4 lg:p-6 rounded-[16px] border-[0.3px] border-[#E9E9EA] bg-white shadow-[0_2px_6px_0_rgba(0,0,0,0.04)] w-78 ">
-              <div className="flex w-[44px] h-[44px] p-[10px] justify-center items-center rounded-[8px] bg-[#E6EFFF]"><PointerIcon></PointerIcon></div>
+              <div className="flex w-11 h-11 p-2.5 justify-center items-center rounded-[8px] bg-[#E6EFFF]"><PointerIcon/></div>
               <h1 className="text-[#1A2A56] text-[16px] font-normal leading-[124%] tracking-[0.08px] font-inter">
                 100% free to use
               </h1>
             </div>
 
                        <div className="flex  items-center gap-4 p-2 md:p-4 lg:p-6 rounded-[16px] border-[0.3px] border-[#E9E9EA] bg-white shadow-[0_2px_6px_0_rgba(0,0,0,0.04)] w-78 ">
-              <div className="flex w-[44px] h-[44px] p-[10px] justify-center items-center rounded-[8px] bg-[#E6EFFF]"><PointerIcon></PointerIcon></div>
+              <div className="flex w-11 h-11 p-2.5 justify-center items-center rounded-[8px] bg-[#E6EFFF]"><PointerIcon/></div>
               <h1 className="text-[#1A2A56] text-[16px] font-normal leading-[124%] tracking-[0.08px] font-inter">
                Works on all devices
               </h1>
             </div>
 
                        <div className="flex  items-center gap-4 p-2 md:p-4 lg:p-6 rounded-[16px] border-[0.3px] border-[#E9E9EA] bg-white shadow-[0_2px_6px_0_rgba(0,0,0,0.04)] w-78 ">
-              <div className="flex w-[44px] h-[44px] p-[10px] justify-center items-center rounded-[8px] bg-[#E6EFFF]"><PointerIcon></PointerIcon></div>
+              <div className="flex w-11 h-11 p-2.5 justify-center items-center rounded-[8px] bg-[#E6EFFF]"><PointerIcon/></div>
               <h1 className="text-[#1A2A56] text-[16px] font-normal leading-[124%] tracking-[0.08px] font-inter">
                Accessible for all ages
               </h1>

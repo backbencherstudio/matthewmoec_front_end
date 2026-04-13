@@ -2,9 +2,8 @@ import React from "react";
 import Container from "../../ui/Container";
 import TrustedStores from "./TrustedStores";
 import { ArrowRight } from "lucide-react";
-import RightArrowIcon from "../../icons/RightArrowIcon";
+import Image from "next/image";
 
-import { TiArrowRight } from "react-icons/ti";
 
 const HeroSection = () => {
   return (
@@ -27,13 +26,13 @@ const HeroSection = () => {
                 <button className=" px-3 lg:px-6 py-1.5 lg:py-3 bg-linear-to-b from-[#395CBC] to-[#1A2A56] text-white hover:bg-[#1A2A56] rounded-[30px] transition  w-full md:w-2/3 lg:w-fit">
                  <div className="flex justify-center items-center gap-1 lg:gap-2">  
                   <h1 className="text-[#FFF] font-medium  text-[12px] md:text-[14px] lg:text-[18px] leading-[100%] tracking-[0.09px] font-inter"> Download For iOS </h1>
-                  <TiArrowRight className="h-6 w-6" />
+                  <ArrowRight className="h-6 w-6" />
                  </div>
                 </button>
                 <button className="px-3 lg:px-6 py-1.5 lg:py-3   rounded-[30px] border transition w-full md:w-2/3 lg:w-fit">
                     <div className="flex justify-center items-center gap-1 lg:gap-2">  
                   <h1 className="text-[#1A2A56] font-medium text-[12px] md:text-[14px] lg:text-[18px] leading-[100%] tracking-[0.09px] font-inter">   Download For Android </h1>
-                  <TiArrowRight className="h-6 w-6" />
+                  <ArrowRight className="h-6 w-6" />
                  </div>
                 
                 </button>
@@ -43,7 +42,7 @@ const HeroSection = () => {
             {/* Right Section (Phone Mockup and Donation Display) */}
             <div className=" flex-1 justify-end mt-6 md:mt-0 relative bottom-5 py-7 md:p-1 lg:p-0">
               {/* Phone Image */}
-              <img src="/heroImg2.png" alt="Phone mockup" className="   lg:w-full" />
+              <Image height={400} width={400} src="/heroImg2.png" alt="Phone mockup" className="   lg:w-full" />
 
               <div className="hidden md:block absolute -z-10 ">
                 <div className="lg:w-100 lg:h-50 bg-linear-to-r from-[#B5C9FF] to-white rounded-full blur-xl rotate-45 absolute bottom-0"></div>

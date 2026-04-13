@@ -644,7 +644,7 @@ const Navbar = () => {
             <div className="block md:hidden">
               <LanguageToggle />
             </div>
-            <button className="w-full py-2.5 md:py-3 rounded-[30px] bg-gradient-to-b from-[#395CBC] to-[#1A2A56] text-white hover:opacity-90 transition-opacity text-sm md:text-base">
+            <button className="w-full py-2.5 md:py-3 rounded-[30px] bg-linear-to-b from-[#395CBC] to-[#1A2A56] text-white hover:opacity-90 transition-opacity text-sm md:text-base">
               Download
             </button>
           </div>

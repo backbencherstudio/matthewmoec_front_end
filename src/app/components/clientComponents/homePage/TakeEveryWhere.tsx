@@ -1,6 +1,6 @@
+import { ArrowDown } from 'lucide-react';
 import React from 'react';
-import { TiArrowRight } from 'react-icons/ti';
-import { IoArrowDownOutline } from "react-icons/io5";
+
 
 const TakeEveryWhere = () => {
     return (
@@ -24,7 +24,7 @@ const TakeEveryWhere = () => {
                 bg-gradient-to-b from-[#395CBC] to-[#1A2A56] text-[#FFF] font-medium  text-[12px] md:text-[12px]  lg:text-[16px] leading-[100%] tracking-[0.08px] font-inter">
                 
                    <div className="flex items-center gap-1 lg:gap-2.5">  
-                     <IoArrowDownOutline className="h-6 w-6" />
+                     <ArrowDown className="h-6 w-6" />
                                     <h1 className="text-[#FFF] font-medium text-[18px] leading-[100%] tracking-[0.09px] font-inter"> Download For iOS </h1>
                                    
                                    </div>
@@ -33,7 +33,7 @@ const TakeEveryWhere = () => {
   rounded-[30px] border-[1px] border-[#FFF] text-white font-medium text-[12px] md:text-[12px]  lg:text-[16px] leading-[100%] tracking-[0.08px] font-inter ">
                   
                    <div className="flex items-center gap-1 lg:gap-2">  
-                     <IoArrowDownOutline className="h-6 w-6" />
+                     <ArrowDown className="h-6 w-6" />
                                     <h1 className="text-[#FFF] font-medium text-[18px] leading-[100%] tracking-[0.09px] font-inter"> Download For Android </h1>
                                    
                                    </div>
