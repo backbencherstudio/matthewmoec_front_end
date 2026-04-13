@@ -48,7 +48,7 @@ const HeroSection = () => {
                 height={400}
                 width={400}
                 src="/heroImg2.png"
-                alt="Phone mockup"
+                alt="Phonemockup"
                 className="lg:w-full object-cover"
               />
 
