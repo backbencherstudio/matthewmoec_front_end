@@ -1,9 +1,14 @@
+"use client";
 import AppConfiguration from "@/components/Admin/Settings/AppConfiguration";
+import SaveSuccessModal from "@/components/Admin/Settings/SaveSuccessModal";
 import ResetIcon from "@/components/icons/ResetIcon";
 import ShearMessageIcon from "@/components/icons/ShearMessageIcon";
 import { InfoIcon } from "lucide-react";
+import { useState } from "react";
 
-export default function page() {
+export default function SettingsPage() {
+  const [open, setOpen] = useState(false);
+
   return (
     <div className="min-h-screen p-4 sm:p-6 lg:px-13 lg:py-10 relative overflow-hidden">
       <div className="h-50 w-75 bg-linear-to-b from-[#A1BAFF] to-[#FFFF] rounded-full absolute bottom-0 -right-30 rotate-45 blur-[50px]" />
@@ -18,7 +23,10 @@ export default function page() {
               Reset
             </span>
           </button>
-          <button className="px-8 py-3 bg-[#ECEFF3] border border-[E9E9EA] rounded-full cursor-pointer bg-linear-to-b from-[#3454AC] to-[#1E3061] text-white text-base leading-[124%] tracking-[0.08px] font-medium">
+          <button
+            onClick={() => setOpen(true)}
+            className="px-8 py-3 bg-[#ECEFF3] border border-[E9E9EA] rounded-full cursor-pointer bg-linear-to-b from-[#3454AC] to-[#1E3061] text-white text-base leading-[124%] tracking-[0.08px] font-medium"
+          >
             Save All Changes
           </button>
         </div>
@@ -59,6 +67,12 @@ export default function page() {
       <div>
         <AppConfiguration />
       </div>
+
+      <SaveSuccessModal
+        open={open}
+        onOpenChange={setOpen}
+        onSave={() => console.log("Confirmed save!")}
+      />
     </div>
   );
 }
