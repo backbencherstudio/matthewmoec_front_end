@@ -1,7 +1,10 @@
 "use client";
 import SearchBar from "@/components/ui/SearchBar";
-import AmazonIcon from "../../../../components/icons/AmazonIcon";
-import Container from "../../ui/Container";
+
+
+import AmazonIcon from "@/components/icons/AmazonIcon";
+import Container from "@/components/ui/Container";
+
 
 const TrustedStores = () => {
   // Static data for stores

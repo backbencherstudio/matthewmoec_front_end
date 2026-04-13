@@ -15,7 +15,7 @@ const SectionHeader = ({
   titleClassName = "",
   descriptionClassName = "",
   showBlobs = true,
-  minHeight = "lg:h-105",
+  minHeight = " h-67 md:h-80 lg:h-105",
 }: SectionHeaderProps) => {
   return (
     <div
@@ -24,7 +24,7 @@ const SectionHeader = ({
       <section className="p-4 lg:p-0">
         <div>
           <p
-            className={`lg:pt-24.25 text-[#1A2A56] text-center font-inter text-[24px] md:text-[32px] lg:text-[52px] font-semibold leading-[120%] tracking-[0.26px] mb-1.5 lg:mb-4 ${titleClassName}`}
+            className={`pt-8 md:pt-16 lg:pt-24.25 text-[#1A2A56] text-center font-inter text-[24px] md:text-[32px] lg:text-[52px] font-semibold leading-[120%] tracking-[0.26px]  mb-1.5 lg:mb-4 ${titleClassName}`}
           >
             {title}
           </p>

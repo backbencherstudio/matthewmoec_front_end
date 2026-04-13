@@ -1,5 +1,6 @@
+import Container from "@/components/ui/Container";
 import React from "react";
-import Container from "../../ui/Container";
+
 
 const GivingBack = () => {
   return (

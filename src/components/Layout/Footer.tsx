@@ -1,6 +1,7 @@
 import React from "react";
 import Container from "../ui/Container";
 
+
 const Footer = () => {
   return (
     <footer className="bg-[#000]">
@@ -8,7 +9,7 @@ const Footer = () => {
       <section className="flex p-[30px_12px_12px_12px]  lg:p-[80px_80px_24px_80px] flex-col justify-center  ">
         <div className="flex flex-col lg:flex-row  lg:pb-[48px] lg:justify-between items-start   ">
           {/* 1st col */}
-          <div className="flex flex-1  flex-col lg:justify-center items-start gap-[10px] lg:gap-[24px] mt-4">
+          <div className="flex flex-1  flex-col lg:justify-center items-start gap-2.5 lg:gap-[24px] mt-4">
             <div className="flex lg:justify-center gap-2">
               <img
                 src="/logo.png"
@@ -73,7 +74,7 @@ const Footer = () => {
           </div>
 
           {/* download - 3rd col*/}
-          <div className="flex flex-1 flex-col justify-center items-start gap-[10px] lg:gap-[16px] mt-4">
+          <div className="flex flex-1 flex-col justify-center items-start gap-2.5 lg:gap-4 mt-4">
             <h1 className="text-white font-semibold text-[24px] leading-[130%] tracking-[0.12px] font-inter">
               {" "}
               DOWNLOAD{" "}

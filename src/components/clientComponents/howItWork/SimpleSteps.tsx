@@ -1,4 +1,4 @@
-import Container from "@/app/components/ui/Container";
+import Container from "@/components/ui/Container";
 import React from "react";
 import Image from "next/image";
 
@@ -97,7 +97,7 @@ const SimpleSteps = () => {
           </div>
 
 
-          <div className="mt-4 lg:h-[56px] lg:mt-8 flex  px-6 py-3 lg:py-0 items-center gap-3 rounded-[12px] border-[0.3px] border-[#E9E9EA] bg-[#DFE1E7]">
+          <div className="mt-4 lg:h-14 lg:mt-8 flex  px-6 py-3 lg:py-0 items-center gap-3 rounded-[12px] border-[0.3px] border-[#E9E9EA] bg-[#DFE1E7]">
 
             <Image height={400} width={400} src="/tickIcon.png" alt="" className="w-6 h-6"/>
 

@@ -1,4 +1,4 @@
-import Container from "@/app/components/ui/Container";
+import Container from "@/components/ui/Container";
 import React from "react";
 
 const AfilliateLinks = () => {
@@ -15,7 +15,7 @@ const AfilliateLinks = () => {
           </p>
         </div>
 <Container>
-        <div className="flex py-[30px] px-4 lg:px-6 items-center gap-[14px] self-stretch rounded-[12px] border-l-[4px] border-l-[#395CBC] bg-[#ECEFF3]">
+        <div className="flex py-7.5 px-4 lg:px-6 items-center gap-3.5 self-stretch rounded-[12px] border-l-4 border-l-[#395CBC] bg-[#ECEFF3]">
           <p className="text-[#1A2A56] font-inter text-[12px] md:text-[18px] font-medium leading-[150%]">
             When you shop online retailers like Amazon, Walmart, and Target pay
             a small commission to anyone who sends them a customer. It costs you
