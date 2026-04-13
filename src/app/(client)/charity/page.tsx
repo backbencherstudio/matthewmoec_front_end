@@ -1,12 +1,11 @@
-import Charity from '@/components/clientComponents/charity/Charity';
-import React from 'react';
+import Charity from "@/components/clientComponents/charity/Charity";
 
 const page = () => {
-    return (
-        <div>
-            <Charity></Charity>
-        </div>
-    );
+  return (
+    <div>
+      <Charity />
+    </div>
+  );
 };
 
 export default page;
