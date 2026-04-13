@@ -1,4 +1,4 @@
-export default function AccessibleIcon({className}:{className?:string}) {
+export default function AccessibleIcon({ className }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -37,8 +37,8 @@ export default function AccessibleIcon({className}:{className?:string}) {
           y2="14.6667"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#395CBC" />
-          <stop offset="1" stop-color="#1A2A56" />
+          <stop stopColor="#395CBC" />
+          <stop offset="1" stopColor="#1A2A56" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_6314_1017"
@@ -48,8 +48,8 @@ export default function AccessibleIcon({className}:{className?:string}) {
           y2="6.00004"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#395CBC" />
-          <stop offset="1" stop-color="#1A2A56" />
+          <stop stopColor="#395CBC" />
+          <stop offset="1" stopColor="#1A2A56" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_6314_1017"
@@ -59,8 +59,8 @@ export default function AccessibleIcon({className}:{className?:string}) {
           y2="11.6667"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#395CBC" />
-          <stop offset="1" stop-color="#1A2A56" />
+          <stop stopColor="#395CBC" />
+          <stop offset="1" stopColor="#1A2A56" />
         </linearGradient>
         <linearGradient
           id="paint3_linear_6314_1017"
@@ -70,8 +70,8 @@ export default function AccessibleIcon({className}:{className?:string}) {
           y2="12.6666"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#395CBC" />
-          <stop offset="1" stop-color="#1A2A56" />
+          <stop stopColor="#395CBC" />
+          <stop offset="1" stopColor="#1A2A56" />
         </linearGradient>
       </defs>
     </svg>

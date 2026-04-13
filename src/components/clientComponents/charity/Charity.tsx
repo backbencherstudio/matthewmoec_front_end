@@ -1,4 +1,4 @@
-import TakeEveryWhere from "@/app/components/clientComponents/homePage/TakeEveryWhere";
+import TakeEveryWhere from "@/components/clientComponents/homePage/TakeEveryWhere";
 import SectionHeader from "@/components/reusable/SectionHeader";
 import SimpleCalender from "./SimpleCalender";
 

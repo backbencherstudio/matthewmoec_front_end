@@ -3,8 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import Container from "../ui/Container";
-import LanguageToggle from "../ui/LanguageToggle";
+import Container from "../homePage/Container";
+import LanguageToggle from "../homePage/LanguageToggle";
 
 interface NavItem {
   name: string;

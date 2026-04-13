@@ -5,7 +5,7 @@ const LanguageToggle = () => {
 
   return (
     <button
-      className="bg-[#395CBC] w-[69px] h-[30px] rounded-full p-[2px] opacity-100 flex items-center justify-between"
+      className="bg-[#395CBC] w-17.25 h-7.5 rounded-full p-0.5 opacity-100 flex items-center justify-between"
       onClick={() => setSelectedLanguage(selectedLanguage === "EN" ? "ES" : "EN")}
     >
       <div

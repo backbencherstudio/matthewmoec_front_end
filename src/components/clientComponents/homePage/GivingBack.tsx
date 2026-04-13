@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Container from "../../ui/Container";
+import Container from "./Container";
 
 const GivingBack = () => {
   return (
