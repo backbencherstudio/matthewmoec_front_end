@@ -487,7 +487,9 @@ const Navbar = () => {
   };
 
   return (
+     <div className="sticky top-8 z-50">
     <Container>
+     
       <div
         className="mt-4 md:mt-6 lg:mt-8 rounded-full relative mx-2 md:mx-0"
         style={{ background: "linear-gradient(to bottom, #D6DFFD, #F3F6FF)" }}
@@ -662,7 +664,10 @@ const Navbar = () => {
           }
         }
       `}</style>
+
+     
     </Container>
+     </div>
   );
 };
 

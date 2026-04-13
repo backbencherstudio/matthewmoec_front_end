@@ -1,4 +1,5 @@
 import React from "react";
+import { TiArrowRight } from "react-icons/ti";
 
 const SimpleCalender = () => {
   return (
@@ -16,21 +17,40 @@ const SimpleCalender = () => {
 
         <div>
           <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6    ">
-            <div className="  flex flex-col items-center gap-4 flex-[1_0_0] py-10 px-6 pb-8 rounded-[24px] border border-[#E9E9EA] bg-white">
-              <div>
-                <h1 className="text-[#395CBC] font-inter text-[24px] font-semibold leading-[1.16] tracking-[0.12px]">
-                  January 2025
-                </h1>
+            <div className=" relative">
+              <div className="  flex flex-col items-center gap-4 flex-[1_0_0] py-10 px-6 pb-8 rounded-[24px] border border-[#E9E9EA] bg-white">
+                <div>
+                  <h1 className="text-[#395CBC] font-inter text-[24px] font-semibold leading-[1.16] tracking-[0.12px]">
+                    January 2025
+                  </h1>
 
-                <p className="font-inter text-[#4A4C56] text-[18px] font-normal leading-[1.32] tracking-[0.09px]">
-                  Feeding America
-                </p>
+                  <p className="font-inter text-[#4A4C56] text-[18px] font-normal leading-[1.32] tracking-[0.09px]">
+                    Feeding America
+                  </p>
+                </div>
+
+                <div>
+                  <h1 className="font-inter text-[#1A2A56] text-[40px] font-semibold leading-[1.24] tracking-[0.2px] text-center">
+                    $800
+                  </h1>
+                </div>
+
+                <button className=" flex w-full justify-center items-center gap-2 py-[11px] rounded-[61px] bg-gradient-to-b from-[#395CBC] to-[#1A2A56]">
+                  <div className="flex justify-center items-center gap-1 lg:gap-2">
+                    <h1 className="font-sans text-white text-center text-sm font-medium leading-[154%]">
+                      View Receipt
+                    </h1>
+                    <TiArrowRight  className=" text-[16px] text-white" />
+                  </div>
+                </button>
               </div>
 
-              <div>
-                <h1 className="font-inter text-[#1A2A56] text-[40px] font-semibold leading-[1.24] tracking-[0.2px] text-center">
-                  $800
+              <div className="flex px-3 py-1 justify-center items-center gap-1 rounded-[4px_24px] bg-[#ECEFF3] w-fit absolute top-0 right-0">
+                <h1 className="text-[#395CBC] text-center font-sans text-xs font-normal">
+                  Confirmed
                 </h1>
+
+                <img src="/tickIcon.png" alt="" className="h-5 w-5" />
               </div>
             </div>
 

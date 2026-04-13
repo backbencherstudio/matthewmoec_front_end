@@ -1,9 +1,11 @@
+import Container from "@/app/components/ui/Container";
 import React from "react";
 
 const SimpleSteps = () => {
   return (
     <div>
-      <section className="flex flex-col items-center gap-12 p-4 md:p-8 lg:p-20 self-stretch bg-[#F0F3F9]">
+      <section className="flex flex-col items-center gap-12 py-4 md:py-8 lg:py-20 self-stretch bg-[#F0F3F9]">
+        
         <div>
           <h1 className="text-[#1A2A56] text-center font-inter text-[24px] md:text-[32px] lg:text-[40px] font-semibold leading-[124%] tracking-[0.2px] mb-1.5 lg:mb-4">
             How It Works in 4 Simple Steps
@@ -13,16 +15,17 @@ const SimpleSteps = () => {
             just a few taps.
           </p>
         </div>
-{/* flex flex-col md:flex-row gap-6 */}
-        <div>
+
+<Container>
+        <div className="">
           <div className=" grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6   lg:[&>*:nth-child(odd)]:mt-[53] ">
-            <div className="  flex flex-col gap-6 p-8 rounded-[16px] border-[0.3px] border-[#ECEFF3] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.04)]">
-              <h1 className="text-[#1A2A56] font-inter text-[80px] font-bold leading-normal opacity-15 text-center">
+            <div className="  flex flex-col gap-2 md:gap-4 xl:gap-6  p-3  md:p-5 lg:p-8 rounded-[16px] border-[0.3px] border-[#ECEFF3] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.04)]">
+              <h1 className="text-[#1A2A56] font-inter text-[52px] md:text-[64px] lg:text-[80px] font-bold leading-normal opacity-15 text-center">
                 01
               </h1>
 
               <div>
-                <h1 className="text-[#1A2A56] text-center font-inter text-[24px] font-semibold leading-[140%] mb-4">
+                <h1 className="text-[#1A2A56] text-center font-inter text-[18px] md:text-[20px] lg:text-[24px] font-semibold leading-[140%] mb-4">
                   Download the App
                 </h1>
 
@@ -34,13 +37,13 @@ const SimpleSteps = () => {
             </div>
             
 
-            <div className="flex flex-col gap-6 p-8 rounded-[16px] border-[0.3px] border-[#ECEFF3] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.04)]">
-              <h1 className="text-[#1A2A56] font-inter text-[80px] font-bold leading-normal opacity-15 text-center">
+            <div className="flex flex-col gap-2 md:gap-4 lg:gap-6  p-3  md:p-5 lg:p-8  rounded-[16px] border-[0.3px] border-[#ECEFF3] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.04)]">
+              <h1 className="text-[#1A2A56] font-inter text-[52px] md:text-[64px] lg:text-[80px] font-bold leading-normal opacity-15 text-center">
                 02
               </h1>
 
               <div>
-                <h1 className="text-[#1A2A56] text-center font-inter text-[24px] font-semibold leading-[140%] mb-4">
+                <h1 className="text-[#1A2A56] text-center font-inter text-[18px] md:text-[20px] lg:text-[24px] font-semibold leading-[140%] mb-4">
                  Tap Any Store Button
                 </h1>
 
@@ -54,13 +57,13 @@ const SimpleSteps = () => {
 
             
 
-            <div className="flex flex-col gap-6 p-8 rounded-[16px] border-[0.3px] border-[#ECEFF3] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.04)]">
-              <h1 className="text-[#1A2A56] font-inter text-[80px] font-bold leading-normal opacity-15 text-center">
+            <div className="flex flex-col gap-2 md:gap-4 lg:gap-6  p-3  md:p-5 lg:p-8  rounded-[16px] border-[0.3px] border-[#ECEFF3] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.04)]">
+              <h1 className="text-[#1A2A56] font-inter text-[52px] md:text-[64px] lg:text-[80px] font-bold leading-normal opacity-15 text-center">
                 03
               </h1>
 
               <div>
-                <h1 className="text-[#1A2A56] text-center font-inter text-[24px] font-semibold leading-[140%] mb-4">
+                <h1 className="text-[#1A2A56] text-center font-inter text-[18px] md:text-[20px] lg:text-[24px] font-semibold leading-[140%] mb-4">
                  Shop Exactly as Usual
                 </h1>
 
@@ -72,13 +75,13 @@ const SimpleSteps = () => {
 
 
 
-            <div className="flex flex-col gap-6 p-8 rounded-[16px] border-[0.3px] border-[#ECEFF3] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.04)]">
-              <h1 className="text-[#1A2A56] font-inter text-[80px] font-bold leading-normal opacity-15 text-center">
+            <div className="flex flex-col gap-2 md:gap-4 lg:gap-6  p-3  md:p-5 lg:p-8  rounded-[16px] border-[0.3px] border-[#ECEFF3] bg-white shadow-[0_2px_6px_rgba(0,0,0,0.04)]">
+              <h1 className="text-[#1A2A56] font-inter text-[52px] md:text-[64px] lg:text-[80px] font-bold leading-normal opacity-15 text-center">
                 04
               </h1>
 
               <div>
-                <h1 className="text-[#1A2A56] text-center font-inter text-[24px] font-semibold leading-[140%] mb-4">
+                <h1 className="text-[#1A2A56] text-center font-inter text-[18px] md:text-[20px] lg:text-[24px] font-semibold leading-[140%] mb-4">
                   We Donate Every Month
                 </h1>
 
@@ -103,6 +106,8 @@ const SimpleSteps = () => {
 
           </div>
         </div>
+
+        </Container>
       </section>
     </div>
   );

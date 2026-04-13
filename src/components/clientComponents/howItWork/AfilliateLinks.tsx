@@ -1,9 +1,10 @@
+import Container from "@/app/components/ui/Container";
 import React from "react";
 
 const AfilliateLinks = () => {
   return (
     <div>
-      <section className="flex flex-col items-center gap-12 p-4 md:p-8 lg:p-20 self-stretch bg-[#FFF]">
+      <section className="flex flex-col items-center gap-12 py-4 md:py-8 lg:py-20 self-stretch bg-[#FFF]">
         <div>
           <h1 className="text-[#1A2A56] text-center font-inter text-[24px] md:text-[32px] lg:text-[40px] font-semibold leading-[124%] tracking-[0.2px] mb-1.5 lg:mb-4">
             How affiliate links work
@@ -13,7 +14,7 @@ const AfilliateLinks = () => {
             just a few taps.
           </p>
         </div>
-
+<Container>
         <div className="flex py-[30px] px-4 lg:px-6 items-center gap-[14px] self-stretch rounded-[12px] border-l-[4px] border-l-[#395CBC] bg-[#ECEFF3]">
           <p className="text-[#1A2A56] font-inter text-[12px] md:text-[18px] font-medium leading-[150%]">
             When you shop online retailers like Amazon, Walmart, and Target pay
@@ -32,6 +33,10 @@ const AfilliateLinks = () => {
             month. That is CartForGood. Simple. Honest. Free.
           </p>
         </div>
+
+        </Container>
+
+
       </section>
     </div>
   );
