@@ -1,19 +1,13 @@
 "use client";
 
 import CartIcon from "@/components/icons/CartIcon";
-import {
-  BarChart2,
-  Heart,
-  LayoutDashboard,
-  Menu,
-  Percent,
-  Settings,
-  X,
-} from "lucide-react";
+import { Heart, LayoutDashboard, Menu, Settings, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import AnalysisIcon from "../icons/AnalysisIcon";
 import FileIcon from "../icons/FileIcon";
+import StoreCommissionIcon from "../icons/StoreCommissionIcon";
 import StoreIcon from "../icons/StoreIcon";
 
 const navItems = [
@@ -21,8 +15,12 @@ const navItems = [
   { label: "Store Manager", icon: StoreIcon, href: "/store-manager" },
   { label: "Charity Panel", icon: Heart, href: "/charity-panel" },
   { label: "Monthly Receipts", icon: FileIcon, href: "/monthly-receipts" },
-  { label: "Store Commission", icon: Percent, href: "/store-commission" },
-  { label: "Analysis", icon: BarChart2, href: "/analysis" },
+  {
+    label: "Store Commission",
+    icon: StoreCommissionIcon,
+    href: "/store-commission",
+  },
+  { label: "Analysis", icon: AnalysisIcon, href: "/analysis" },
   { label: "Settings", icon: Settings, href: "/settings" },
 ];
 
@@ -89,7 +87,7 @@ export default function Sidebar() {
                       : "text-white"
                   }`}
                 >
-                  <Icon size={20} />
+                  <Icon className="h-5 w-5" />
                   {label}
                 </Link>
               );

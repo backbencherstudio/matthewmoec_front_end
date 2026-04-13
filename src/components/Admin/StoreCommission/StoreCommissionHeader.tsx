@@ -17,13 +17,13 @@ const monthOptions = [
   "February 2026",
 ];
 
-export default function CharityPanelHeader() {
+export default function StoreCommissionHeader() {
   const [showMonthDropdown, setShowMonthDropdown] = useState(false);
   const [selectedMonth, setSelectedMonth] = useState("January 2025");
   return (
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
       <h1 className="text-[#1A2A56] text-2xl sm:text-[28px] font-bold leading-[124%] tracking-[0.16px]">
-        Charity Panel
+        Commission Details
       </h1>
 
       {/* Month Selector */}
