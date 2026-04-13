@@ -1,5 +1,6 @@
+import { ArrowRight } from "lucide-react";
 import React from "react";
-import { TiArrowRight } from "react-icons/ti";
+
 
 const SimpleCalender = () => {
   return (
@@ -40,7 +41,7 @@ const SimpleCalender = () => {
                     <h1 className="font-sans text-white text-center text-sm font-medium leading-[154%]">
                       View Receipt
                     </h1>
-                    <TiArrowRight  className=" text-[16px] text-white" />
+                    <ArrowRight  className=" text-[16px] text-white" />
                   </div>
                 </button>
               </div>

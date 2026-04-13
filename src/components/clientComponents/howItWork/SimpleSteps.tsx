@@ -1,5 +1,6 @@
 import Container from "@/app/components/ui/Container";
 import React from "react";
+import Image from "next/image";
 
 const SimpleSteps = () => {
   return (
@@ -98,7 +99,7 @@ const SimpleSteps = () => {
 
           <div className="mt-4 lg:h-[56px] lg:mt-8 flex  px-6 py-3 lg:py-0 items-center gap-3 rounded-[12px] border-[0.3px] border-[#E9E9EA] bg-[#DFE1E7]">
 
-            <img src="/tickIcon.png" alt="" className="w-6 h-6"/>
+            <Image height={400} width={400} src="/tickIcon.png" alt="" className="w-6 h-6"/>
 
            <h1 className="text-[#1A2A56] font-inter text-[16px] font-medium leading-[132%] tracking-[0.08px]">
  IMPORTANT: All stores open in your device's EXTERNAL browser — never WebView or in-app browser. This is non-negotiable for affiliate commission tracking.
