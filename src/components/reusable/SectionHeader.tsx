@@ -21,7 +21,7 @@ const SectionHeader = ({
     <div
       className={`${minHeight} bg-white overflow-hidden relative ${className}`}
     >
-      <section className="p-4 lg:p-0">
+      <section className="py-10 lg:p-0">
         <div>
           <p
             className={`lg:pt-24.25 text-[#1A2A56] text-center font-inter text-[24px] md:text-[32px] lg:text-[52px] font-semibold leading-[120%] tracking-[0.26px] mb-1.5 lg:mb-4 ${titleClassName}`}
