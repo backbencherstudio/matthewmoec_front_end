@@ -1,4 +1,4 @@
-export default function EffortlessIcon({className}:{className?:string}) {
+export default function EffortlessIcon({ className }: { className?: string }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -39,8 +39,8 @@ export default function EffortlessIcon({className}:{className?:string}) {
           y2="12.3333"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#395CBC" />
-          <stop offset="1" stop-color="#1A2A56" />
+          <stop stopColor="#395CBC" />
+          <stop offset="1" stopColor="#1A2A56" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_6314_990"
@@ -50,8 +50,8 @@ export default function EffortlessIcon({className}:{className?:string}) {
           y2="4.66671"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#395CBC" />
-          <stop offset="1" stop-color="#1A2A56" />
+          <stop stopColor="#395CBC" />
+          <stop offset="1" stopColor="#1A2A56" />
         </linearGradient>
         <linearGradient
           id="paint2_linear_6314_990"
@@ -61,8 +61,8 @@ export default function EffortlessIcon({className}:{className?:string}) {
           y2="14.6667"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#395CBC" />
-          <stop offset="1" stop-color="#1A2A56" />
+          <stop stopColor="#395CBC" />
+          <stop offset="1" stopColor="#1A2A56" />
         </linearGradient>
         <linearGradient
           id="paint3_linear_6314_990"
@@ -72,8 +72,8 @@ export default function EffortlessIcon({className}:{className?:string}) {
           y2="14.6667"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#395CBC" />
-          <stop offset="1" stop-color="#1A2A56" />
+          <stop stopColor="#395CBC" />
+          <stop offset="1" stopColor="#1A2A56" />
         </linearGradient>
         <clipPath id="clip0_6314_990">
           <rect width="16" height="16" fill="white" />

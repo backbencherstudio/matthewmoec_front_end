@@ -1,4 +1,4 @@
-import TakeEveryWhere from "@/app/components/clientComponents/homePage/TakeEveryWhere";
+import TakeEveryWhere from "@/components/clientComponents/homePage/TakeEveryWhere";
 import MonthlyReceipts from "@/components/clientComponents/receipts/MonthlyReceipts";
 import StatsBar from "@/components/clientComponents/receipts/StatsBar";
 import SectionHeader from "@/components/reusable/SectionHeader";

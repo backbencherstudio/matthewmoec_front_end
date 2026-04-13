@@ -1,4 +1,4 @@
-import Container from "@/app/components/ui/Container";
+import Container from "@/components/clientComponents/homePage/Container";
 import LeftArrowIcon from "@/components/icons/LeftArrowIcon";
 import Love2Icon from "@/components/icons/Love2Icon";
 import RightArrowICon2 from "@/components/icons/RightArrowICon2";

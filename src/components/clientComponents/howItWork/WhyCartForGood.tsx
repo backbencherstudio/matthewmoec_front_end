@@ -1,5 +1,4 @@
-import Container from "@/app/components/ui/Container";
-import React from "react";
+import Container from "@/components/clientComponents/homePage/Container";
 
 const WhyCartForGood = () => {
   return (
@@ -14,18 +13,18 @@ const WhyCartForGood = () => {
             purchases into meaningful support for causes that matter.
           </p>
         </div>
-<Container>
-        <div className="flex py-[30px] px-4 lg:px-6 items-center gap-[14px] self-stretch rounded-[12px] border-l-[4px] border-l-[#395CBC] bg-[#ECEFF3]">
-          <p className="text-[#1A2A56] font-inter text-[12px] md:text-[18px] font-medium leading-[150%]">
-            We take that same commission and donate a portion to charity every
-            month. You were going to shop anyway. The retailer was going to pay
-            someone anyway. We just made sure that someone gives back. November
-            - Feeding America. December - Toys for Tots. All other months -
-            community and charity spin wheel.The stores pay us. You pay nothing
-            extra. We share what they give us with charity every month. That is
-            CartForGood. Simple. Honest. Free.
-          </p>
-        </div>
+        <Container>
+          <div className="flex py-[30px] px-4 lg:px-6 items-center gap-[14px] self-stretch rounded-[12px] border-l-[4px] border-l-[#395CBC] bg-[#ECEFF3]">
+            <p className="text-[#1A2A56] font-inter text-[12px] md:text-[18px] font-medium leading-[150%]">
+              We take that same commission and donate a portion to charity every
+              month. You were going to shop anyway. The retailer was going to
+              pay someone anyway. We just made sure that someone gives back.
+              November - Feeding America. December - Toys for Tots. All other
+              months - community and charity spin wheel.The stores pay us. You
+              pay nothing extra. We share what they give us with charity every
+              month. That is CartForGood. Simple. Honest. Free.
+            </p>
+          </div>
         </Container>
       </section>
     </div>

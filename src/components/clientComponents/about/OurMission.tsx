@@ -1,4 +1,4 @@
-import Container from "@/app/components/ui/Container";
+import Container from "@/components/clientComponents/homePage/Container";
 
 export default function OurMission() {
   const items = [

@@ -18,8 +18,8 @@ export default function RightArrowICon2({ className }: { className?: string }) {
           y2="3"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#395CBC" />
-          <stop offset="1" stop-color="#1A2A56" />
+          <stop stopColor="#395CBC" />
+          <stop offset="1" stopColor="#1A2A56" />
         </linearGradient>
       </defs>
     </svg>
