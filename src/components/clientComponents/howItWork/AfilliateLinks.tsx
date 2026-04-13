@@ -1,5 +1,4 @@
 import Container from "@/app/components/ui/Container";
-import React from "react";
 
 const AfilliateLinks = () => {
   return (
@@ -14,29 +13,27 @@ const AfilliateLinks = () => {
             just a few taps.
           </p>
         </div>
-<Container>
-        <div className="flex py-[30px] px-4 lg:px-6 items-center gap-[14px] self-stretch rounded-[12px] border-l-[4px] border-l-[#395CBC] bg-[#ECEFF3]">
-          <p className="text-[#1A2A56] font-inter text-[12px] md:text-[18px] font-medium leading-[150%]">
-            When you shop online retailers like Amazon, Walmart, and Target pay
-            a small commission to anyone who sends them a customer. It costs you
-            nothing extra. The price you pay is exactly the same. The retailer
-            funds it out of their marketing budget. Most people send these
-            retailers billions of dollars in business every year and get nothing
-            back. Bloggers, influencers, and big websites collect these
-            commissions for themselves. CartForGood is different. We take that
-            same commission and share a portion with charity every month. You
-            were going to shop anyway. The retailer was going to pay someone
-            anyway. We just made sure that someone gives back. July — Tunnels to
-            Towers. November — Feeding America. December —Toys for Tots. All
-            other months — community charity spin wheel. The stores pay us. You
-            pay nothing extra. We share what they give us with charity every
-            month. That is CartForGood. Simple. Honest. Free.
-          </p>
-        </div>
-
+        <Container>
+          <div className="flex py-7.5 px-4 lg:px-6 items-center gap-3.5 self-stretch rounded-[12px] border-l-4 border-l-[#395CBC] bg-[#ECEFF3]">
+            <p className="text-[#1A2A56] font-inter text-[12px] md:text-[18px] font-medium leading-[150%]">
+              When you shop online retailers like Amazon, Walmart, and Target
+              pay a small commission to anyone who sends them a customer. It
+              costs you nothing extra. The price you pay is exactly the same.
+              The retailer funds it out of their marketing budget. Most people
+              send these retailers billions of dollars in business every year
+              and get nothing back. Bloggers, influencers, and big websites
+              collect these commissions for themselves. CartForGood is
+              different. We take that same commission and share a portion with
+              charity every month. You were going to shop anyway. The retailer
+              was going to pay someone anyway. We just made sure that someone
+              gives back. July — Tunnels to Towers. November — Feeding America.
+              December —Toys for Tots. All other months — community charity spin
+              wheel. The stores pay us. You pay nothing extra. We share what
+              they give us with charity every month. That is CartForGood.
+              Simple. Honest. Free.
+            </p>
+          </div>
         </Container>
-
-
       </section>
     </div>
   );
