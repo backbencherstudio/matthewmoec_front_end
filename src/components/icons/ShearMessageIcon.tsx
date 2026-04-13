@@ -1,0 +1,18 @@
+export default function ShearMessageIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M20.5 3.5L3.5 9L10 12L17 7L12 14L15 20.5L20.5 3.5Z"
+        stroke="#1A2A56"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+}
