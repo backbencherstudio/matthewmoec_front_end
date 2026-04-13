@@ -1,6 +1,5 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import heroImage from "../../../../public/heroImg2.png";
 import Container from "./Container";
 
 const HeroSection = () => {
@@ -48,7 +47,7 @@ const HeroSection = () => {
               <Image
                 height={400}
                 width={400}
-                src={heroImage || "/heroImg2.png"}
+                src={"/heroimage.png"}
                 alt="Phonemockup"
                 className="lg:w-full object-cover"
               />
