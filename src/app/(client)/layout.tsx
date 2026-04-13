@@ -9,13 +9,10 @@ export default function ClientLayout({
   return (
     <div>
       <div>
-        <Navbar></Navbar>
+        <Navbar />
         {children}
-        <Footer></Footer>
+        <Footer />
       </div>
     </div>
   );
 }
-
-
-
