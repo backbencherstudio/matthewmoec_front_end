@@ -20,7 +20,7 @@ const HeroSection = () => {
                 help fund real charity — at no extra cost to you.
               </p>
               <div className="mt-8 space-x-4 md:space-y-2 space-y-2.5 w-50 md:w-full mx-auto md:mx-0   ">
-                <button className=" px-3 lg:px-6 py-1.5 lg:py-3 bg-linear-to-b from-[#395CBC] to-[#1A2A56] text-white hover:bg-[#1A2A56] rounded-[30px] transition  w-full md:w-2/3 lg:w-fit">
+                <button className=" px-3 lg:px-6 py-1.5 lg:py-3 bg-linear-to-b from-[#395CBC] to-[#1A2A56] text-white hover:bg-[#1A2A56] rounded-[30px] transition  w-full md:w-2/3 lg:w-fit cursor-pointer">
                   <div className="flex justify-center items-center gap-1 lg:gap-2">
                     <h1 className="text-[#FFF] font-medium  text-[12px] md:text-[14px] lg:text-[18px] leading-[100%] tracking-[0.09px] font-inter">
                       {" "}
@@ -29,7 +29,7 @@ const HeroSection = () => {
                     <ArrowRight className="h-6 w-6" />
                   </div>
                 </button>
-                <button className="px-3 lg:px-6 py-1.5 lg:py-3   rounded-[30px] border transition w-full md:w-2/3 lg:w-fit">
+                <button className="px-3 lg:px-6 py-1.5 lg:py-3   rounded-[30px] border transition w-full md:w-2/3 lg:w-fit cursor-pointer">
                   <div className="flex justify-center items-center gap-1 lg:gap-2">
                     <h1 className="text-[#1A2A56] font-medium text-[12px] md:text-[14px] lg:text-[18px] leading-[100%] tracking-[0.09px] font-inter">
                       {" "}
@@ -49,7 +49,7 @@ const HeroSection = () => {
                 width={400}
                 src="/heroImg2.png"
                 alt="Phone mockup"
-                className="   lg:w-full"
+                className="lg:w-full object-cover"
               />
 
               <div className="hidden md:block absolute -z-10 ">

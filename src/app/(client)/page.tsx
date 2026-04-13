@@ -4,7 +4,7 @@ export default function ClientHomePage() {
   return (
     <div className="min-h-screen">
       {/* <HeroSection /> */}
-      <Home></Home>
+      <Home />
     </div>
   );
 }

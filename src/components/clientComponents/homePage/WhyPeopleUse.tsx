@@ -58,10 +58,10 @@ const WhyPeopleUse = () => {
           <div className="relative py:4 lg:py-0">
             <Image
               src="/mobile.png"
-              height={100}
-              width={100}
-              alt=""
-              className=""
+              height={400}
+              width={400}
+              alt="mobile"
+              className="object-cover"
             />
 
             <div className="absolute bottom-6  lg:-bottom-2 ml-4 -z-1 w-71.5 h-16.75 rounded-[286px] bg-linear-to-b from-[#395CBC] to-[#1A2A56] filter blur-[36.2px]"></div>
