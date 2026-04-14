@@ -73,7 +73,7 @@ const TrustedStores = () => {
               </div>
 
               <div className="w-42.5">
-                <SearchBar></SearchBar>
+                <SearchBar />
               </div>
             </div>
 
@@ -102,7 +102,7 @@ const TrustedStores = () => {
                   </div>
 
                   <div className="text-center">
-                    <button className="w-full h-10 text-sm text-[#395CBC] hover:text-blue-700 border-2 rounded-full">
+                    <button className="w-full h-10 text-sm text-[#395CBC] hover:text-blue-700 border-2 rounded-full cursor-pointer">
                       {store.buttonText} <span>&rarr;</span>
                     </button>
                   </div>
