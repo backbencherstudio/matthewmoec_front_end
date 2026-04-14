@@ -12,17 +12,21 @@ import StoreCommissionIcon from "../icons/StoreCommissionIcon";
 import StoreIcon from "../icons/StoreIcon";
 
 const navItems = [
-  { label: "Dashboard", icon: LayoutDashboard, href: "/dashboard" },
-  { label: "Store Manager", icon: StoreIcon, href: "/store-manager" },
-  { label: "Charity Panel", icon: Heart, href: "/charity-panel" },
-  { label: "Monthly Receipts", icon: FileIcon, href: "/monthly-receipts" },
+  { label: "Dashboard", icon: LayoutDashboard, href: "/admin/dashboard" },
+  { label: "Store Manager", icon: StoreIcon, href: "/admin/store-manager" },
+  { label: "Charity Panel", icon: Heart, href: "/admin/charity-panel" },
+  {
+    label: "Monthly Receipts",
+    icon: FileIcon,
+    href: "/admin/monthly-receipts",
+  },
   {
     label: "Store Commission",
     icon: StoreCommissionIcon,
-    href: "/store-commission",
+    href: "/admin/store-commission",
   },
-  { label: "Analysis", icon: AnalysisIcon, href: "/analysis" },
-  { label: "Settings", icon: Settings, href: "/settings" },
+  { label: "Analysis", icon: AnalysisIcon, href: "/admin/analysis" },
+  { label: "Settings", icon: Settings, href: "/admin/settings" },
 ];
 
 export default function Sidebar() {
