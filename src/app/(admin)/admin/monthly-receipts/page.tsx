@@ -1,71 +1,18 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import AddReceiptModal from "@/components/Admin/AddReceiptModal";
 import EditIcon from "@/components/icons/EditIcon";
-import EditModal from "@/components/reusable/EditModal";
+import { useGetAllReceiptsQuery } from "@/redux/features/admin/receipts/receiptsApi";
 import { CheckCircle, Trash2 } from "lucide-react";
 import { useState } from "react";
 
 type Receipt = {
-  id: number;
+  id: string;
   month: string;
-  year: number;
-  charity: string;
-  amount: number;
-  verified: boolean;
+  organization_or_charity: string;
+  receipt_amount: string;
+  status: string;
 };
-
-const initialReceipts: Receipt[] = [
-  {
-    id: 1,
-    month: "Mar",
-    year: 2026,
-    charity: "Feeding America",
-    amount: 1248,
-    verified: true,
-  },
-  {
-    id: 2,
-    month: "Feb",
-    year: 2026,
-    charity: "St. Jude Children's",
-    amount: 980,
-    verified: true,
-  },
-  {
-    id: 3,
-    month: "Jan",
-    year: 2026,
-    charity: "Feeding America",
-    amount: 1104,
-    verified: true,
-  },
-  {
-    id: 4,
-    month: "Dec",
-    year: 2025,
-    charity: "Salvation Army",
-    amount: 2011,
-    verified: true,
-  },
-  {
-    id: 5,
-    month: "Nov",
-    year: 2025,
-    charity: "Feeding America",
-    amount: 876,
-    verified: true,
-  },
-  {
-    id: 6,
-    month: "Oct",
-    year: 2025,
-    charity: "Red Cross",
-    amount: 743,
-    verified: true,
-  },
-];
 
 const receiptFields = [
   {
@@ -108,39 +55,39 @@ const receiptFields = [
 ];
 
 export default function MonthlyReceipts() {
-  const [receipts, setReceipts] = useState<Receipt[]>(initialReceipts);
+  const { data: receipts, isLoading } = useGetAllReceiptsQuery({});
   const [editOpen, setEditOpen] = useState(false);
   const [, setDeleteOpen] = useState(false);
   const [addOpen, setAddOpen] = useState(false);
   const [selected, setSelected] = useState<Receipt | null>(null);
 
-  const handleUpdate = (data: any) => {
-    if (!selected) return;
-    setReceipts((prev) =>
-      prev.map((r) =>
-        r.id === selected.id
-          ? {
-              ...r,
-              month: data.month,
-              year: Number(data.year),
-              charity: data.charity,
-              amount: Number(data.amount),
-              verified: data.verified === "true",
-            }
-          : r,
-      ),
-    );
-  };
+  // const handleUpdate = (data: any) => {
+  //   if (!selected) return;
+  //   setReceipts((prev) =>
+  //     prev.map((r) =>
+  //       r.id === selected.id
+  //         ? {
+  //             ...r,
+  //             month: data.month,
+  //             year: Number(data.year),
+  //             charity: data.charity,
+  //             amount: Number(data.amount),
+  //             verified: data.verified === "true",
+  //           }
+  //         : r,
+  //     ),
+  //   );
+  // };
 
-  const editDefaultValues = selected
-    ? {
-        month: selected.month,
-        year: String(selected.year),
-        charity: selected.charity,
-        amount: String(selected.amount),
-        verified: String(selected.verified),
-      }
-    : {};
+  // const editDefaultValues = selected
+  //   ? {
+  //       month: selected.month,
+  //       year: String(selected.year),
+  //       charity: selected.charity,
+  //       amount: String(selected.amount),
+  //       verified: String(selected.verified),
+  //     }
+  //   : {};
 
   return (
     <div className="min-h-screen bg-[#F6F8FA] p-4 sm:p-6 lg:px-13 lg:py-10 relative overflow-hidden">
@@ -166,18 +113,18 @@ export default function MonthlyReceipts() {
             Published Entries
           </span>
           <span className="text-white text-base font-medium tracking-[0.1px] leading-[132%]">
-            {receipts.length} entries
+            {receipts?.data?.length} entries
           </span>
         </div>
 
         {/* Rows */}
         <div className="divide-y divide-[#ECEFF3]">
-          {receipts.length === 0 && (
+          {receipts?.data?.length === 0 && (
             <div className="px-6 py-10 text-center text-[#B0B8C9] text-sm">
               No receipts found.
             </div>
           )}
-          {receipts.map((receipt) => (
+          {receipts?.data?.map((receipt: Receipt) => (
             <div
               key={receipt.id}
               className="grid grid-cols-3 px-5 sm:px-6 py-4 hover:bg-[#F6F8FA] transition-colors group"
@@ -185,20 +132,20 @@ export default function MonthlyReceipts() {
               {/* Left: date + charity */}
               <div className="min-w-0 flex-1">
                 <p className="text-[#1A2A56] font-semibold text-sm sm:text-base leading-tight">
-                  {receipt.month} {receipt.year}
+                  {receipt?.month}
                 </p>
                 <p className="text-[#8A94A6] text-xs sm:text-sm mt-0.5 truncate">
-                  {receipt.charity}
+                  {receipt?.organization_or_charity}
                 </p>
               </div>
 
               {/* Center: amount + verified */}
               <div className="flex flex-col gap-1 items-center">
                 <span className="text-[#395CBC] font-bold text-base md:text-lg">
-                  ${receipt.amount.toLocaleString()}
+                  ${receipt?.receipt_amount.toLocaleString()}
                 </span>
 
-                {receipt.verified && (
+                {receipt?.status === "PUBLISHED" && (
                   <span className="inline-flex items-center gap-1 text-[#09332B] text-xs font-medium bg-[#ECEFF3] px-2 py-1 rounded-full w-fit">
                     <CheckCircle size={12} />
                     Verified
@@ -233,14 +180,14 @@ export default function MonthlyReceipts() {
       </div>
 
       {/* Edit Modal */}
-      <EditModal
+      {/* <EditModal
         open={editOpen}
         onOpenChange={setEditOpen}
         title="Edit Receipt"
         fields={receiptFields}
         defaultValues={editDefaultValues}
         onSubmit={handleUpdate}
-      />
+      /> */}
 
       <AddReceiptModal
         open={addOpen}
