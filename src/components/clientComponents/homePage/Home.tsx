@@ -8,10 +8,10 @@ const Home = () => {
   return (
     <div>
       <HeroSection />
-      <TrustedStores></TrustedStores>
-      <GivingBack></GivingBack>
-      <WhyPeopleUse></WhyPeopleUse>
-      <TakeEveryWhere></TakeEveryWhere>
+      <TrustedStores />
+      <GivingBack />
+      <WhyPeopleUse />
+      <TakeEveryWhere />
     </div>
   );
 };

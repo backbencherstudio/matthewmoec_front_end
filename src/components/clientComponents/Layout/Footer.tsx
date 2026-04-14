@@ -32,41 +32,41 @@ const Footer = () => {
               </h1>
 
               <div className=" flex gap-4 justify-center">
-                <div className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square   rounded-[33554400px] bg-[rgba(255,255,255,0.10)]">
+                <a className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square   rounded-[33554400px] bg-[rgba(255,255,255,0.10)] cursor-pointer">
                   <Image
                     height={100}
                     width={100}
                     src="/Instagram.png"
                     alt="Instagram"
                   />
-                </div>
+                </a>
 
-                <div className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square  rounded-[33554400px] bg-[rgba(255,255,255,0.10)]">
+                <a className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square  rounded-[33554400px] bg-[rgba(255,255,255,0.10)] cursor-pointer">
                   <Image
                     height={100}
                     width={100}
                     src="/youtube.png"
                     alt="youtube"
                   />
-                </div>
+                </a>
 
-                <div className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square   rounded-[33554400px] bg-[rgba(255,255,255,0.10)]">
+                <a className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square   rounded-[33554400px] bg-[rgba(255,255,255,0.10)] cursor-pointer">
                   <Image
                     height={100}
                     width={100}
                     src="/linkedin.png"
                     alt="linkedin"
                   />
-                </div>
+                </a>
 
-                <div className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square rounded-[33554400px] bg-[rgba(255,255,255,0.10)]">
+                <a className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square rounded-[33554400px] bg-[rgba(255,255,255,0.10)] cursor-pointer">
                   <Image
                     height={100}
                     width={100}
                     src="/facebook.png"
                     alt="facebook"
                   />
-                </div>
+                </a>
               </div>
             </div>
 

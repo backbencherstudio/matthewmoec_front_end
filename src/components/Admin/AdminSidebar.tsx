@@ -2,6 +2,7 @@
 
 import CartIcon from "@/components/icons/CartIcon";
 import { Heart, LayoutDashboard, Menu, Settings, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -96,15 +97,17 @@ export default function Sidebar() {
         </div>
 
         {/* User profile */}
-        <div className="flex items-center gap-3 bg-white/10 rounded-2xl px-3 py-3">
-          <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center overflow-hidden shrink-0">
-            <span className="text-white font-semibold text-sm">M</span>
+        <div className="flex items-center gap-1 p-4 rounded-[12px] bg-white">
+          <div className="w-9 h-9 rounded-full flex items-center justify-center overflow-hidden shrink-0">
+            <Image src={"/profile.png"} alt="Profile" width={36} height={36} />
           </div>
           <div className="overflow-hidden">
-            <p className="text-white text-sm font-medium truncate">
+            <p className="text-[#1A2A56] text-base font-medium leading-[160%] tracking-[0.08px]">
               Matthewmoec
             </p>
-            <p className="text-white/50 text-xs truncate">matthewmoec@...</p>
+            <p className="text-[#A5A5AB] text-xs leading-[100%] tracking-[0.06px] mt-2">
+              matthewmoec@.com
+            </p>
           </div>
         </div>
       </aside>
