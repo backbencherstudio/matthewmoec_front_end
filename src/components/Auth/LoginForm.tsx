@@ -1,7 +1,11 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+import { useLoginMutation } from "@/redux/features/authApi/authApi";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 type LoginFormValues = {
   email: string;
@@ -9,17 +13,31 @@ type LoginFormValues = {
 };
 
 export default function LoginForm() {
+  const [login, { isLoading }] = useLoginMutation();
   const [showPassword, setShowPassword] = useState(false);
-
+  const router = useRouter();
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<LoginFormValues>();
 
   const onSubmit = async (data: LoginFormValues) => {
-    // Handle login logic here
-    console.log(data);
+    try {
+      const response = await login(data).unwrap();
+      if (response?.success) {
+        toast.success(response.message || "Login successful");
+        localStorage.setItem(
+          "access_token",
+          response?.authorization?.access_token,
+        );
+        localStorage.setItem("type", response?.type);
+        router.push("/admin/dashboard");
+      }
+    } catch (error) {
+      const errorMessage = (error as any)?.data?.message || "Login failed";
+      toast.error(errorMessage);
+    }
   };
 
   return (
@@ -86,8 +104,8 @@ export default function LoginForm() {
       </div>
 
       {/* Submit */}
-      <button type="submit" disabled={isSubmitting} className="submit-btn">
-        {isSubmitting ? "Logging in..." : "Log in"}
+      <button type="submit" disabled={isLoading} className="submit-btn">
+        {isLoading ? "Logging in..." : "Log in"}
       </button>
     </form>
   );
