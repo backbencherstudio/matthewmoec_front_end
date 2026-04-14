@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import {
@@ -6,24 +7,19 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import { useCreateStoreMutation } from "@/redux/features/admin/store/storeApi";
 import { ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 interface AddStoreFormData {
-  storeLogo: File | null;
-  storeName: string;
-  storeLink: string;
-  subTextNote: string;
-  howItWorks: string;
+  logo: File | null;
+  name: string;
+  link: string;
+  sub_text_note: string;
+  how_it_works: string;
   status: string;
 }
 
@@ -38,6 +34,8 @@ export default function AddStoreModal({
   onOpenChange,
   onSubmit,
 }: AddStoreModalProps) {
+  const [openSelect, setOpenSelect] = useState(false);
+  const [createStore, { isLoading }] = useCreateStoreMutation();
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -47,30 +45,48 @@ export default function AddStoreModal({
     control,
     setValue,
     reset,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<AddStoreFormData>({
     defaultValues: {
-      storeLogo: null,
-      storeName: "",
-      storeLink: "",
-      subTextNote: "",
-      howItWorks: "",
-      status: "Published",
+      logo: null,
+      name: "",
+      link: "",
+      sub_text_note: "",
+      how_it_works: "",
+      status: "PUBLISHED",
     },
   });
 
   const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
-    setValue("storeLogo", file);
+    setValue("logo", file);
     setLogoPreview(URL.createObjectURL(file));
   };
 
-  const handleFormSubmit = (data: AddStoreFormData) => {
-    onSubmit(data);
-    reset();
-    setLogoPreview(null);
-    onOpenChange(false);
+  const handleFormSubmit = async (data: AddStoreFormData) => {
+    try {
+      const formData = new FormData();
+      if (data.logo) formData.append("logo", data.logo);
+      formData.append("name", data.name);
+      formData.append("link", data.link);
+      formData.append("sub_text_note", data.sub_text_note);
+      formData.append("how_it_works", data.how_it_works);
+      formData.append("status", data.status);
+
+      const response = await createStore(formData).unwrap();
+      console.log(response);
+      if (response?.success) {
+        toast.success(response.message || "Store added successfully");
+        onSubmit(data);
+        reset();
+        setLogoPreview(null);
+        onOpenChange(false);
+      }
+    } catch (error) {
+      const errorMessage = (error as any)?.data?.message || "Login failed";
+      toast.error(errorMessage);
+    }
   };
 
   const handleCancel = () => {
@@ -132,15 +148,15 @@ export default function AddStoreModal({
                 type="text"
                 placeholder="e.g Amazon"
                 className={`w-full p-3.5 rounded-[12px] border bg-[#F6F8FA] text-sm placeholder:text-[#B0B8C9] ${
-                  errors.storeName ? "border-red-400" : "border-[#ECEFF3]"
+                  errors.name ? "border-red-400" : "border-[#ECEFF3]"
                 }`}
-                {...register("storeName", {
+                {...register("name", {
                   required: "Store name is required",
                 })}
               />
-              {errors.storeName && (
+              {errors.name && (
                 <p className="text-xs text-red-500 mt-1">
-                  {errors.storeName.message}
+                  {errors.name.message}
                 </p>
               )}
             </div>
@@ -154,15 +170,15 @@ export default function AddStoreModal({
                 type="url"
                 placeholder="https://target.com/ref?aid=123"
                 className={`w-full p-3.5 rounded-[12px] border bg-[#F6F8FA] text-sm placeholder:text-[#B0B8C9] ${
-                  errors.storeLink ? "border-red-400" : "border-[#ECEFF3]"
+                  errors.link ? "border-red-400" : "border-[#ECEFF3]"
                 }`}
-                {...register("storeLink", {
+                {...register("link", {
                   required: "Store link is required",
                 })}
               />
-              {errors.storeLink && (
+              {errors.link && (
                 <p className="text-xs text-red-500 mt-1">
-                  {errors.storeLink.message}
+                  {errors.link.message}
                 </p>
               )}
             </div>
@@ -176,7 +192,7 @@ export default function AddStoreModal({
                 type="text"
                 placeholder="Use for holiday campaigns."
                 className="w-full p-3.5 rounded-[12px] border border-[#ECEFF3] bg-[#F6F8FA] text-sm placeholder:text-[#B0B8C9]"
-                {...register("subTextNote")}
+                {...register("sub_text_note")}
               />
             </div>
 
@@ -189,7 +205,7 @@ export default function AddStoreModal({
                 rows={3}
                 placeholder="Tap below — Amazon opens via affiliate link. Your purchase supports charity at no extra cost to you."
                 className="w-full p-3.5 rounded-[12px] border border-[#ECEFF3] bg-[#F6F8FA] text-sm placeholder:text-[#B0B8C9] resize-none"
-                {...register("howItWorks")}
+                {...register("how_it_works")}
               />
             </div>
 
@@ -201,17 +217,73 @@ export default function AddStoreModal({
               <Controller
                 name="status"
                 control={control}
-                render={({ field }) => (
-                  <Select value={field.value} onValueChange={field.onChange}>
-                    <SelectTrigger className="w-full p-6 rounded-[12px] border border-[#ECEFF3] bg-[#F6F8FA] text-sm">
-                      <SelectValue placeholder="Select status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="Published">Published</SelectItem>
-                      <SelectItem value="Unpublished">Unpublished</SelectItem>
-                    </SelectContent>
-                  </Select>
-                )}
+                render={({ field }) => {
+                  const options = ["PUBLISHED", "UNPUBLISHED"];
+
+                  return (
+                    <div className="relative">
+                      <button
+                        type="button"
+                        onClick={() => setOpenSelect((prev) => !prev)}
+                        className="w-full p-3.5 rounded-[12px] border border-[#ECEFF3] bg-[#F6F8FA] text-sm text-left flex items-center justify-between text-[#1A2A56]"
+                      >
+                        <span>{field.value || "Select status"}</span>
+                        <svg
+                          className={`w-4 h-4 text-[#8A94A6] transition-transform duration-200 ${
+                            openSelect ? "rotate-180" : ""
+                          }`}
+                          viewBox="0 0 16 16"
+                          fill="none"
+                        >
+                          <path
+                            d="M4 6l4 4 4-4"
+                            stroke="currentColor"
+                            strokeWidth="1.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+
+                      {openSelect && (
+                        <ul className="absolute z-50 mt-1.5 w-full bg-white border border-[#ECEFF3] rounded-[12px] shadow-sm overflow-hidden">
+                          {options.map((option) => (
+                            <li
+                              key={option}
+                              onClick={() => {
+                                field.onChange(option);
+                                setOpenSelect(false);
+                              }}
+                              className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors
+                    ${
+                      field.value === option
+                        ? "bg-[#F6F8FA] text-[#1A2A56] font-medium"
+                        : "text-[#1A2A56] hover:bg-[#F6F8FA]"
+                    }`}
+                            >
+                              {option}
+                              {field.value === option && (
+                                <svg
+                                  className="w-4 h-4 text-[#1F3266]"
+                                  viewBox="0 0 16 16"
+                                  fill="none"
+                                >
+                                  <path
+                                    d="M3 8l3.5 3.5L13 5"
+                                    stroke="currentColor"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                  />
+                                </svg>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  );
+                }}
               />
               <p className="text-xs text-[#8A94A6] mt-1.5">
                 Entities will be marked as Published
@@ -223,15 +295,15 @@ export default function AddStoreModal({
           <div className="flex justify-end gap-3 mt-6">
             <button
               type="submit"
-              disabled={isSubmitting}
-              className="px-6 py-2.5 rounded-full bg-[#1F3266] text-white text-sm font-medium hover:bg-[#162550] transition-colors disabled:opacity-60"
+              disabled={isLoading}
+              className="px-6 py-2.5 rounded-full bg-[#1F3266] text-white text-sm font-medium hover:bg-[#162550] transition-colors disabled:opacity-60 cursor-pointer"
             >
-              {isSubmitting ? "Adding..." : "Add Store"}
+              {isLoading ? "Adding..." : "Add Store"}
             </button>
             <button
               type="button"
               onClick={handleCancel}
-              className="px-6 py-2.5 rounded-full border border-[#ECEFF3] text-[#1A2A56] text-sm font-medium hover:bg-[#F6F8FA] transition-colors"
+              className="px-6 py-2.5 rounded-full border border-[#ECEFF3] text-[#1A2A56] text-sm font-medium hover:bg-[#F6F8FA] transition-colors cursor-pointer"
             >
               Cancel
             </button>
