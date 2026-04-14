@@ -1,9 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useVerifyOtpMutation } from "@/redux/features/authApi/authApi";
 import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
+import { toast } from "sonner";
 
 export default function OtpVerificationPage() {
+  const [verifyOtp, { isLoading }] = useVerifyOtpMutation();
   const [otp, setOtp] = useState<string[]>(Array(5).fill(""));
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const router = useRouter();
@@ -38,12 +42,25 @@ export default function OtpVerificationPage() {
     inputRefs.current[nextEmpty]?.focus();
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const code = otp.join("");
     if (code.length < 5) return;
-    // Handle OTP verification logic here
-    console.log("OTP submitted:", code);
-    router.push("/set-new-password");
+    const email = localStorage?.getItem("email");
+    const data = {
+      email,
+      otp: code,
+    };
+    try {
+      const response = await verifyOtp(data).unwrap();
+      if (response?.success) {
+        toast.success(response.message || "OTP verified successfully");
+        localStorage.removeItem("email");
+        router.push("/reset-password");
+      }
+    } catch (error) {
+      const errorMessage = (error as any)?.data?.message || "Login failed";
+      toast.error(errorMessage);
+    }
   };
 
   const isComplete = otp.every((d) => d !== "");
@@ -84,7 +101,7 @@ export default function OtpVerificationPage() {
 
         <button
           onClick={handleSubmit}
-          disabled={!isComplete}
+          disabled={!isComplete || isLoading}
           className="submit-btn shrink-0"
         >
           Confirm
