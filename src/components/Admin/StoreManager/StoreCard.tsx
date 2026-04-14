@@ -2,17 +2,16 @@
 "use client";
 
 import EditIcon from "@/components/icons/EditIcon";
-import EditModal from "@/components/reusable/EditModal";
 import {
   useDeleteStoreMutation,
   useGetAllStoresQuery,
-  useUpdateStoreMutation,
 } from "@/redux/features/admin/store/storeApi";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { toast } from "sonner";
 import DeleteModal from "../../reusable/DeleteModal";
+import EditStoreModal from "./EditStoreModal";
 
 type StoreCard = {
   id: string;
@@ -24,47 +23,8 @@ type StoreCard = {
   status: "PUBLISHED" | "UNPUBLISHED";
 };
 
-const storeFields = [
-  {
-    name: "name",
-    label: "Store Name",
-    type: "text" as const,
-    placeholder: "Amazon",
-    validation: { required: "Store name is required" },
-  },
-  {
-    name: "link",
-    label: "Store Link",
-    type: "url" as const,
-    placeholder: "https://amazon.com/affiliate",
-    validation: { required: "Store link is required" },
-  },
-  {
-    name: "sub_text_note",
-    label: "Sub Text Note",
-    type: "text" as const,
-    placeholder: "e.g. Fast delivery available worldwide",
-  },
-  {
-    name: "how_it_works",
-    label: "How It Works",
-    type: "textarea" as const,
-    placeholder: "Browse items, add to cart, and complete checkout online.",
-  },
-  {
-    name: "status",
-    label: "Status",
-    type: "select" as const,
-    options: [
-      { label: "Published", value: "PUBLISHED" },
-      { label: "Unpublished", value: "UNPUBLISHED" },
-    ],
-  },
-];
-
 export default function StoreCard() {
   const { data: storeData, isLoading, isError } = useGetAllStoresQuery("");
-  const [updateStore] = useUpdateStoreMutation();
   const [deleteStore] = useDeleteStoreMutation();
 
   const [editOpen, setEditOpen] = useState(false);
@@ -72,18 +32,6 @@ export default function StoreCard() {
   const [selectedStore, setSelectedStore] = useState<StoreCard | null>(null);
 
   const stores: StoreCard[] = storeData?.data ?? [];
-
-  const handleUpdate = async (data: any) => {
-    if (!selectedStore) return;
-    try {
-      await updateStore({ id: selectedStore.id, body: data }).unwrap();
-      toast.success("Store updated successfully!");
-      setEditOpen(false);
-    } catch (error) {
-      const errorMessage = (error as any)?.data?.message || "Update failed";
-      toast.error(errorMessage);
-    }
-  };
 
   const handleDelete = async () => {
     if (!selectedStore) return;
@@ -97,16 +45,6 @@ export default function StoreCard() {
       toast.error(errorMessage);
     }
   };
-
-  const defaultValues = selectedStore
-    ? {
-        name: selectedStore.name,
-        link: selectedStore.link,
-        sub_text_note: selectedStore.sub_text_note,
-        how_it_works: selectedStore.how_it_works,
-        status: selectedStore.status,
-      }
-    : {};
 
   if (isLoading) {
     return (
@@ -150,9 +88,9 @@ export default function StoreCard() {
   return (
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
-        {stores.map((store) => (
+        {stores?.map((store) => (
           <div
-            key={store.id}
+            key={store?.id}
             className="bg-white rounded-[12px] border border-[#ECEFF3] p-6 flex flex-col gap-2 shadow-md transition-shadow duration-200"
           >
             {/* Header: logo + name + link */}
@@ -168,35 +106,22 @@ export default function StoreCard() {
               </div>
               <div className="min-w-0">
                 <p className="text-[#1A2A56] font-bold text-xl leading-[132%] tracking-[0.1px]">
-                  {store.name}
+                  {store?.name}
                 </p>
                 <p className="text-[#8792A8] text-base leading-[132%] tracking-[0.08px] mt-2 truncate">
-                  {store.link}
+                  {store?.link}
                 </p>
               </div>
             </div>
 
             {/* Sub text note */}
             <p className="text-[#395CBC] text-sm font-normal leading-[100%] tracking-[0.07px] my-4">
-              {store.sub_text_note}
+              {store?.sub_text_note}
             </p>
 
             {/* How it works */}
             <div className="bg-[#EBEFF8] rounded-[12px] border border-[#EBEFF8] px-3 py-2 text-[#1A2A56] text-xs leading-[150%]">
-              {store.how_it_works}
-            </div>
-
-            {/* Status badge */}
-            <div className="mt-2">
-              <span
-                className={`text-xs font-medium px-2.5 py-1 rounded-full ${
-                  store.status === "PUBLISHED"
-                    ? "bg-green-50 text-green-700"
-                    : "bg-gray-100 text-gray-500"
-                }`}
-              >
-                {store.status === "PUBLISHED" ? "Published" : "Unpublished"}
-              </span>
+              {store?.how_it_works}
             </div>
 
             {/* Actions */}
@@ -225,13 +150,10 @@ export default function StoreCard() {
       </div>
 
       {/* Edit Modal */}
-      <EditModal
+      <EditStoreModal
         open={editOpen}
         onOpenChange={setEditOpen}
-        title="Edit Store"
-        fields={storeFields}
-        defaultValues={defaultValues}
-        onSubmit={handleUpdate}
+        store={selectedStore}
       />
 
       {/* Delete Confirm Modal */}
