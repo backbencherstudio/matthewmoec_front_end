@@ -7,14 +7,14 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { useCreateStoreMutation } from "@/redux/features/admin/store/storeApi";
+import { useUpdateStoreMutation } from "@/redux/features/admin/store/storeApi";
 import { ImageIcon } from "lucide-react";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-interface AddStoreFormData {
+interface EditStoreFormData {
   logo: File | null;
   name: string;
   link: string;
@@ -23,19 +23,29 @@ interface AddStoreFormData {
   status: string;
 }
 
-interface AddStoreModalProps {
-  open: boolean;
-  onOpenChange: (open: boolean) => void;
-  onSubmit: (data: AddStoreFormData) => void;
+interface StoreData {
+  id: string;
+  name: string;
+  link: string;
+  logo_url: string;
+  sub_text_note: string;
+  how_it_works: string;
+  status: string;
 }
 
-export default function AddStoreModal({
+interface EditStoreModalProps {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+  store: StoreData | null;
+}
+
+export default function EditStoreModal({
   open,
   onOpenChange,
-  onSubmit,
-}: AddStoreModalProps) {
+  store,
+}: EditStoreModalProps) {
   const [openSelect, setOpenSelect] = useState(false);
-  const [createStore, { isLoading }] = useCreateStoreMutation();
+  const [updateStore, { isLoading }] = useUpdateStoreMutation();
   const [logoPreview, setLogoPreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -46,7 +56,7 @@ export default function AddStoreModal({
     setValue,
     reset,
     formState: { errors },
-  } = useForm<AddStoreFormData>({
+  } = useForm<EditStoreFormData>({
     defaultValues: {
       logo: null,
       name: "",
@@ -57,6 +67,22 @@ export default function AddStoreModal({
     },
   });
 
+  // Populate form and logo preview when store data changes
+  useEffect(() => {
+    if (store) {
+      reset({
+        logo: null,
+        name: store.name,
+        link: store.link,
+        sub_text_note: store.sub_text_note,
+        how_it_works: store.how_it_works,
+        status: store.status,
+      });
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setLogoPreview(store.logo_url);
+    }
+  }, [store, reset]);
+
   const handleLogoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -64,7 +90,8 @@ export default function AddStoreModal({
     setLogoPreview(URL.createObjectURL(file));
   };
 
-  const handleFormSubmit = async (data: AddStoreFormData) => {
+  const handleFormSubmit = async (data: EditStoreFormData) => {
+    if (!store) return;
     try {
       const formData = new FormData();
       if (data.logo) formData.append("logo", data.logo);
@@ -74,24 +101,21 @@ export default function AddStoreModal({
       formData.append("how_it_works", data.how_it_works);
       formData.append("status", data.status);
 
-      const response = await createStore(formData).unwrap();
-      console.log(response);
+      const response = await updateStore({
+        id: store.id,
+        body: formData,
+      }).unwrap();
       if (response?.success) {
-        toast.success(response.message || "Store added successfully");
-        onSubmit(data);
-        reset();
-        setLogoPreview(null);
+        toast.success(response.message || "Store updated successfully");
         onOpenChange(false);
       }
     } catch (error) {
-      const errorMessage = (error as any)?.data?.message || "Login failed";
+      const errorMessage = (error as any)?.data?.message || "Update failed";
       toast.error(errorMessage);
     }
   };
 
   const handleCancel = () => {
-    reset();
-    setLogoPreview(null);
     onOpenChange(false);
   };
 
@@ -100,7 +124,7 @@ export default function AddStoreModal({
       <DialogContent className="bg-white rounded-[24px] p-6 sm:p-8 w-full min-w-xl border border-[#ECEFF3] shadow-lg">
         <DialogHeader className="mb-4">
           <DialogTitle className="text-[#1A2A56] text-xl sm:text-[26px] leading-[132%] tracking-[0.14px] font-semibold">
-            Add New Store
+            Edit Store
           </DialogTitle>
         </DialogHeader>
 
@@ -203,7 +227,7 @@ export default function AddStoreModal({
               </label>
               <textarea
                 rows={3}
-                placeholder="Tap below — Amazon opens via affiliate link. Your purchase supports charity at no extra cost to you."
+                placeholder="Tap below — Amazon opens via affiliate link."
                 className="w-full p-3.5 rounded-[12px] border border-[#ECEFF3] bg-[#F6F8FA] text-sm placeholder:text-[#B0B8C9] resize-none"
                 {...register("how_it_works")}
               />
@@ -219,7 +243,6 @@ export default function AddStoreModal({
                 control={control}
                 render={({ field }) => {
                   const options = ["PUBLISHED", "UNPUBLISHED"];
-
                   return (
                     <div className="relative">
                       <button
@@ -254,12 +277,11 @@ export default function AddStoreModal({
                                 field.onChange(option);
                                 setOpenSelect(false);
                               }}
-                              className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors
-                    ${
-                      field.value === option
-                        ? "bg-[#F6F8FA] text-[#1A2A56] font-medium"
-                        : "text-[#1A2A56] hover:bg-[#F6F8FA]"
-                    }`}
+                              className={`px-4 py-2.5 text-sm cursor-pointer flex items-center justify-between transition-colors ${
+                                field.value === option
+                                  ? "bg-[#F6F8FA] text-[#1A2A56] font-medium"
+                                  : "text-[#1A2A56] hover:bg-[#F6F8FA]"
+                              }`}
                             >
                               {option}
                               {field.value === option && (
@@ -298,7 +320,7 @@ export default function AddStoreModal({
               disabled={isLoading}
               className="px-6 py-2.5 rounded-full bg-[#1F3266] text-white text-sm font-medium hover:bg-[#162550] transition-colors disabled:opacity-60 cursor-pointer"
             >
-              {isLoading ? "Adding..." : "Add Store"}
+              {isLoading ? "Updating..." : "Update Store"}
             </button>
             <button
               type="button"

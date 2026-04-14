@@ -1,7 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { useForgotPasswordMutation } from "@/redux/features/authApi/authApi";
 import { useRouter } from "next/dist/client/components/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 type ForgotPasswordFormValues = {
   email: string;
@@ -11,12 +14,22 @@ export default function ForgotPasswordPage() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<ForgotPasswordFormValues>();
+  const [forgotPassword, { isLoading }] = useForgotPasswordMutation();
   const router = useRouter();
   const onSubmit = async (data: ForgotPasswordFormValues) => {
-    console.log(data);
-    router.push("/otp-verification");
+    try {
+      const response = await forgotPassword(data).unwrap();
+      if (response?.success) {
+        toast.success(response.message || "OTP sent successfully");
+        localStorage.setItem("email", data.email);
+        router.push("/otp-verification");
+      }
+    } catch (error) {
+      const errorMessage = (error as any)?.data?.message || "Login failed";
+      toast.error(errorMessage);
+    }
   };
 
   return (
@@ -55,8 +68,8 @@ export default function ForgotPasswordPage() {
             )}
           </div>
 
-          <button type="submit" disabled={isSubmitting} className="submit-btn">
-            {isSubmitting ? "Sending..." : "Get an OTP code"}
+          <button type="submit" disabled={isLoading} className="submit-btn">
+            {isLoading ? "Sending..." : "Get an OTP code"}
           </button>
         </form>
       </div>

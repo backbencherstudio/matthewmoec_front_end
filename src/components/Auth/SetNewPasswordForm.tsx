@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+import { useResetPasswordMutation } from "@/redux/features/authApi/authApi";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -12,11 +14,11 @@ type EnterPasswordFormValues = {
 export default function SetNewPasswordForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
+  const [resetPassword, { isLoading }] = useResetPasswordMutation();
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<EnterPasswordFormValues>();
   const router = useRouter();
   const onSubmit = async (data: EnterPasswordFormValues) => {
@@ -27,7 +29,27 @@ export default function SetNewPasswordForm() {
       toast.error("Passwords do not match!");
       return;
     }
-    router.push("/congratulation");
+    const email = localStorage?.getItem("email");
+    const otp = localStorage?.getItem("otp");
+    const payload = {
+      email,
+      otp,
+      new_password: password,
+    };
+
+    try {
+      const response = await resetPassword(payload).unwrap();
+      if (response?.success) {
+        toast.success(response.message || "Password reset successfully");
+        localStorage.removeItem("otp");
+        localStorage.removeItem("email");
+        router.push("/congratulation");
+      }
+    } catch (error) {
+      const errorMessage =
+        (error as any)?.data?.message || "Password reset failed";
+      toast.error(errorMessage);
+    }
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
@@ -100,8 +122,8 @@ export default function SetNewPasswordForm() {
       </div>
 
       {/* Submit */}
-      <button type="submit" disabled={isSubmitting} className="submit-btn">
-        {isSubmitting ? "Confirming..." : "Confirm password"}
+      <button type="submit" disabled={isLoading} className="submit-btn">
+        {isLoading ? "Confirming..." : "Confirm password"}
       </button>
     </form>
   );
