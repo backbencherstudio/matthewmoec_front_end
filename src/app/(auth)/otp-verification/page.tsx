@@ -54,7 +54,7 @@ export default function OtpVerificationPage() {
       const response = await verifyOtp(data).unwrap();
       if (response?.success) {
         toast.success(response.message || "OTP verified successfully");
-        localStorage.removeItem("email");
+        localStorage.setItem("otp", code);
         router.push("/reset-password");
       }
     } catch (error) {
