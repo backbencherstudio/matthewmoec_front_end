@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "../homePage/Container";
 import LanguageToggle from "../homePage/LanguageToggle";
 
@@ -24,7 +24,6 @@ const Navbar = () => {
   const pathname = usePathname();
 
   const isActive = (href: string): boolean => {
-    if (href.startsWith("#")) return false;
     if (href === "/") return pathname === "/";
     return pathname.startsWith(href);
   };
@@ -52,22 +51,6 @@ const Navbar = () => {
       document.body.style.overflow = "unset";
     };
   }, [menuOpen]);
-
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string,
-  ): void => {
-    if (href.startsWith("#")) {
-      e.preventDefault();
-      const element = document.querySelector(href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-        setMenuOpen(false);
-      }
-    } else {
-      setMenuOpen(false);
-    }
-  };
 
   const activeLinkClass =
     "relative text-[#1A2A56] font-semibold after:absolute after:bottom-[-4px] after:left-0 after:w-full after:h-[2px] after:rounded-full after:bg-[#395CBC]";
@@ -199,21 +182,6 @@ const Navbar = () => {
                   ? "text-[#395CBC] font-semibold bg-blue-50 border-l-[3px] border-[#395CBC]"
                   : "text-gray-700 hover:text-blue-600 hover:bg-blue-50"
               }`;
-
-              if (item.href.startsWith("#")) {
-                return (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={mobileClass}
-                    style={commonStyle}
-                    onClick={(e) => handleNavClick(e, item.href)}
-                  >
-                    {item.name}
-                  </a>
-                );
-              }
-
               return (
                 <Link
                   key={item.name}
