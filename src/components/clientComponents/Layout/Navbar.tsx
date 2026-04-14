@@ -103,19 +103,6 @@ const Navbar = () => {
                 {navItems.map((item: NavItem) => {
                   const active = isActive(item.href);
 
-                  if (item.href.startsWith("#")) {
-                    return (
-                      <a
-                        key={item.name}
-                        href={item.href}
-                        className={defaultLinkClass}
-                        onClick={(e) => handleNavClick(e, item.href)}
-                      >
-                        {item.name}
-                      </a>
-                    );
-                  }
-
                   return (
                     <Link
                       key={item.name}
