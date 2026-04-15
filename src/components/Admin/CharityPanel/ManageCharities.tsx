@@ -1,9 +1,15 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import EditIcon from "@/components/icons/EditIcon";
-import { useGetCharityQuery } from "@/redux/features/admin/charity/charityApi";
+import {
+  useDeleteCharityMutation,
+  useGetCharityQuery,
+} from "@/redux/features/admin/charity/charityApi";
 import { Trash2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
+import { useState } from "react";
+import { toast } from "sonner";
 
 type CharityDonation = {
   id: string | number;
@@ -29,7 +35,7 @@ function CharitySkeleton() {
 
 export default function ManageCharities() {
   const searchParams = useSearchParams();
-
+  const [, setDeletingId] = useState<string | number | null>(null);
   const monthString = searchParams.get("month") || "January 2025";
   const [monthName, year] = monthString.split(" ");
 
@@ -51,19 +57,36 @@ export default function ManageCharities() {
   const month = monthMap[monthName];
   const yearNumber = Number(year);
 
-  const { data: charities, isLoading, isFetching } = useGetCharityQuery({
+  const {
+    data: charities,
+    isLoading,
+    isFetching,
+  } = useGetCharityQuery({
     month,
     year: yearNumber,
   });
+  const [deleteCharity] = useDeleteCharityMutation();
+
+  const handleDelete = async (id: string | number) => {
+    try {
+      const response = await deleteCharity(id).unwrap();
+      if (response?.success) {
+        toast.success(response?.message);
+      }
+    } catch (error) {
+      const errorMessage = (error as any)?.data?.message || "Delete failed";
+      toast.error(errorMessage);
+    } finally {
+      setDeletingId(null);
+    }
+  };
 
   const isDataLoading = isLoading || isFetching;
 
   return (
     <div className="flex flex-col gap-2">
       {isDataLoading ? (
-        Array.from({ length: 5 }).map((_, i) => (
-          <CharitySkeleton key={i} />
-        ))
+        Array.from({ length: 5 }).map((_, i) => <CharitySkeleton key={i} />)
       ) : (
         <>
           {charities?.data?.map((charity: CharityDonation) => (
@@ -84,7 +107,10 @@ export default function ManageCharities() {
                   <EditIcon />
                 </button>
 
-                <button className="text-[#F04438] hover:text-red-700 transition-colors cursor-pointer">
+                <button
+                  className="text-[#F04438] hover:text-red-700 transition-colors cursor-pointer"
+                  onClick={() => handleDelete(charity?.id)}
+                >
                   <Trash2 size={15} />
                 </button>
               </div>
