@@ -7,11 +7,19 @@ const analyticsApi = baseApi.injectEndpoints({
         url: "/admin/analytics/dashboard-statistics",
         method: "GET",
       }),
-      providesTags: ["Charity"],
+      providesTags: ["Analytics"],
+    }),
+    getAnalysisStatistics: builder.query({
+      query: () => ({
+        url: "/admin/analytics/store-click-statistics",
+        method: "GET",
+      }),
+      providesTags: ["Analytics"],
     }),
   }),
 });
 
-export const { useGetDashboardStatisticsQuery } = analyticsApi;
+export const { useGetDashboardStatisticsQuery, useGetAnalysisStatisticsQuery } =
+  analyticsApi;
 
 export default analyticsApi;
