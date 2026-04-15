@@ -2,10 +2,9 @@
 
 import CharityPanelHeader from "@/components/Admin/CharityPanel/CharityPanelHeader";
 import DonationHistory from "@/components/Admin/CharityPanel/DonationHistory";
+import ManageCharities from "@/components/Admin/CharityPanel/ManageCharities";
 import UpdateSuccessModal from "@/components/Admin/CharityPanel/UpdateSuccessModal";
-import EditIcon from "@/components/icons/EditIcon";
 import { useAddCharityMutation } from "@/redux/features/admin/charity/charityApi";
-import { Trash2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 
@@ -18,20 +17,6 @@ type CharityDonation = {
 
 export default function CharityPanel() {
   const [open, setOpen] = useState(false);
-  const [charities, setCharities] = useState<CharityDonation[]>([
-    {
-      id: "1",
-      charity_organization_name: "Feeding America",
-      donation_amount: 1248,
-      date: "2024-05-15",
-    },
-    {
-      id: "2",
-      charity_organization_name: "Local Shelter",
-      donation_amount: 750,
-      date: "2024-05-10",
-    },
-  ]);
   const [charityName, setCharityName] = useState("");
   const [donationAmount, setDonationAmount] = useState("");
   const [donationDate, setDonationDate] = useState("");
@@ -39,6 +24,7 @@ export default function CharityPanel() {
     "Last month CartForGood donated $800 to Feeding America and $440 to Springfield Food Pantry.",
   );
   const [totalLastMonth, setTotalLastMonth] = useState("1,998.00");
+
   const [addCharity, { isLoading }] = useAddCharityMutation();
   const handleAddCharity = async () => {
     if (!charityName.trim() || !donationAmount.trim()) {
@@ -55,29 +41,19 @@ export default function CharityPanel() {
 
     try {
       const response = await addCharity(payload).unwrap();
-      if (response.success) {
+      if (response?.success) {
         toast.success(
-          response.message || "Charity donation added successfully!",
+          response?.message || "Charity donation added successfully!",
         );
-        setCharities((prev) => [
-          ...prev,
-          { ...payload, id: response.data.id || Date.now() },
-        ]);
         setCharityName("");
         setDonationAmount("");
         setDonationDate("");
       }
-
-      // Optionally close any modal or refresh
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const errorMsg = error?.data?.message || "Failed to add charity";
       toast.error(errorMsg);
     }
-  };
-
-  const handleDelete = (id: string | number) => {
-    setCharities((prev) => prev.filter((c) => c.id !== id));
   };
 
   return (
@@ -94,37 +70,7 @@ export default function CharityPanel() {
             <h2 className="text-[#1A2A56] text-lg md:text-xl font-semibold leading-[132%] border-b pb-5 mb-8">
               Manage Charities for{" "}
             </h2>
-            <div className="flex flex-col gap-2">
-              {charities.map((charity) => (
-                <div
-                  key={charity.id}
-                  className="flex items-center justify-between bg-[#F6F8FA] rounded-[12px] p-4 border border-[#ECEFF3]"
-                >
-                  <span className="text-[#1A2A56] text-base font-medium">
-                    {charity.charity_organization_name}
-                  </span>
-                  <div className="flex items-center gap-3">
-                    <span className="text-[#395CBC] text-base font-semibold">
-                      ${charity.donation_amount.toLocaleString()}
-                    </span>
-                    <button className="text-[#385BBA] hover:text-[#1F3266] transition-colors cursor-pointer">
-                      <EditIcon />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(charity.id)}
-                      className="text-[#F04438] hover:text-red-700 transition-colors cursor-pointer"
-                    >
-                      <Trash2 size={15} />
-                    </button>
-                  </div>
-                </div>
-              ))}
-              {charities.length === 0 && (
-                <p className="text-[#B0B8C9] text-sm text-center py-4">
-                  No charities added yet.
-                </p>
-              )}
-            </div>
+            <ManageCharities />
 
             {/* Add Charity */}
             <div className="mt-8">

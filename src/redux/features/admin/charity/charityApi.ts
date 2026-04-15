@@ -18,9 +18,22 @@ const charityApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Charity"],
     }),
+
+    getCharity: builder.query({
+      query: ({ month, year }: { month: number; year: number }) => ({
+        url: "/admin/charity",
+        method: "GET",
+        params: { month, year },
+      }),
+      providesTags: ["Charity"],
+    }),
   }),
 });
 
-export const { useGetDonationHistoryQuery, useAddCharityMutation } = charityApi;
+export const {
+  useGetDonationHistoryQuery,
+  useAddCharityMutation,
+  useGetCharityQuery,
+} = charityApi;
 
 export default charityApi;
