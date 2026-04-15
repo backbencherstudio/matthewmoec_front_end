@@ -17,7 +17,7 @@ const HeroSection = () => {
               </h1>
               <p className="text-[12px] lg:text-lg mt-4 text-[#1A2A56] xl:w-[50ch]">
                 Tap a store, shop as usual, and we donate a portion to charity
-                every month — at no extra cost to you.
+                every month.
               </p>
               <div className="mt-8 space-x-4 md:space-y-2 space-y-2.5 w-50 md:w-full mx-auto md:mx-0   ">
                 <button className=" px-3 lg:px-6 py-1.5 lg:py-3 bg-linear-to-b from-[#395CBC] to-[#1A2A56] text-white hover:bg-[#1A2A56] rounded-[30px] transition  w-full md:w-2/3 lg:w-fit cursor-pointer">
