@@ -9,9 +9,18 @@ const charityApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Charity"],
     }),
+
+    addCharity: builder.mutation({
+      query: (data) => ({
+        url: "/admin/charity",
+        method: "POST",
+        body: data,
+      }),
+      invalidatesTags: ["Charity"],
+    }),
   }),
 });
 
-export const { useGetDonationHistoryQuery } = charityApi;
+export const { useGetDonationHistoryQuery, useAddCharityMutation } = charityApi;
 
 export default charityApi;

@@ -79,7 +79,6 @@ export default function DonationHistory() {
       });
   }, [data]);
 
-  // Show Skeleton while loading
   if (isLoading) {
     return <DonationHistorySkeleton />;
   }
