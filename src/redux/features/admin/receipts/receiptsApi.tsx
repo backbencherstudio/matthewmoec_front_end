@@ -20,9 +20,44 @@ const receiptsApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Receipts"],
     }),
+
+    getSingleReceipt: builder.query({
+      query: (id: string) => ({
+        url: `/admin/receipt/${id}`,
+        method: "GET",
+      }),
+      providesTags: ["Receipts"],
+    }),
+
+    updateReceipt: builder.mutation({
+      query: (data) => {
+        return {
+          url: `/admin/receipt/${data.id}`,
+          method: "PATCH",
+          body: data,
+        };
+      },
+      invalidatesTags: ["Receipts"],
+    }),
+
+    deleteReceipt: builder.mutation({
+      query: (id) => {
+        return {
+          url: `/admin/receipt/${id}`,
+          method: "DELETE",
+        };
+      },
+      invalidatesTags: ["Receipts"],
+    }),
   }),
 });
 
-export const { useCreateReceiptMutation, useGetAllReceiptsQuery } = receiptsApi;
+export const {
+  useCreateReceiptMutation,
+  useGetAllReceiptsQuery,
+  useGetSingleReceiptQuery,
+  useUpdateReceiptMutation,
+  useDeleteReceiptMutation,
+} = receiptsApi;
 
 export default receiptsApi;
