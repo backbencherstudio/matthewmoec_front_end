@@ -118,19 +118,19 @@ export default function MonthlyReceipts() {
                 {/* Left: month + charity */}
                 <div className="min-w-0 flex-1">
                   <p className="text-[#1A2A56] font-semibold text-sm sm:text-base leading-tight">
-                    {receipt.month}
+                    {receipt?.month}
                   </p>
                   <p className="text-[#8A94A6] text-xs sm:text-sm mt-0.5 truncate">
-                    {receipt.organization_or_charity}
+                    {receipt?.organization_or_charity}
                   </p>
                 </div>
 
                 {/* Center: amount + status */}
                 <div className="flex flex-col gap-1 items-center">
                   <span className="text-[#395CBC] font-bold text-base md:text-lg">
-                    ${Number(receipt.receipt_amount).toLocaleString()}
+                    ${Number(receipt?.receipt_amount).toLocaleString()}
                   </span>
-                  {receipt.status === "PUBLISHED" && (
+                  {receipt?.status === "PUBLISHED" && (
                     <span className="inline-flex items-center gap-1 text-[#09332B] text-xs font-medium bg-[#ECEFF3] px-2 py-1 rounded-full w-fit">
                       <CheckCircle size={12} />
                       Verified
@@ -145,7 +145,7 @@ export default function MonthlyReceipts() {
                       setSelectedForEdit(receipt);
                       setEditOpen(true);
                     }}
-                    className="text-[#385BBA] hover:text-[#1F3266] transition-colors"
+                    className="text-[#385BBA] hover:text-[#1F3266] transition-colors cursor-pointer"
                   >
                     <EditIcon />
                   </button>
@@ -155,7 +155,7 @@ export default function MonthlyReceipts() {
                       setSelectedForDelete(receipt);
                       setDeleteOpen(true);
                     }}
-                    className="text-[#F04438] hover:text-red-700 transition-colors"
+                    className="text-[#F04438] hover:text-red-700 transition-colors cursor-pointer"
                   >
                     <Trash2 size={16} />
                   </button>

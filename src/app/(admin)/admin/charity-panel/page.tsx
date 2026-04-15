@@ -1,89 +1,54 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import CharityPanelHeader from "@/components/Admin/CharityPanel/CharityPanelHeader";
+import DonationHistory from "@/components/Admin/CharityPanel/DonationHistory";
+import ManageCharities from "@/components/Admin/CharityPanel/ManageCharities";
 import UpdateSuccessModal from "@/components/Admin/CharityPanel/UpdateSuccessModal";
-import EditIcon from "@/components/icons/EditIcon";
-import { Trash2 } from "lucide-react";
+import { useAddCharityMutation } from "@/redux/features/admin/charity/charityApi";
 import { useState } from "react";
+import { toast } from "sonner";
 
-type Charity = {
-  id: number;
-  name: string;
-  amount: number;
-};
-
-type MonthRecord = {
-  id: number;
-  month: string;
-  total: number;
-  charities: { name: string; amount: number }[];
-};
-
-const donationHistory: MonthRecord[] = [
-  {
-    id: 1,
-    month: "January 2025",
-    total: 1998,
-    charities: [
-      { name: "Feeding America", amount: 1248 },
-      { name: "Local Shelter", amount: 750 },
-    ],
-  },
-  {
-    id: 2,
-    month: "Feb 2026",
-    total: 980,
-    charities: [{ name: "St. Jude", amount: 980 }],
-  },
-  {
-    id: 3,
-    month: "Jan 2026",
-    total: 1104,
-    charities: [{ name: "Feeding America", amount: 1104 }],
-  },
-  {
-    id: 4,
-    month: "Dec 2025",
-    total: 2011,
-    charities: [{ name: "Salvation Army", amount: 2011 }],
-  },
-  {
-    id: 5,
-    month: "Nov 2025",
-    total: 876,
-    charities: [{ name: "Feeding America", amount: 876 }],
-  },
-];
 
 export default function CharityPanel() {
   const [open, setOpen] = useState(false);
-  const [charities, setCharities] = useState<Charity[]>([
-    { id: 1, name: "Feeding America", amount: 1248 },
-    { id: 2, name: "Local Shelter", amount: 750 },
-  ]);
+
   const [charityName, setCharityName] = useState("");
   const [donationAmount, setDonationAmount] = useState("");
+  const [donationDate, setDonationDate] = useState("");
   const [shareMessage, setShareMessage] = useState(
     "Last month CartForGood donated $800 to Feeding America and $440 to Springfield Food Pantry.",
   );
   const [totalLastMonth, setTotalLastMonth] = useState("1,998.00");
 
-  const handleAddCharity = () => {
-    if (!charityName.trim() || !donationAmount.trim()) return;
-    setCharities((prev) => [
-      ...prev,
-      {
-        id: Date.now(),
-        name: charityName.trim(),
-        amount: parseFloat(donationAmount),
-      },
-    ]);
-    setCharityName("");
-    setDonationAmount("");
-  };
+  const [addCharity, { isLoading }] = useAddCharityMutation();
 
-  const handleDelete = (id: number) => {
-    setCharities((prev) => prev.filter((c) => c.id !== id));
+  const handleAddCharity = async () => {
+    if (!charityName.trim() || !donationAmount.trim()) {
+      toast.error("Please fill in both fields");
+      return;
+    }
+
+    const payload = {
+      charity_organization_name: charityName.trim(),
+      donation_amount: parseFloat(donationAmount),
+      date: donationDate || new Date().toISOString().split("T")[0],
+    };
+
+    try {
+      const response = await addCharity(payload).unwrap();
+      if (response?.success) {
+        toast.success(
+          response?.message || "Charity donation added successfully!",
+        );
+        setCharityName("");
+        setDonationAmount("");
+        setDonationDate("");
+      }
+    } catch (error: any) {
+      const errorMsg = error?.data?.message || "Failed to add charity";
+      toast.error(errorMsg);
+    }
   };
 
   return (
@@ -92,38 +57,7 @@ export default function CharityPanel() {
       <CharityPanelHeader />
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-[16px] border border-[#ECEFF3] p-6">
-          <h2 className="text-[#1A2A56] text-lg md:text-xl font-semibold leading-[132%] border-b pb-5 mb-8">
-            Donation History
-          </h2>
-          <div className="flex flex-col divide-y divide-[#ECEFF3]">
-            {donationHistory.map((record) => (
-              <div key={record.id} className="py-4 first:pt-0 last:pb-0">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-[#1A2A56] font-bold text-lg leading-[132%] tracking-[0.09px]">
-                    {record.month}
-                  </span>
-                  <span className="text-[#1A2A56] font-bold text-lg leading-[132%] tracking-[0.09px]">
-                    ${record.total.toLocaleString()}
-                  </span>
-                </div>
-                {record.charities.map((c, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center justify-between pl-3"
-                  >
-                    <span className="text-[#8792A8] text-base before:content-['•'] before:mr-1.5 leading-[132%] tracking-[0.08px]">
-                      {c.name}
-                    </span>
-                    <span className="text-[#8792A8] text-base mt-4 leading-[132%] tracking-[0.08px]">
-                      ${c.amount.toLocaleString()}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
+        <DonationHistory />
 
         {/* RIGHT — Manage + Add */}
         <div className="flex flex-col gap-5">
@@ -131,37 +65,7 @@ export default function CharityPanel() {
             <h2 className="text-[#1A2A56] text-lg md:text-xl font-semibold leading-[132%] border-b pb-5 mb-8">
               Manage Charities for{" "}
             </h2>
-            <div className="flex flex-col gap-2">
-              {charities.map((charity) => (
-                <div
-                  key={charity.id}
-                  className="flex items-center justify-between bg-[#F6F8FA] rounded-[12px] p-4 border border-[#ECEFF3]"
-                >
-                  <span className="text-[#1A2A56] text-base font-medium">
-                    {charity.name}
-                  </span>
-                  <div className="flex items-center gap-3">
-                    <span className="text-[#395CBC] text-base font-semibold">
-                      ${charity.amount.toLocaleString()}
-                    </span>
-                    <button className="text-[#385BBA] hover:text-[#1F3266] transition-colors cursor-pointer">
-                      <EditIcon />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(charity.id)}
-                      className="text-[#F04438] hover:text-red-700 transition-colors cursor-pointer"
-                    >
-                      <Trash2 size={15} />
-                    </button>
-                  </div>
-                </div>
-              ))}
-              {charities.length === 0 && (
-                <p className="text-[#B0B8C9] text-sm text-center py-4">
-                  No charities added yet.
-                </p>
-              )}
-            </div>
+            <ManageCharities />
 
             {/* Add Charity */}
             <div className="mt-8">
@@ -193,8 +97,23 @@ export default function CharityPanel() {
                     className="w-full p-3.5 rounded-[8px] border border-[#ECEFF3] bg-[#F6F8FA] text-sm placeholder:text-[#B0B8C9] focus:outline-none focus:ring-2 focus:ring-[#1F3266]/20"
                   />
                 </div>
-                <button onClick={handleAddCharity} className="submit-btn">
-                  Add Charity
+                <div>
+                  <label className="text-lg tracking-[0.09px] leading-[132%] font-medium text-[#1A2A56] mb-3 block">
+                    Date
+                  </label>
+                  <input
+                    type="date"
+                    value={donationDate}
+                    onChange={(e) => setDonationDate(e.target.value)}
+                    className="w-full p-3.5 rounded-[8px] border border-[#ECEFF3] bg-[#F6F8FA] text-sm placeholder:text-[#B0B8C9] focus:outline-none focus:ring-2 focus:ring-[#1F3266]/20"
+                  />
+                </div>
+                <button
+                  onClick={handleAddCharity}
+                  className="submit-btn"
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Adding..." : "Add Charity"}
                 </button>
               </div>
             </div>
