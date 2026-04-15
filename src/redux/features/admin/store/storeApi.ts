@@ -14,9 +14,10 @@ const storeApi = baseApi.injectEndpoints({
     }),
 
     getAllStores: builder.query({
-      query: () => ({
+      query: ({ page = 1, limit = 8 }) => ({
         url: "/admin/store",
         method: "GET",
+        params: { page, limit },
       }),
       providesTags: ["Store"],
     }),
