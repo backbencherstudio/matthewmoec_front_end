@@ -5,17 +5,19 @@ import EditIcon from "@/components/icons/EditIcon";
 import {
   useDeleteCharityMutation,
   useGetCharityQuery,
+  useUpdateCharityMutation,
 } from "@/redux/features/admin/charity/charityApi";
 import { Trash2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
+import EditCharityModal from "./EditCharityModal";
 
 type CharityDonation = {
-  id: string | number;
+  id: string;
   charity_organization_name: string;
   donation_amount: number;
-  date?: string;
+  date: string;
 };
 
 // ✅ Skeleton Component
@@ -38,7 +40,9 @@ export default function ManageCharities() {
   const [, setDeletingId] = useState<string | number | null>(null);
   const monthString = searchParams.get("month") || "January 2025";
   const [monthName, year] = monthString.split(" ");
-
+  const [editOpen, setEditOpen] = useState(false);
+  const [selectedCharity, setSelectedCharity] =
+    useState<CharityDonation | null>(null);
   const monthMap: Record<string, number> = {
     January: 1,
     February: 2,
@@ -81,7 +85,31 @@ export default function ManageCharities() {
     }
   };
 
-  const isDataLoading = isLoading || isFetching;
+  const [updateCharity, { isLoading: isUpdating }] = useUpdateCharityMutation();
+  const handleUpdateCharity = async (updatedData: {
+    charity_organization_name: string;
+    donation_amount: number;
+    date: string;
+  }) => {
+    if (!selectedCharity) return;
+
+    try {
+      const response = await updateCharity({
+        id: selectedCharity.id,
+        data: updatedData,
+      }).unwrap();
+      if (response?.success) {
+        toast.success(response?.message || "Charity updated successfully!");
+        setEditOpen(false);
+        setSelectedCharity(null);
+      }
+    } catch (error: any) {
+      const errorMsg = error?.data?.message || "Failed to update charity";
+      toast.error(errorMsg);
+    }
+  };
+
+  const isDataLoading = isLoading || isFetching || isUpdating;
 
   return (
     <div className="flex flex-col gap-2">
@@ -103,7 +131,13 @@ export default function ManageCharities() {
                   ${charity?.donation_amount?.toLocaleString()}
                 </span>
 
-                <button className="text-[#385BBA] hover:text-[#1F3266] transition-colors cursor-pointer">
+                <button
+                  onClick={() => {
+                    setSelectedCharity(charity);
+                    setEditOpen(true);
+                  }}
+                  className="text-[#385BBA] hover:text-[#1F3266] transition-colors cursor-pointer"
+                >
                   <EditIcon />
                 </button>
 
@@ -125,6 +159,14 @@ export default function ManageCharities() {
           )}
         </>
       )}
+
+      <EditCharityModal
+        open={editOpen}
+        onOpenChange={setEditOpen}
+        charity={selectedCharity}
+        onSave={handleUpdateCharity}
+        isLoading={false}
+      />
     </div>
   );
 }

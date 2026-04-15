@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import CharityPanelHeader from "@/components/Admin/CharityPanel/CharityPanelHeader";
@@ -8,15 +9,10 @@ import { useAddCharityMutation } from "@/redux/features/admin/charity/charityApi
 import { useState } from "react";
 import { toast } from "sonner";
 
-type CharityDonation = {
-  id: string | number;
-  charity_organization_name: string;
-  donation_amount: number;
-  date?: string;
-};
 
 export default function CharityPanel() {
   const [open, setOpen] = useState(false);
+
   const [charityName, setCharityName] = useState("");
   const [donationAmount, setDonationAmount] = useState("");
   const [donationDate, setDonationDate] = useState("");
@@ -26,17 +22,17 @@ export default function CharityPanel() {
   const [totalLastMonth, setTotalLastMonth] = useState("1,998.00");
 
   const [addCharity, { isLoading }] = useAddCharityMutation();
+
   const handleAddCharity = async () => {
     if (!charityName.trim() || !donationAmount.trim()) {
       toast.error("Please fill in both fields");
       return;
     }
 
-    const payload: CharityDonation = {
+    const payload = {
       charity_organization_name: charityName.trim(),
       donation_amount: parseFloat(donationAmount),
       date: donationDate || new Date().toISOString().split("T")[0],
-      id: 0,
     };
 
     try {
@@ -49,7 +45,6 @@ export default function CharityPanel() {
         setDonationAmount("");
         setDonationDate("");
       }
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const errorMsg = error?.data?.message || "Failed to add charity";
       toast.error(errorMsg);

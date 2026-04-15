@@ -28,6 +28,15 @@ const charityApi = baseApi.injectEndpoints({
       providesTags: ["Charity"],
     }),
 
+    updateCharity: builder.mutation({
+      query: ({ data, id }) => ({
+        url: `/admin/charity/${id}`,
+        method: "PATCH",
+        body: data,
+      }),
+      invalidatesTags: ["Charity"],
+    }),
+
     deleteCharity: builder.mutation({
       query: (id) => ({
         url: `/admin/charity/${id}`,
@@ -42,6 +51,7 @@ export const {
   useGetDonationHistoryQuery,
   useAddCharityMutation,
   useGetCharityQuery,
+  useUpdateCharityMutation,
   useDeleteCharityMutation,
 } = charityApi;
 
