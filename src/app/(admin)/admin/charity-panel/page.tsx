@@ -1,6 +1,7 @@
 "use client";
 
 import CharityPanelHeader from "@/components/Admin/CharityPanel/CharityPanelHeader";
+import DonationHistory from "@/components/Admin/CharityPanel/DonationHistory";
 import UpdateSuccessModal from "@/components/Admin/CharityPanel/UpdateSuccessModal";
 import EditIcon from "@/components/icons/EditIcon";
 import { Trash2 } from "lucide-react";
@@ -11,49 +12,6 @@ type Charity = {
   name: string;
   amount: number;
 };
-
-type MonthRecord = {
-  id: number;
-  month: string;
-  total: number;
-  charities: { name: string; amount: number }[];
-};
-
-const donationHistory: MonthRecord[] = [
-  {
-    id: 1,
-    month: "January 2025",
-    total: 1998,
-    charities: [
-      { name: "Feeding America", amount: 1248 },
-      { name: "Local Shelter", amount: 750 },
-    ],
-  },
-  {
-    id: 2,
-    month: "Feb 2026",
-    total: 980,
-    charities: [{ name: "St. Jude", amount: 980 }],
-  },
-  {
-    id: 3,
-    month: "Jan 2026",
-    total: 1104,
-    charities: [{ name: "Feeding America", amount: 1104 }],
-  },
-  {
-    id: 4,
-    month: "Dec 2025",
-    total: 2011,
-    charities: [{ name: "Salvation Army", amount: 2011 }],
-  },
-  {
-    id: 5,
-    month: "Nov 2025",
-    total: 876,
-    charities: [{ name: "Feeding America", amount: 876 }],
-  },
-];
 
 export default function CharityPanel() {
   const [open, setOpen] = useState(false);
@@ -92,38 +50,7 @@ export default function CharityPanel() {
       <CharityPanelHeader />
       {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-white rounded-[16px] border border-[#ECEFF3] p-6">
-          <h2 className="text-[#1A2A56] text-lg md:text-xl font-semibold leading-[132%] border-b pb-5 mb-8">
-            Donation History
-          </h2>
-          <div className="flex flex-col divide-y divide-[#ECEFF3]">
-            {donationHistory.map((record) => (
-              <div key={record.id} className="py-4 first:pt-0 last:pb-0">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-[#1A2A56] font-bold text-lg leading-[132%] tracking-[0.09px]">
-                    {record.month}
-                  </span>
-                  <span className="text-[#1A2A56] font-bold text-lg leading-[132%] tracking-[0.09px]">
-                    ${record.total.toLocaleString()}
-                  </span>
-                </div>
-                {record.charities.map((c, i) => (
-                  <div
-                    key={i}
-                    className="flex items-center justify-between pl-3"
-                  >
-                    <span className="text-[#8792A8] text-base before:content-['•'] before:mr-1.5 leading-[132%] tracking-[0.08px]">
-                      {c.name}
-                    </span>
-                    <span className="text-[#8792A8] text-base mt-4 leading-[132%] tracking-[0.08px]">
-                      ${c.amount.toLocaleString()}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
+        <DonationHistory />
 
         {/* RIGHT — Manage + Add */}
         <div className="flex flex-col gap-5">
