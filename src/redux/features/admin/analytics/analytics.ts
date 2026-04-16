@@ -9,6 +9,7 @@ const analyticsApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Analytics"],
     }),
+    
     getAnalysisStatistics: builder.query({
       query: () => ({
         url: "/admin/analytics/store-click-statistics",
