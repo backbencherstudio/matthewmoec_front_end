@@ -96,7 +96,7 @@ export default function AddReceiptModal({
         onOpenChange(false);
       }
     } catch (error) {
-      const errorMessage = (error as any)?.data?.message || "Login failed";
+      const errorMessage = (error as any)?.data?.message || "Receipt create failed";
       toast.error(errorMessage);
     }
   };
