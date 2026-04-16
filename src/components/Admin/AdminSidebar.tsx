@@ -11,22 +11,53 @@ import FileIcon from "../icons/FileIcon";
 import StoreCommissionIcon from "../icons/StoreCommissionIcon";
 import StoreIcon from "../icons/StoreIcon";
 
+const currentDate = new Date();
+const currentMonth = currentDate.toLocaleString("default", { month: "long" });
+const currentYear = currentDate.getFullYear();
+
 const navItems = [
-  { label: "Dashboard", icon: LayoutDashboard, href: "/admin/dashboard" },
-  { label: "Store Manager", icon: StoreIcon, href: "/admin/store-manager" },
-  { label: "Charity Panel", icon: Heart, href: "/admin/charity-panel" },
+  {
+    label: "Dashboard",
+    icon: LayoutDashboard,
+    href: "/admin/dashboard",
+    basePath: "/admin/dashboard",
+  },
+  {
+    label: "Store Manager",
+    icon: StoreIcon,
+    href: "/admin/store-manager",
+    basePath: "/admin/store-manager",
+  },
+  {
+    label: "Charity Panel",
+    icon: Heart,
+    href: `/admin/charity-panel?month=${currentMonth}+${currentYear}`,
+    basePath: "/admin/charity-panel",
+  },
   {
     label: "Monthly Receipts",
     icon: FileIcon,
     href: "/admin/monthly-receipts",
+    basePath: "/admin/monthly-receipts",
   },
   {
     label: "Store Commission",
     icon: StoreCommissionIcon,
-    href: "/admin/store-commission",
+    href: `/admin/store-commission?month=${currentMonth}+${currentYear}`,
+    basePath: "/admin/store-commission",
   },
-  { label: "Analysis", icon: AnalysisIcon, href: "/admin/analysis" },
-  { label: "Settings", icon: Settings, href: "/admin/settings" },
+  {
+    label: "Analysis",
+    icon: AnalysisIcon,
+    href: "/admin/analysis",
+    basePath: "/admin/analysis",
+  },
+  {
+    label: "Settings",
+    icon: Settings,
+    href: "/admin/settings",
+    basePath: "/admin/settings",
+  },
 ];
 
 export default function Sidebar() {
@@ -65,7 +96,6 @@ export default function Sidebar() {
                 CartForGood
               </span>
             </div>
-            {/* Close button — mobile only */}
             <button
               className="md:hidden text-white/70 hover:text-white"
               onClick={() => setIsOpen(false)}
@@ -73,14 +103,16 @@ export default function Sidebar() {
               <X size={18} />
             </button>
           </div>
+
           <p className="text-[#D2D2D5] text-xl font-medium tracking-[0.1px] mb-6 mt-4 border-b border-[#90959c] pb-4">
             Admin
           </p>
 
           {/* Nav */}
           <nav className="flex flex-col gap-1">
-            {navItems.map(({ label, icon: Icon, href }) => {
-              const isActive = pathname === href;
+            {navItems.map(({ label, icon: Icon, href, basePath }) => {
+              const isActive = pathname === basePath; // ← Fixed: Compare with basePath only
+
               return (
                 <Link
                   key={label}
@@ -88,8 +120,8 @@ export default function Sidebar() {
                   onClick={() => setIsOpen(false)}
                   className={`flex items-center gap-1.5 p-4 rounded-[10px] text-base font-medium leading-[132%] tracking-[0.08px] transition-colors text-nowrap ${
                     isActive
-                      ? "bg-white text-[#1A2A56] font-semibold text-base leading-[116%] tracking-[0.08px]"
-                      : "text-white"
+                      ? "bg-white text-[#1A2A56] font-semibold"
+                      : "text-white hover:bg-white/10"
                   }`}
                 >
                   <Icon className="h-5 w-5" />
@@ -103,7 +135,7 @@ export default function Sidebar() {
         {/* User profile */}
         <div className="flex items-center gap-1 p-4 rounded-[12px] bg-white">
           <div className="w-9 h-9 rounded-full flex items-center justify-center overflow-hidden shrink-0">
-            <Image src={"/profile.png"} alt="Profile" width={36} height={36} />
+            <Image src="/profile.png" alt="Profile" width={36} height={36} />
           </div>
           <div className="overflow-hidden">
             <p className="text-[#1A2A56] text-base font-medium leading-[160%] tracking-[0.08px]">
