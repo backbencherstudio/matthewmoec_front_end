@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import EditIcon from "@/components/icons/EditIcon";
@@ -5,11 +6,15 @@ import DeleteModal from "@/components/reusable/DeleteModal";
 import Pagination from "@/components/reusable/Pagination";
 import ReuseAbleTable from "@/components/reusable/reuseable-table";
 import { useGetAllStoresQuery } from "@/redux/features/admin/store/storeApi";
-import { useGetStoreCommissionQuery } from "@/redux/features/admin/storeCommission/storeCommissionApi";
+import {
+  useDeleteStoreCommissionMutation,
+  useGetStoreCommissionQuery,
+} from "@/redux/features/admin/storeCommission/storeCommissionApi";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { ReactNode, useState } from "react";
+import { toast } from "sonner";
 import EditStoreCommissionModal from "./EditStoreCommissionModal"; // ← Import new modal
 
 type StoreCommissionItem = {
@@ -69,16 +74,28 @@ export default function StoreCommissionTable() {
 
   const { data: storeData } = useGetAllStoresQuery({ page: 1, limit: 7 });
   const stores = storeData?.data ?? [];
-
+  const [deleteStoreCommission, { isLoading: isDeleting }] =
+    useDeleteStoreCommissionMutation();
   const handleEdit = (item: StoreCommissionItem) => {
     setSelectedCommission(item);
     setEditOpen(true);
   };
 
-  const handleDelete = () => {
-    console.log("Deleted:", itemToDelete?.id);
-    setDeleteOpen(false);
-    setItemToDelete(null);
+  const handleDelete = async () => {
+    if (!itemToDelete) return;
+
+    try {
+      const response = await deleteStoreCommission(itemToDelete.id).unwrap();
+      if (response?.success) {
+        toast.success(
+          response?.message || "Commission entry deleted successfully!",
+        );
+        setDeleteOpen(false);
+        setItemToDelete(null);
+      }
+    } catch (error: any) {
+      toast.error(error?.data?.message || "Failed to delete commission");
+    }
   };
 
   const tableHeader = ["Store Name", "Commission", "Date", "Actions"];
@@ -170,9 +187,7 @@ export default function StoreCommissionTable() {
         onOpenChange={setEditOpen}
         commission={selectedCommission}
         stores={stores}
-        onSuccess={() => {
-          // Optional: refresh table after successful update
-        }}
+        onSuccess={() => {}}
       />
 
       {/* Delete Modal */}
@@ -180,10 +195,11 @@ export default function StoreCommissionTable() {
         open={deleteOpen}
         onOpenChange={setDeleteOpen}
         title={`Are you sure you want to remove ${itemToDelete?.store?.name}?`}
-        description="Removing this entry will permanently delete it from your system."
+        description="Removing this store will permanently delete it from your system."
         confirmLabel="Confirm"
         cancelLabel="Cancel"
         onConfirm={handleDelete}
+        isLoading={isDeleting}
       />
     </div>
   );
