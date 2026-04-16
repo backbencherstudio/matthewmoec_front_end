@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+
 import { useLoginMutation } from "@/redux/features/authApi/authApi";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -15,34 +16,54 @@ type LoginFormValues = {
 export default function LoginForm() {
   const [login, { isLoading }] = useLoginMutation();
   const [showPassword, setShowPassword] = useState(false);
+  const [cookies, setCookies] = useState<{
+    accessToken: string;
+    role: string;
+  } | null>(null);
   const router = useRouter();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<LoginFormValues>();
 
+  useEffect(() => {
+    if (cookies) {
+      document.cookie = `access_token=${cookies.accessToken}; path=/;`;
+      toast.success("Login successful");
+
+      // Redirect to admin dashboard
+      router.push("/admin/dashboard");
+      router.refresh();
+    }
+  }, [cookies, router]);
+
   const onSubmit = async (data: LoginFormValues) => {
     try {
       const response = await login(data).unwrap();
+
       if (response?.success) {
-        toast.success(response.message || "Login successful");
-        localStorage.setItem(
-          "access_token",
-          response?.authorization?.access_token,
-        );
-        localStorage.setItem("type", response?.type);
-        router.push("/admin/dashboard");
+        const accessToken = response?.authorization?.access_token;
+        const role = response?.type || "admin";
+        localStorage?.setItem("access_token", accessToken);
+
+        if (!accessToken) {
+          toast.error("No access token received");
+          return;
+        }
+
+        setCookies({ accessToken, role });
       }
-    } catch (error) {
-      const errorMessage = (error as any)?.data?.message || "Login failed";
+    } catch (error: any) {
+      const errorMessage = error?.data?.message || "Login failed";
       toast.error(errorMessage);
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      {/* Email */}
+      {/* Email Field */}
       <div className="mb-4">
         <label className="block text-lg leading-[132%] tracking-[0.09px] text-[#A5A5AB] mb-4">
           Email
@@ -68,7 +89,7 @@ export default function LoginForm() {
         )}
       </div>
 
-      {/* Password */}
+      {/* Password Field */}
       <div className="mb-5">
         <label className="block text-lg leading-[132%] tracking-[0.09px] text-[#A5A5AB] mb-4">
           Password
@@ -90,10 +111,10 @@ export default function LoginForm() {
           />
           <button
             type="button"
-            onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
           >
-            {showPassword ? <EyeOffIcon size={16} /> : <EyeIcon size={16} />}
+            {showPassword ? <EyeOffIcon size={18} /> : <EyeIcon size={18} />}
           </button>
         </div>
         {errors.password && (
@@ -103,8 +124,7 @@ export default function LoginForm() {
         )}
       </div>
 
-      {/* Submit */}
-      <button type="submit" disabled={isLoading} className="submit-btn">
+      <button type="submit" disabled={isLoading} className="submit-btn w-full">
         {isLoading ? "Logging in..." : "Log in"}
       </button>
     </form>

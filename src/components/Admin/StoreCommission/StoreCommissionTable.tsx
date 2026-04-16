@@ -15,7 +15,7 @@ import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { ReactNode, useState } from "react";
 import { toast } from "sonner";
-import EditStoreCommissionModal from "./EditStoreCommissionModal"; // ← Import new modal
+import EditStoreCommissionModal from "./EditStoreCommissionModal";
 
 type StoreCommissionItem = {
   id: string;
