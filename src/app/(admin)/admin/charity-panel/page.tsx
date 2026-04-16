@@ -4,23 +4,34 @@
 import CharityPanelHeader from "@/components/Admin/CharityPanel/CharityPanelHeader";
 import DonationHistory from "@/components/Admin/CharityPanel/DonationHistory";
 import ManageCharities from "@/components/Admin/CharityPanel/ManageCharities";
-import UpdateSuccessModal from "@/components/Admin/CharityPanel/UpdateSuccessModal";
 import { useAddCharityMutation } from "@/redux/features/admin/charity/charityApi";
+import {
+  useGetAppConfigurationQuery,
+  useUpdateAppConfigurationMutation,
+} from "@/redux/features/admin/settings/settingsApi";
 import { useState } from "react";
 import { toast } from "sonner";
 
 export default function CharityPanel() {
-  const [open, setOpen] = useState(false);
-
   const [charityName, setCharityName] = useState("");
   const [donationAmount, setDonationAmount] = useState("");
   const [donationDate, setDonationDate] = useState("");
-  const [shareMessage, setShareMessage] = useState(
-    "Last month CartForGood donated $800 to Feeding America and $440 to Springfield Food Pantry.",
-  );
-  const [totalLastMonth, setTotalLastMonth] = useState("1,998.00");
 
-  const [addCharity, { isLoading }] = useAddCharityMutation();
+  const [shareMessage, setShareMessage] = useState("");
+  const [totalLastMonth, setTotalLastMonth] = useState("");
+
+  const [addCharity, { isLoading: isAdding }] = useAddCharityMutation();
+  const [updateAppConfiguration, { isLoading: isUpdating }] =
+    useUpdateAppConfigurationMutation();
+
+  const { data: configData } = useGetAppConfigurationQuery("");
+
+  const displayShareMessage =
+    shareMessage || configData?.data?.share_message || "";
+  const displayTotalLastMonth =
+    totalLastMonth ||
+    configData?.data?.total_last_month_donation_amount?.toString() ||
+    "";
 
   const handleAddCharity = async () => {
     if (!charityName.trim() || !donationAmount.trim()) {
@@ -50,11 +61,28 @@ export default function CharityPanel() {
     }
   };
 
+  const handleSaveChanges = async () => {
+    try {
+      const payload = {
+        share_message: shareMessage.trim(),
+        total_last_month_donation_amount: parseFloat(totalLastMonth),
+      };
+
+      const response = await updateAppConfiguration(payload).unwrap();
+
+      if (response?.success) {
+        toast.success(response?.message || "Settings saved successfully!");
+      }
+    } catch (error: any) {
+      const errorMsg = error?.data?.message || "Failed to save changes";
+      toast.error(errorMsg);
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[#F6F8FA] p-4 sm:p-6 lg:px-13 lg:py-10 ">
-      {/* Page Header */}
+    <div className="min-h-screen bg-[#F6F8FA] p-4 sm:p-6 lg:px-13 lg:py-10">
       <CharityPanelHeader />
-      {/* Main Grid */}
+
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <DonationHistory />
 
@@ -110,14 +138,14 @@ export default function CharityPanel() {
                 <button
                   onClick={handleAddCharity}
                   className="submit-btn"
-                  disabled={isLoading}
+                  disabled={isAdding}
                 >
-                  {isLoading ? "Adding..." : "Add Charity"}
+                  {isAdding ? "Adding..." : "Add Charity"}
                 </button>
               </div>
             </div>
 
-            {/* Share Message + Total */}
+            {/* Share Message + Total Last Month - Now Dynamic */}
             <div className="mt-6">
               <div className="flex flex-col gap-4">
                 <div>
@@ -126,37 +154,39 @@ export default function CharityPanel() {
                   </label>
                   <textarea
                     rows={3}
-                    value={shareMessage}
+                    value={displayShareMessage}
                     onChange={(e) => setShareMessage(e.target.value)}
                     className="w-full p-3.5 rounded-[8px] border border-[#ECEFF3] bg-[#F6F8FA] text-sm text-[#6B7A99] resize-none focus:outline-none focus:ring-2 focus:ring-[#1F3266]/20"
+                    placeholder="Share this app with your friends and family"
                   />
                 </div>
+
                 <div>
                   <label className="text-lg tracking-[0.09px] leading-[132%] font-medium text-[#1A2A56] mb-3 block">
-                    Total Last Month Donation Amount($)
+                    Total Last Month Donation Amount ($)
                   </label>
                   <input
-                    type="text"
-                    value={totalLastMonth}
+                    type="number"
+                    step="0.01"
+                    value={displayTotalLastMonth}
                     onChange={(e) => setTotalLastMonth(e.target.value)}
                     className="w-full p-3.5 rounded-[8px] border border-[#ECEFF3] bg-[#F6F8FA] text-sm text-[#6B7A99] focus:outline-none focus:ring-2 focus:ring-[#1F3266]/20"
+                    placeholder="12500.50"
                   />
                 </div>
-                <button className="submit-btn" onClick={() => setOpen(true)}>
-                  Save Changes
+
+                <button
+                  onClick={handleSaveChanges}
+                  disabled={isUpdating}
+                  className="submit-btn disabled:opacity-70"
+                >
+                  {isUpdating ? "Saving..." : "Save Changes"}
                 </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <UpdateSuccessModal
-        open={open}
-        onOpenChange={setOpen}
-        previewMessage="Last month CartForGood donated $800 to Feeding America and $440 to Springfield Food Pantry."
-        onSave={() => console.log("Saved!")}
-      />
     </div>
   );
 }
