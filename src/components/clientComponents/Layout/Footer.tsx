@@ -23,8 +23,8 @@ const Footer = () => {
               </div>
 
               <p className="text-[#A5A5AB] text-[16px] font-normal leading-[160%] tracking-[0.08px] font-inter max-w-xs">
-                A simple affiliate shopping platform that turns everyday
-                purchases into charitable impact.
+                A simple shopping platform that turns everyday purchases into
+                charitable impact.
               </p>
 
               <h1 className="text-[#FFF] text-[24px] font-semibold leading-[130%] tracking-[0.12px] font-inter">

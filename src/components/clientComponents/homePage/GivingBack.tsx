@@ -53,7 +53,7 @@ const GivingBack = () => {
               </h2>
               <p className="text-center text-[#7D828F] text-[16px] font-normal leading-[150%] font-inter">
                 Choose from our growing list of stores.Opens in external browser
-                affiliate tracking guaranteed.
+                tracking guaranteed.
               </p>
             </div>
 
@@ -96,7 +96,7 @@ const GivingBack = () => {
             </div>
           </div>
 
-          <div className="flex justify-center mt-6">
+          {/* <div className="flex justify-center mt-6">
             <div
               className="flex items-center gap-3.5  
             border-[0.3px] border-[#E9E9EA] bg-[#F0F3F9] rounded-[12px]  p-4 sm:gap-2.5 w-full "
@@ -137,7 +137,7 @@ const GivingBack = () => {
                 non-negotiable for affiliate commission tracking.
               </h1>
             </div>
-          </div>
+          </div> */}
         </Container>
       </div>
     </div>
