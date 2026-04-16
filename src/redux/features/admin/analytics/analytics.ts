@@ -9,7 +9,7 @@ const analyticsApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Analytics"],
     }),
-    
+
     getAnalysisStatistics: builder.query({
       query: () => ({
         url: "/admin/analytics/store-click-statistics",
@@ -17,10 +17,21 @@ const analyticsApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Analytics"],
     }),
+
+    getStoreClickBreakdown: builder.query({
+      query: () => ({
+        url: "/admin/analytics/store-click-breakdown",
+        method: "GET",
+      }),
+      providesTags: ["Analytics"],
+    }),
   }),
 });
 
-export const { useGetDashboardStatisticsQuery, useGetAnalysisStatisticsQuery } =
-  analyticsApi;
+export const {
+  useGetDashboardStatisticsQuery,
+  useGetAnalysisStatisticsQuery,
+  useGetStoreClickBreakdownQuery,
+} = analyticsApi;
 
 export default analyticsApi;
