@@ -1,8 +1,14 @@
 "use client";
 
 import CartIcon from "@/components/icons/CartIcon";
-import { Heart, LayoutDashboard, Menu, Settings, X } from "lucide-react";
-import Image from "next/image";
+import {
+  Heart,
+  LayoutDashboard,
+  LogOut,
+  Menu,
+  Settings,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -133,17 +139,18 @@ export default function Sidebar() {
         </div>
 
         {/* User profile */}
-        <div className="flex items-center gap-1 p-4 rounded-[12px] bg-white">
-          <div className="w-9 h-9 rounded-full flex items-center justify-center overflow-hidden shrink-0">
-            <Image src="/profile.png" alt="Profile" width={36} height={36} />
-          </div>
-          <div className="overflow-hidden">
+        <div className="p-4 rounded-[12px] bg-white">
+          <div>
             <p className="text-[#1A2A56] text-base font-medium leading-[160%] tracking-[0.08px]">
               Matthewmoec
             </p>
             <p className="text-[#A5A5AB] text-xs leading-[100%] tracking-[0.06px] mt-2">
               matthewmoec@.com
             </p>
+            <button className="bg-red-400 px-4 py-2 rounded-md mt-3 w-full text-sm hover:bg-red-600 transition-colors text-white font-medium cursor-pointer flex items-center justify-center gap-3">
+              <span>Logout</span>
+              <LogOut className="h-4 w-4" />
+            </button>
           </div>
         </div>
       </aside>

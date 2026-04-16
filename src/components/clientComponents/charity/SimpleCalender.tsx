@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { ReceiptCard } from "./ReceiptCard";
 
 interface ReceiptCard {
@@ -94,7 +93,7 @@ const SimpleCalender = () => {
           </div>
 
           {/* Important Notice */}
-          <div className="mt-4 lg:mt-8 flex px-6 py-3 lg:py-4 items-center gap-3 rounded-[12px] border-[0.3px] border-[#E9E9EA] bg-[#DFE1E7]">
+          {/* <div className="mt-4 lg:mt-8 flex px-6 py-3 lg:py-4 items-center gap-3 rounded-[12px] border-[0.3px] border-[#E9E9EA] bg-[#DFE1E7]">
             <Image
               height={400}
               width={400}
@@ -106,7 +105,7 @@ const SimpleCalender = () => {
               IMPORTANT: All donation updates are manually verified and updated
               through our admin system to ensure accuracy and trust.
             </p>
-          </div>
+          </div> */}
         </div>
       </section>
     </div>
