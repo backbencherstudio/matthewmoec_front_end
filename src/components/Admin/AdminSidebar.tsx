@@ -1,6 +1,12 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import CartIcon from "@/components/icons/CartIcon";
+import {
+  useGetMeQuery,
+  useLogoutMutation,
+} from "@/redux/features/authApi/authApi";
+import Cookies from "js-cookie";
 import {
   Heart,
   LayoutDashboard,
@@ -10,8 +16,9 @@ import {
   X,
 } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 import AnalysisIcon from "../icons/AnalysisIcon";
 import FileIcon from "../icons/FileIcon";
 import StoreCommissionIcon from "../icons/StoreCommissionIcon";
@@ -68,7 +75,28 @@ const navItems = [
 
 export default function Sidebar() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const { data } = useGetMeQuery("");
+  const [logout] = useLogoutMutation();
+
+  const handleLogout = async () => {
+    try {
+      const response = await logout({}).unwrap();
+      if (response?.success) {
+        Cookies.remove("access_token");
+        Cookies.remove("role");
+        localStorage?.removeItem("access_token");
+        toast.success("Logged out successfully");
+
+        // Redirect to login
+        router.push("/login");
+      }
+    } catch (error: any) {
+      const errorMessage = error?.data?.message || "Logout failed";
+      toast.error(errorMessage);
+    }
+  };
 
   return (
     <>
@@ -141,15 +169,17 @@ export default function Sidebar() {
         {/* User profile */}
         <div className="p-4 rounded-[12px] bg-white">
           <div>
-            <p className="text-[#1A2A56] text-base font-medium leading-[160%] tracking-[0.08px]">
-              Matthewmoec
-            </p>
             <p className="text-[#A5A5AB] text-xs leading-[100%] tracking-[0.06px] mt-2">
-              matthewmoec@.com
+              {data?.data?.email}
             </p>
-            <button className="bg-red-400 px-4 py-2 rounded-md mt-3 w-full text-sm hover:bg-red-600 transition-colors text-white font-medium cursor-pointer flex items-center justify-center gap-3">
-              <span>Logout</span>
-              <LogOut className="h-4 w-4" />
+            <button
+              onClick={handleLogout}
+              className="bg-red-400 px-4 py-2 rounded-md mt-3 w-full text-sm hover:bg-red-600 transition-colors text-white font-medium cursor-pointer flex items-center justify-center gap-3"
+            >
+              <>
+                <LogOut className="h-4 w-4" />
+                Logout
+              </>
             </button>
           </div>
         </div>

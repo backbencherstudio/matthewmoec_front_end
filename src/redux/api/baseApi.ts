@@ -27,6 +27,7 @@ const baseApi = createApi({
   reducerPath: "baseApi",
   baseQuery: baseQueryWithAutoTokenUpdate,
   tagTypes: [
+    "Auth",
     "Store",
     "Receipts",
     "Charity",

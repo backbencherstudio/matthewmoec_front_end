@@ -2,9 +2,10 @@
 "use client";
 
 import { useLoginMutation } from "@/redux/features/authApi/authApi";
+import Cookies from "js-cookie";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
@@ -16,10 +17,6 @@ type LoginFormValues = {
 export default function LoginForm() {
   const [login, { isLoading }] = useLoginMutation();
   const [showPassword, setShowPassword] = useState(false);
-  const [cookies, setCookies] = useState<{
-    accessToken: string;
-    role: string;
-  } | null>(null);
   const router = useRouter();
 
   const {
@@ -28,17 +25,6 @@ export default function LoginForm() {
     formState: { errors },
   } = useForm<LoginFormValues>();
 
-  useEffect(() => {
-    if (cookies) {
-      document.cookie = `access_token=${cookies.accessToken}; path=/;`;
-      toast.success("Login successful");
-
-      // Redirect to admin dashboard
-      router.push("/admin/dashboard");
-      router.refresh();
-    }
-  }, [cookies, router]);
-
   const onSubmit = async (data: LoginFormValues) => {
     try {
       const response = await login(data).unwrap();
@@ -46,14 +32,12 @@ export default function LoginForm() {
       if (response?.success) {
         const accessToken = response?.authorization?.access_token;
         const role = response?.type || "admin";
+        localStorage?.setItem("role", role);
         localStorage?.setItem("access_token", accessToken);
-
-        if (!accessToken) {
-          toast.error("No access token received");
-          return;
-        }
-
-        setCookies({ accessToken, role });
+        Cookies.set("access_token", accessToken);
+        Cookies.set("role", role);
+        toast.success(response?.message || "Logged in successfully");
+        router.push("/admin/dashboard");
       }
     } catch (error: any) {
       const errorMessage = error?.data?.message || "Login failed";
