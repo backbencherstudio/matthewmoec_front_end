@@ -64,10 +64,10 @@ const TrustedStores = () => {
     },
     {
       id: 8,
-      name: "eBay",
+      name: "Wayfair",
       description:
-        "Find everything you need, from groceries to electronics, at eBay.",
-      image: "/admin/eBay.png",
+        "Find everything you need, from groceries to electronics, at Wayfair.",
+      image: "/admin/wayfair.png",
       buttonText: "Shop Now",
     },
   ];
