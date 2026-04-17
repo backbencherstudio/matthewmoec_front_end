@@ -1,6 +1,5 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 interface ReceiptCard {
   id: string;
@@ -58,17 +57,19 @@ export const ReceiptCard = ({ card }: { card: ReceiptCard }) => {
 
       {/* View Receipt Button */}
       {card?.receipt_amount && (
-        <Link
-          href={"#"}
+        <a
+          href={card.proof_of_receipt_url}
+          target="_blank"
+          rel="noopener noreferrer"
           className="group flex w-full justify-center text-[#395CBC] border border-[#395CBC] items-center gap-2 py-2.5 rounded-full hover:bg-linear-to-b from-[#395CBC] to-[#1A2A56] transition-opacity cursor-pointer hover:text-white"
         >
-          <div className="flex justify-center items-center gap-1 lg:gap-2">
+          <button className="flex justify-center items-center gap-1 lg:gap-2 cursor-pointer">
             <span className="font-sans text-center text-sm font-medium leading-[154%]">
               View Receipt
             </span>
             <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:rotate-45" />
-          </div>
-        </Link>
+          </button>
+        </a>
       )}
     </div>
   );

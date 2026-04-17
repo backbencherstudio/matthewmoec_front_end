@@ -1,5 +1,7 @@
 "use client";
+import Pagination from "@/components/reusable/Pagination";
 import { useGetAllReceiptsQuery } from "@/redux/features/client/receipt/receiptApi";
+import { useState } from "react";
 import { ReceiptCard } from "./ReceiptCard";
 
 type ReceiptCard = {
@@ -14,8 +16,15 @@ type ReceiptCard = {
   proof_of_receipt_url: string;
 };
 
+const ITEMS_PER_PAGE = 8;
+
 const SimpleCalender = () => {
-  const { data: receiptCards } = useGetAllReceiptsQuery("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data: receiptCards } = useGetAllReceiptsQuery({
+    page: currentPage,
+    limit: ITEMS_PER_PAGE,
+  });
+  const totalPages = receiptCards?.meta?.total_pages || 1;
   return (
     <div>
       <section className="flex flex-col gap-12 p-4 md:p-8 lg:p-20 self-stretch bg-[#FFF]">
@@ -37,6 +46,11 @@ const SimpleCalender = () => {
               <ReceiptCard key={card.id} card={card} />
             ))}
           </div>
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+          />
 
           {/* Important Notice */}
           {/* <div className="mt-4 lg:mt-8 flex px-6 py-3 lg:py-4 items-center gap-3 rounded-[12px] border-[0.3px] border-[#E9E9EA] bg-[#DFE1E7]">
