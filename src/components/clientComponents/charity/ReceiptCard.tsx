@@ -1,20 +1,24 @@
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ReceiptCard {
-  id: number;
+  id: string;
+  created_at: string;
+  updated_at: string;
+  status: string;
   month: string;
-  charity: string;
-  amount: number | null;
-  confirmed: boolean;
-  upcoming?: boolean;
+  organization_or_charity: string;
+  receipt_amount: string;
+  proof_of_receipt: string;
+  proof_of_receipt_url: string;
 }
 
 export const ReceiptCard = ({ card }: { card: ReceiptCard }) => {
   return (
     <div className="relative flex flex-col items-center gap-4 flex-[1_0_0] py-10 px-6 pb-8 rounded-[24px] border border-[#E9E9EA] bg-white">
       {/* Confirmed Badge */}
-      {card.confirmed && (
+      {card.status === "PUBLISHED" && (
         <div className="flex px-3 py-1 justify-center items-center gap-1 rounded-[4px_24px] bg-[#ECEFF3] w-fit absolute top-0 right-0">
           <h1 className="text-[#395CBC] text-center font-sans text-xs font-normal">
             Confirmed
@@ -32,36 +36,39 @@ export const ReceiptCard = ({ card }: { card: ReceiptCard }) => {
       {/* Month & Charity */}
       <div className="w-full text-center">
         <h2 className="text-[#395CBC] font-inter text-[24px] font-semibold leading-[116%] tracking-[0.12px] mb-2">
-          {card.month}
+          {card?.month}
         </h2>
         <p className="font-inter text-[#4A4C56] text-[18px] font-normal leading-[132%] tracking-[0.09px]">
-          {card.charity}
+          {card?.organization_or_charity}
         </p>
       </div>
 
       {/* Amount or Upcoming */}
       <div>
-        {card.upcoming ? (
+        {card.receipt_amount ? (
           <h2 className="font-inter text-[#1A2A56] text-[40px] font-semibold leading-[1.24] tracking-[0.2px] text-center">
-            Upcoming
+            ${card.receipt_amount?.toLocaleString()}
           </h2>
         ) : (
           <h2 className="font-inter text-[#1A2A56] text-[40px] font-semibold leading-[1.24] tracking-[0.2px] text-center">
-            ${card.amount?.toLocaleString()}
+            Upcoming
           </h2>
         )}
       </div>
 
       {/* View Receipt Button */}
-      {!card.upcoming && (
-        <button className="flex w-full justify-center text-[#395CBC] border border-[#395CBC] items-center gap-2 py-2.5 rounded-full hover:bg-linear-to-b from-[#395CBC] to-[#1A2A56] transition-opacity cursor-pointer hover:text-white">
+      {card?.receipt_amount && (
+        <Link
+          href={"#"}
+          className="group flex w-full justify-center text-[#395CBC] border border-[#395CBC] items-center gap-2 py-2.5 rounded-full hover:bg-linear-to-b from-[#395CBC] to-[#1A2A56] transition-opacity cursor-pointer hover:text-white"
+        >
           <div className="flex justify-center items-center gap-1 lg:gap-2">
             <span className="font-sans text-center text-sm font-medium leading-[154%]">
               View Receipt
             </span>
-            <ArrowRight className="w-4 h-4" />
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:rotate-45" />
           </div>
-        </button>
+        </Link>
       )}
     </div>
   );

@@ -1,75 +1,21 @@
+"use client";
+import { useGetAllReceiptsQuery } from "@/redux/features/client/receipt/receiptApi";
 import { ReceiptCard } from "./ReceiptCard";
 
-interface ReceiptCard {
-  id: number;
+type ReceiptCard = {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  status: string;
   month: string;
-  charity: string;
-  amount: number | null;
-  confirmed: boolean;
-  upcoming?: boolean;
-}
-
-const receiptCards: ReceiptCard[] = [
-  {
-    id: 1,
-    month: "January 2025",
-    charity: "Feeding America",
-    amount: 800,
-    confirmed: true,
-  },
-  {
-    id: 2,
-    month: "February 2025",
-    charity: "Feeding America",
-    amount: 800,
-    confirmed: true,
-  },
-  {
-    id: 3,
-    month: "March 2025",
-    charity: "Feeding America",
-    amount: 800,
-    confirmed: true,
-  },
-  {
-    id: 4,
-    month: "April 2025",
-    charity: "Feeding America",
-    amount: 800,
-    confirmed: true,
-  },
-  {
-    id: 5,
-    month: "May 2025",
-    charity: "Feeding America",
-    amount: 800,
-    confirmed: true,
-  },
-  {
-    id: 6,
-    month: "June 2025",
-    charity: "Feeding America",
-    amount: 800,
-    confirmed: true,
-  },
-  {
-    id: 7,
-    month: "July 2025",
-    charity: "Feeding America",
-    amount: 800,
-    confirmed: true,
-  },
-  {
-    id: 8,
-    month: "January 2026",
-    charity: "Red Cross",
-    amount: null,
-    confirmed: false,
-    upcoming: true,
-  },
-];
+  organization_or_charity: string;
+  receipt_amount: string;
+  proof_of_receipt: string;
+  proof_of_receipt_url: string;
+};
 
 const SimpleCalender = () => {
+  const { data: receiptCards } = useGetAllReceiptsQuery("");
   return (
     <div>
       <section className="flex flex-col gap-12 p-4 md:p-8 lg:p-20 self-stretch bg-[#FFF]">
@@ -87,7 +33,7 @@ const SimpleCalender = () => {
         <div>
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {receiptCards.map((card) => (
+            {receiptCards?.data?.map((card: ReceiptCard) => (
               <ReceiptCard key={card.id} card={card} />
             ))}
           </div>
