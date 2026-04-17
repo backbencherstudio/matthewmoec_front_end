@@ -11,6 +11,7 @@ const authApi = baseApi.injectEndpoints({
         };
       },
     }),
+
     forgotPassword: builder.mutation({
       query: (data) => {
         return {
@@ -20,6 +21,7 @@ const authApi = baseApi.injectEndpoints({
         };
       },
     }),
+
     VerifyOtp: builder.mutation({
       query: (data) => {
         return {
@@ -39,6 +41,24 @@ const authApi = baseApi.injectEndpoints({
         };
       },
     }),
+
+    logout: builder.mutation({
+      query: () => {
+        return {
+          url: "/auth/logout",
+          method: "POST",
+        };
+      },
+    }),
+
+    getMe: builder.query({
+      query: () => {
+        return {
+          url: "/auth/me",
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
@@ -47,6 +67,8 @@ export const {
   useForgotPasswordMutation,
   useVerifyOtpMutation,
   useResetPasswordMutation,
+  useGetMeQuery,
+  useLogoutMutation,
 } = authApi;
 
 export default authApi;

@@ -1,76 +1,30 @@
-import Image from "next/image";
+"use client";
+import Pagination from "@/components/reusable/Pagination";
+import { useGetAllReceiptsQuery } from "@/redux/features/client/receipt/receiptApi";
+import { useState } from "react";
 import { ReceiptCard } from "./ReceiptCard";
 
-interface ReceiptCard {
-  id: number;
+type ReceiptCard = {
+  id: string;
+  created_at: string;
+  updated_at: string;
+  status: string;
   month: string;
-  charity: string;
-  amount: number | null;
-  confirmed: boolean;
-  upcoming?: boolean;
-}
+  organization_or_charity: string;
+  receipt_amount: string;
+  proof_of_receipt: string;
+  proof_of_receipt_url: string;
+};
 
-const receiptCards: ReceiptCard[] = [
-  {
-    id: 1,
-    month: "January 2025",
-    charity: "Feeding America",
-    amount: 800,
-    confirmed: true,
-  },
-  {
-    id: 2,
-    month: "February 2025",
-    charity: "Feeding America",
-    amount: 800,
-    confirmed: true,
-  },
-  {
-    id: 3,
-    month: "March 2025",
-    charity: "Feeding America",
-    amount: 800,
-    confirmed: true,
-  },
-  {
-    id: 4,
-    month: "April 2025",
-    charity: "Feeding America",
-    amount: 800,
-    confirmed: true,
-  },
-  {
-    id: 5,
-    month: "May 2025",
-    charity: "Feeding America",
-    amount: 800,
-    confirmed: true,
-  },
-  {
-    id: 6,
-    month: "June 2025",
-    charity: "Feeding America",
-    amount: 800,
-    confirmed: true,
-  },
-  {
-    id: 7,
-    month: "July 2025",
-    charity: "Feeding America",
-    amount: 800,
-    confirmed: true,
-  },
-  {
-    id: 8,
-    month: "January 2026",
-    charity: "Red Cross",
-    amount: null,
-    confirmed: false,
-    upcoming: true,
-  },
-];
+const ITEMS_PER_PAGE = 8;
 
 const SimpleCalender = () => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const { data: receiptCards } = useGetAllReceiptsQuery({
+    page: currentPage,
+    limit: ITEMS_PER_PAGE,
+  });
+  const totalPages = receiptCards?.meta?.total_pages || 1;
   return (
     <div>
       <section className="flex flex-col gap-12 p-4 md:p-8 lg:p-20 self-stretch bg-[#FFF]">
@@ -88,13 +42,18 @@ const SimpleCalender = () => {
         <div>
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {receiptCards.map((card) => (
+            {receiptCards?.data?.map((card: ReceiptCard) => (
               <ReceiptCard key={card.id} card={card} />
             ))}
           </div>
+          <Pagination
+            totalPages={totalPages}
+            currentPage={currentPage}
+            onPageChange={setCurrentPage}
+          />
 
           {/* Important Notice */}
-          <div className="mt-4 lg:mt-8 flex px-6 py-3 lg:py-4 items-center gap-3 rounded-[12px] border-[0.3px] border-[#E9E9EA] bg-[#DFE1E7]">
+          {/* <div className="mt-4 lg:mt-8 flex px-6 py-3 lg:py-4 items-center gap-3 rounded-[12px] border-[0.3px] border-[#E9E9EA] bg-[#DFE1E7]">
             <Image
               height={400}
               width={400}
@@ -106,7 +65,7 @@ const SimpleCalender = () => {
               IMPORTANT: All donation updates are manually verified and updated
               through our admin system to ensure accuracy and trust.
             </p>
-          </div>
+          </div> */}
         </div>
       </section>
     </div>

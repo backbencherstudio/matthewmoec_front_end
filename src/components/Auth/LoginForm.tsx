@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
+
 import { useLoginMutation } from "@/redux/features/authApi/authApi";
+import Cookies from "js-cookie";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -16,6 +18,7 @@ export default function LoginForm() {
   const [login, { isLoading }] = useLoginMutation();
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+
   const {
     register,
     handleSubmit,
@@ -25,24 +28,26 @@ export default function LoginForm() {
   const onSubmit = async (data: LoginFormValues) => {
     try {
       const response = await login(data).unwrap();
+
       if (response?.success) {
-        toast.success(response.message || "Login successful");
-        localStorage.setItem(
-          "access_token",
-          response?.authorization?.access_token,
-        );
-        localStorage.setItem("type", response?.type);
+        const accessToken = response?.authorization?.access_token;
+        const role = response?.type || "admin";
+        localStorage?.setItem("role", role);
+        localStorage?.setItem("access_token", accessToken);
+        Cookies.set("access_token", accessToken);
+        Cookies.set("role", role);
+        toast.success(response?.message || "Logged in successfully");
         router.push("/admin/dashboard");
       }
-    } catch (error) {
-      const errorMessage = (error as any)?.data?.message || "Login failed";
+    } catch (error: any) {
+      const errorMessage = error?.data?.message || "Login failed";
       toast.error(errorMessage);
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} noValidate>
-      {/* Email */}
+      {/* Email Field */}
       <div className="mb-4">
         <label className="block text-lg leading-[132%] tracking-[0.09px] text-[#A5A5AB] mb-4">
           Email
@@ -68,7 +73,7 @@ export default function LoginForm() {
         )}
       </div>
 
-      {/* Password */}
+      {/* Password Field */}
       <div className="mb-5">
         <label className="block text-lg leading-[132%] tracking-[0.09px] text-[#A5A5AB] mb-4">
           Password
@@ -90,10 +95,10 @@ export default function LoginForm() {
           />
           <button
             type="button"
-            onClick={() => setShowPassword((prev) => !prev)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400"
           >
-            {showPassword ? <EyeOffIcon size={16} /> : <EyeIcon size={16} />}
+            {showPassword ? <EyeOffIcon size={18} /> : <EyeIcon size={18} />}
           </button>
         </div>
         {errors.password && (
@@ -103,8 +108,7 @@ export default function LoginForm() {
         )}
       </div>
 
-      {/* Submit */}
-      <button type="submit" disabled={isLoading} className="submit-btn">
+      <button type="submit" disabled={isLoading} className="submit-btn w-full">
         {isLoading ? "Logging in..." : "Log in"}
       </button>
     </form>

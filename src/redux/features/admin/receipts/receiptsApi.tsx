@@ -14,9 +14,10 @@ const receiptsApi = baseApi.injectEndpoints({
     }),
 
     getAllReceipts: builder.query({
-      query: () => ({
+      query: ({ page, limit }: { page: number; limit: number }) => ({
         url: "/admin/receipt",
         method: "GET",
+        params: { page, limit },
       }),
       providesTags: ["Receipts"],
     }),

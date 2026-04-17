@@ -12,8 +12,6 @@ export default function StoreCommissionPage() {
       </h1>
       <div className="mt-6">
         <CommissionEntryForm
-          onSubmit={(data) => console.log(data)}
-          onCancel={() => console.log("cancelled")}
         />
       </div>
       <div className="mt-11 mb-8">

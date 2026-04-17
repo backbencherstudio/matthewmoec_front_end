@@ -1,8 +1,17 @@
+"use client";
+import {
+  useGetCharityQuery,
+  useGetLinksQuery,
+} from "@/redux/features/client/config/configApi";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import Container from "./Container";
 
 const HeroSection = () => {
+  const { data } = useGetLinksQuery("");
+  const { data: charityData } = useGetCharityQuery("");
+  console.log(charityData);
   return (
     <div className="min-hscre">
       <section className="relative pt-6 md:p-8 lg:pt-24 overflow-hidden ">
@@ -19,25 +28,32 @@ const HeroSection = () => {
                 Tap a store, shop as usual, and we donate a portion to charity
                 every month.
               </p>
-              <div className="mt-8 space-x-4 md:space-y-2 space-y-2.5 w-50 md:w-full mx-auto md:mx-0   ">
-                <button className=" px-3 lg:px-6 py-1.5 lg:py-3 bg-linear-to-b from-[#395CBC] to-[#1A2A56] text-white hover:bg-[#1A2A56] rounded-[30px] transition  w-full md:w-2/3 lg:w-fit cursor-pointer">
+              <div className="mt-8 space-x-4 md:space-y-2 space-y-2.5 w-50 md:w-full mx-auto md:mx-0">
+                <a
+                  href={data?.data?.ios_app_store_url}
+                  target="_blank"
+                  className="group inline-block px-3 lg:px-6 py-1.5 lg:py-3 bg-linear-to-b from-[#395CBC] to-[#1A2A56] text-white hover:bg-[#1A2A56] rounded-[30px] transition w-full md:w-2/3 lg:w-fit cursor-pointer hover:shadow-md"
+                >
                   <div className="flex justify-center items-center gap-1 lg:gap-2">
-                    <h1 className="text-[#FFF] font-medium  text-[12px] md:text-[14px] lg:text-[18px] leading-[100%] tracking-[0.09px] font-inter">
-                      {" "}
-                      Download For iOS{" "}
+                    <h1 className="text-[#FFF] font-medium text-[12px] md:text-[14px] lg:text-[18px] leading-[100%] tracking-[0.09px] font-inter">
+                      Download For iOS
                     </h1>
-                    <ArrowRight className="h-6 w-6" />
+                    <ArrowRight className="h-6 w-6 transition-transform duration-300 group-hover:-rotate-45" />
                   </div>
-                </button>
-                <button className="px-3 lg:px-6 py-1.5 lg:py-3   rounded-[30px] border transition w-full md:w-2/3 lg:w-fit cursor-pointer">
+                </a>
+
+                <a
+                  href={data?.data?.android_play_store_url}
+                  target="_blank"
+                  className="group inline-block px-3 lg:px-6 py-1.5 lg:py-3 rounded-[30px] border transition w-full md:w-2/3 lg:w-fit cursor-pointer hover:shadow-md"
+                >
                   <div className="flex justify-center items-center gap-1 lg:gap-2">
                     <h1 className="text-[#1A2A56] font-medium text-[12px] md:text-[14px] lg:text-[18px] leading-[100%] tracking-[0.09px] font-inter">
-                      {" "}
-                      Download For Android{" "}
+                      Download For Android
                     </h1>
-                    <ArrowRight className="h-6 w-6" />
+                    <ArrowRight className="h-6 w-6 transition-transform duration-300 group-hover:-rotate-45" />
                   </div>
-                </button>
+                </a>
               </div>
             </div>
 
@@ -75,18 +91,31 @@ const HeroSection = () => {
             <p className="text-[1rem]   ">
               Last Month’s Confirmed Donation Amount
             </p>
-            <p className="text-[2rem]  font-bold ">$800</p>
+            <p className="text-[2rem]  font-bold ">
+              ${charityData?.data?.[0]?.donation_amount || "0"}
+            </p>
             <ArrowRight className="text-[1.5rem] " />
-            <p className="text-[1rem]   ">Feeding America</p>
-            <p className="text-[2rem]  font-bold ">$440</p>
+            <p className="text-[1rem]   ">
+              {charityData?.data?.[0]?.charity_organization_name ||
+                "Charity Name"}
+            </p>
+            <p className="text-[2rem]  font-bold ">
+              ${charityData?.data?.[1]?.donation_amount || "0"}
+            </p>
             <ArrowRight className="text-[1.5rem] " />
-            <p className="text-[1rem]   ">Springfield Food Pantry</p>
+            <p className="text-[1rem]   ">
+              {charityData?.data?.[1]?.charity_organization_name ||
+                "Charity Name"}
+            </p>
             <p className="rounded-full border py-2 px-4">
               {" "}
-              <button className=" lg:h-4 cursor-pointer text-[1rem] ">
+              <Link
+                href={"/receipts"}
+                className=" lg:h-4 cursor-pointer text-[1rem] "
+              >
                 {" "}
                 View Receipt →
-              </button>
+              </Link>
             </p>
           </div>
         </Container>

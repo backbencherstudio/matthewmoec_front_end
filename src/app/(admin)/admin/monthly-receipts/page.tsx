@@ -5,6 +5,7 @@ import AddReceiptModal from "@/components/Admin/Receipts/AddReceiptModal";
 import EditReceiptModal from "@/components/Admin/Receipts/EditReceiptModal";
 import EditIcon from "@/components/icons/EditIcon";
 import DeleteModal from "@/components/reusable/DeleteModal";
+import Pagination from "@/components/reusable/Pagination";
 import {
   useDeleteReceiptMutation,
   useGetAllReceiptsQuery,
@@ -20,6 +21,8 @@ type Receipt = {
   receipt_amount: string;
   status: string;
 };
+
+const ITEMS_PER_PAGE = 7;
 
 function ReceiptSkeletonRow() {
   return (
@@ -41,10 +44,7 @@ function ReceiptSkeletonRow() {
 }
 
 export default function MonthlyReceipts() {
-  const { data: receipts, isLoading } = useGetAllReceiptsQuery({});
-  const [deleteReceipt] = useDeleteReceiptMutation();
-
-  // States
+  const [currentPage, setCurrentPage] = useState(1);
   const [editOpen, setEditOpen] = useState(false);
   const [deleteOpen, setDeleteOpen] = useState(false);
   const [addOpen, setAddOpen] = useState(false);
@@ -53,6 +53,16 @@ export default function MonthlyReceipts() {
   const [selectedForDelete, setSelectedForDelete] = useState<Receipt | null>(
     null,
   );
+
+  const { data: receipts, isLoading } = useGetAllReceiptsQuery({
+    page: currentPage,
+    limit: ITEMS_PER_PAGE,
+  });
+
+  const [deleteReceipt] = useDeleteReceiptMutation();
+
+  const totalPages = receipts?.meta?.total_pages || 1;
+  const totalEntries = receipts?.meta?.total || 0;
 
   const handleDelete = async () => {
     if (!selectedForDelete) return;
@@ -70,8 +80,6 @@ export default function MonthlyReceipts() {
 
   return (
     <div className="min-h-screen bg-[#F6F8FA] p-4 sm:p-6 lg:px-13 lg:py-10 relative overflow-hidden">
-      {/* ... your background div ... */}
-
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
         <h1 className="text-[#1A2A56] text-2xl sm:text-[28px] font-bold leading-tight">
@@ -87,19 +95,21 @@ export default function MonthlyReceipts() {
 
       {/* Table Card */}
       <div className="bg-white rounded-2xl border border-[#ECEFF3] overflow-hidden">
+        {/* Header Bar */}
         <div className="flex items-center justify-between px-5 sm:px-6 py-4 bg-linear-to-b from-[#3555AE] to-[#203369]">
-          <span className="text-white font-semibold text-xl leading-[132%] tracking-[0.1px] sm:text-base">
+          <span className="text-white font-semibold text-xl leading-[132%] tracking-[0.1px]">
             Published Entries
           </span>
           <span className="text-white text-base font-medium tracking-[0.1px] leading-[132%]">
             {isLoading ? (
               <div className="h-4 w-16 bg-white/30 rounded animate-pulse" />
             ) : (
-              `${receipts?.data?.length || 0} entries`
+              `${totalEntries} entries`
             )}
           </span>
         </div>
 
+        {/* Table Body */}
         <div className="divide-y divide-[#ECEFF3]">
           {isLoading ? (
             Array.from({ length: 5 }).map((_, i) => (
@@ -118,19 +128,19 @@ export default function MonthlyReceipts() {
                 {/* Left: month + charity */}
                 <div className="min-w-0 flex-1">
                   <p className="text-[#1A2A56] font-semibold text-sm sm:text-base leading-tight">
-                    {receipt?.month}
+                    {receipt.month}
                   </p>
                   <p className="text-[#8A94A6] text-xs sm:text-sm mt-0.5 truncate">
-                    {receipt?.organization_or_charity}
+                    {receipt.organization_or_charity}
                   </p>
                 </div>
 
                 {/* Center: amount + status */}
                 <div className="flex flex-col gap-1 items-center">
                   <span className="text-[#395CBC] font-bold text-base md:text-lg">
-                    ${Number(receipt?.receipt_amount).toLocaleString()}
+                    ${Number(receipt.receipt_amount).toLocaleString()}
                   </span>
-                  {receipt?.status === "PUBLISHED" && (
+                  {receipt.status === "PUBLISHED" && (
                     <span className="inline-flex items-center gap-1 text-[#09332B] text-xs font-medium bg-[#ECEFF3] px-2 py-1 rounded-full w-fit">
                       <CheckCircle size={12} />
                       Verified
@@ -165,6 +175,15 @@ export default function MonthlyReceipts() {
           )}
         </div>
       </div>
+
+      {/* Pagination - Now properly connected */}
+      {totalPages > 1 && (
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          onPageChange={setCurrentPage}
+        />
+      )}
 
       {/* Modals */}
       <AddReceiptModal

@@ -1,6 +1,5 @@
 import LoginForm from "@/components/Auth/LoginForm";
 import CartIcon from "@/components/icons/CartIcon";
-import GoogleIcon from "@/components/icons/GoogleIcon";
 import Link from "next/link";
 
 export default function LoginPage() {
@@ -39,7 +38,7 @@ export default function LoginPage() {
           </h1>
 
           {/* Google button */}
-          <button
+          {/* <button
             type="button"
             className="w-full flex items-center justify-center gap-2 py-4 px-8 rounded-full border bg-white border-[#ECEFF3] text-sm font-medium hover:bg-gray-50 transition mb-4 cursor-pointer"
           >
@@ -47,7 +46,7 @@ export default function LoginPage() {
             <span className="text-[#1A2A56] text-base font-medium">
               Continue with Google
             </span>
-          </button>
+          </button> */}
 
           {/* Divider */}
           <div className="flex items-center gap-3 mb-4">

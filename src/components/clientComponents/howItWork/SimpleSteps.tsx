@@ -1,5 +1,4 @@
 import Container from "@/components/clientComponents/homePage/Container";
-import Image from "next/image";
 
 const SimpleSteps = () => {
   return (
@@ -90,7 +89,7 @@ const SimpleSteps = () => {
               </div>
             </div>
 
-            <div className="mt-4 lg:h-14 lg:mt-8 flex  px-6 py-3 lg:py-0 items-center gap-3 rounded-[12px] border-[0.3px] border-[#E9E9EA] bg-[#DFE1E7]">
+            {/* <div className="mt-4 lg:h-14 lg:mt-8 flex  px-6 py-3 lg:py-0 items-center gap-3 rounded-[12px] border-[0.3px] border-[#E9E9EA] bg-[#DFE1E7]">
               <Image
                 height={100}
                 width={100}
@@ -104,7 +103,7 @@ const SimpleSteps = () => {
                 browser — never WebView or in-app browser. This is
                 non-negotiable for affiliate commission tracking.
               </h1>
-            </div>
+            </div> */}
           </div>
         </Container>
       </section>

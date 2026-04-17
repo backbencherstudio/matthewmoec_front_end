@@ -26,7 +26,7 @@ type StoreItem = {
   how_it_works: string;
 };
 
-const ITEMS_PER_PAGE = 8;
+const ITEMS_PER_PAGE = 7;
 
 export default function DashboardTable() {
   const [editOpen, setEditOpen] = useState(false);
