@@ -66,7 +66,7 @@ const Navbar = () => {
           style={{ background: "linear-gradient(to bottom, #D6DFFD, #F3F6FF)" }}
         >
           <div className="p-3 md:p-4 lg:p-6">
-            <div className="flex justify-between items-center">
+            <Link href={"/"} className="flex justify-between items-center">
               {/* Logo */}
               <div className="flex items-center space-x-1 md:space-x-2 h-7 md:h-8 lg:h-9">
                 <Image
@@ -120,7 +120,7 @@ const Navbar = () => {
                   </button>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
 

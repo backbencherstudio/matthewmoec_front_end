@@ -1,12 +1,17 @@
 "use client";
-import { useGetLinksQuery } from "@/redux/features/client/config/configApi";
+import {
+  useGetCharityQuery,
+  useGetLinksQuery,
+} from "@/redux/features/client/config/configApi";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import Container from "./Container";
 
 const HeroSection = () => {
   const { data } = useGetLinksQuery("");
-
+  const { data: charityData } = useGetCharityQuery("");
+  console.log(charityData);
   return (
     <div className="min-hscre">
       <section className="relative pt-6 md:p-8 lg:pt-24 overflow-hidden ">
@@ -86,18 +91,31 @@ const HeroSection = () => {
             <p className="text-[1rem]   ">
               Last Month’s Confirmed Donation Amount
             </p>
-            <p className="text-[2rem]  font-bold ">$800</p>
+            <p className="text-[2rem]  font-bold ">
+              ${charityData?.data?.[0]?.donation_amount || "0"}
+            </p>
             <ArrowRight className="text-[1.5rem] " />
-            <p className="text-[1rem]   ">Feeding America</p>
-            <p className="text-[2rem]  font-bold ">$440</p>
+            <p className="text-[1rem]   ">
+              {charityData?.data?.[0]?.charity_organization_name ||
+                "Charity Name"}
+            </p>
+            <p className="text-[2rem]  font-bold ">
+              ${charityData?.data?.[1]?.donation_amount || "0"}
+            </p>
             <ArrowRight className="text-[1.5rem] " />
-            <p className="text-[1rem]   ">Springfield Food Pantry</p>
+            <p className="text-[1rem]   ">
+              {charityData?.data?.[1]?.charity_organization_name ||
+                "Charity Name"}
+            </p>
             <p className="rounded-full border py-2 px-4">
               {" "}
-              <button className=" lg:h-4 cursor-pointer text-[1rem] ">
+              <Link
+                href={"/receipts"}
+                className=" lg:h-4 cursor-pointer text-[1rem] "
+              >
                 {" "}
                 View Receipt →
-              </button>
+              </Link>
             </p>
           </div>
         </Container>

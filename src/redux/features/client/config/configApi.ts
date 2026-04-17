@@ -9,9 +9,16 @@ const configApi = baseApi.injectEndpoints({
       }),
       providesTags: ["Config"],
     }),
+    getCharity: builder.query({
+      query: () => ({
+        url: "/charity/last-month",
+        method: "GET",
+      }),
+      providesTags: ["Config"],
+    }),
   }),
 });
 
-export const { useGetLinksQuery } = configApi;
+export const { useGetLinksQuery, useGetCharityQuery } = configApi;
 
 export default configApi;
