@@ -70,8 +70,35 @@ body {
   background: linear-gradient(to bottom, #3556ae, #1f3368);
 }
 
+/* HIDE THE GOOGLE TRANSLATE TOP BAR COMPLETELY */
+.goog-te-banner-frame.skiptranslate,
+body > .skiptranslate,
+.goog-te-gadget-icon,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight,
+.goog-te-balloon-frame,
+.VIpgJd-ZVi9od-ORHb-OEVmcd {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  width: 0 !important;
+  border: none !important;
+}
+
+.VIpgJd-ZVi9od-aZ2wEe-wOHMyf {
+  display: none !important;
+}
+
+.notranslate {
+  translate: no !important;
+}
 .label-edit {
   @apply block text-base leading-[132%] tracking-[0.08px] font-medium text-[#1A2A56] mb-3;
+}
+
+#bodyy {
+  top: 0px !important;
 }
 
 :root {

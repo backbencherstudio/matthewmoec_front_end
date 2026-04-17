@@ -1,6 +1,8 @@
+import TranslatePatchProvider from "@/components/Shared/TranslatePatchProvider";
 import { Providers } from "@/redux/Provider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import { Toaster } from "sonner";
 import "./globals.css";
 
@@ -29,8 +31,30 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col inter-font">
-        <Providers>{children}</Providers>
+      <head>
+        {/* Google Translate Init Script */}
+        <Script id="google-translate-init" strategy="afterInteractive">
+          {`
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'en,es',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  `}
+        </Script>
+
+        <Script
+          src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
+          strategy="afterInteractive"
+        />
+      </head>
+      <body className="flex flex-col inter-font" id="bodyy">
+        <div id="google_translate_element" className="hidden"></div>
+        <Providers>
+          <TranslatePatchProvider>{children}</TranslatePatchProvider>
+        </Providers>
         <Toaster position="top-right" richColors />
       </body>
     </html>
