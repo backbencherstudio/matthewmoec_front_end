@@ -34,6 +34,7 @@ const baseApi = createApi({
     "Commission",
     "Analytics",
     "Settings",
+    "Config",
   ],
   endpoints: () => ({}),
 });

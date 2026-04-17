@@ -1,7 +1,10 @@
 "use client";
 import ArrowIcon from "@/components/icons/ArrowIcon";
 import { useDebounce } from "@/hooks/useDebounce";
-import { useGetAllStoresQuery } from "@/redux/features/client/store/storeApi";
+import {
+  useClickStoreMutation,
+  useGetAllStoresQuery,
+} from "@/redux/features/client/store/storeApi";
 import { Search } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
@@ -26,6 +29,8 @@ const TrustedStores = () => {
     isLoading,
     error,
   } = useGetAllStoresQuery({ search: debouncedSearch });
+
+  const [clickStore] = useClickStoreMutation();
 
   if (isLoading) {
     return (
@@ -134,12 +139,13 @@ const TrustedStores = () => {
                   <div className="text-center">
                     <a
                       href={store?.link}
+                      onClick={() => clickStore(store.id)}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="w-full px-4 py-2 flex items-center justify-center text-sm text-[#395CBC] hover:text-blue-700 rounded-full cursor-pointer border border-[#395CBC]"
+                      className="group w-full px-4 py-2 flex items-center justify-center text-sm text-[#395CBC] hover:text-blue-700 rounded-full cursor-pointer border border-[#395CBC] hover:shadow-md"
                     >
                       <span>Shop Now</span>
-                      <ArrowIcon />
+                      <ArrowIcon className="ml-1 transition-transform duration-300 group-hover:-rotate-45" />
                     </a>
                   </div>
                 </div>
