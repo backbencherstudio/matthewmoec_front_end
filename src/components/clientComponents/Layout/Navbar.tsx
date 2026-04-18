@@ -1,4 +1,5 @@
 "use client";
+import LanguageSwitcher from "@/components/Shared/LanguageSwitcher";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -88,8 +89,8 @@ const Navbar = () => {
 
                   return (
                     <Link
-                      key={item.name}
-                      href={item.href}
+                      key={item?.name}
+                      href={item?.href}
                       onClick={() => setMenuOpen(false)}
                       className={`${defaultLinkClass} ${active ? activeLinkClass : ""}`}
                     >
@@ -103,8 +104,11 @@ const Navbar = () => {
               </div>
 
               <div className="flex items-center gap-2 md:gap-3 lg:gap-4">
-                <div className="hidden md:block">
+                {/* <div className="hidden md:block">
                   <LanguageToggle />
+                </div> */}
+                <div className="flex items-center gap-1.5">
+                  <LanguageSwitcher />
                 </div>
                 <button className="hidden md:block px-4 py-1.5 md:px-5 md:py-2 lg:px-6 lg:py-2.5 xl:px-8 xl:py-3 rounded-[30px] bg-linear-to-b from-[#395CBC] to-[#1A2A56] text-white opacity-100 hover:opacity-90 transition-opacity text-xs md:text-sm lg:text-base whitespace-nowrap cursor-pointer">
                   Download
