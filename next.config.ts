@@ -8,6 +8,11 @@ const nextConfig: NextConfig = {
         hostname: "cartforfood.pixelstack.cloud",
         pathname: "/public/**",
       },
+      {
+        protocol: "https",
+        hostname: "api.cartforgood.com",
+        pathname: "/**",
+      },
     ],
   },
 };
