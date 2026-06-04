@@ -32,7 +32,12 @@ const Footer = () => {
               </h1>
 
               <div className=" flex gap-4 justify-center">
-                <a className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square   rounded-[33554400px] bg-[rgba(255,255,255,0.10)] cursor-pointer">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.instagram.com/cartforgood"
+                  className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square   rounded-[33554400px] bg-[rgba(255,255,255,0.10)] cursor-pointer"
+                >
                   <Image
                     height={100}
                     width={100}
@@ -41,7 +46,12 @@ const Footer = () => {
                   />
                 </a>
 
-                <a className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square  rounded-[33554400px] bg-[rgba(255,255,255,0.10)] cursor-pointer">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.youtube.com/@cartforgood"
+                  className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square  rounded-[33554400px] bg-[rgba(255,255,255,0.10)] cursor-pointer"
+                >
                   <Image
                     height={100}
                     width={100}
@@ -50,7 +60,12 @@ const Footer = () => {
                   />
                 </a>
 
-                <a className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square   rounded-[33554400px] bg-[rgba(255,255,255,0.10)] cursor-pointer">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.linkedin.com/company/cartforgood"
+                  className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square   rounded-[33554400px] bg-[rgba(255,255,255,0.10)] cursor-pointer"
+                >
                   <Image
                     height={100}
                     width={100}
@@ -59,7 +74,12 @@ const Footer = () => {
                   />
                 </a>
 
-                <a className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square rounded-[33554400px] bg-[rgba(255,255,255,0.10)] cursor-pointer">
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.facebook.com/cartforgood"
+                  className="flex w-10 h-10 p-3 justify-center items-center shrink-0 aspect-square rounded-[33554400px] bg-[rgba(255,255,255,0.10)] cursor-pointer"
+                >
                   <Image
                     height={100}
                     width={100}
