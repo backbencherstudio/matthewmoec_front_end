@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Container from "../homePage/Container";
+import Link from "next/link";
 
 const Footer = () => {
   return (
@@ -176,13 +177,25 @@ const Footer = () => {
               Copyright © 2026 CartForGood. All rights reserved.
             </h1>
 
-            <div className=" flex gap-6">
-              <p className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 text-nowrap mt-4 md:mt-0">
+              <Link
+                href={"/privacy-policy"}
+                className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter"
+              >
                 Privacy Policy
-              </p>
-              <p className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter">
+              </Link>
+              <Link
+                href={"/terms-and-condition"}
+                className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter"
+              >
                 Terms & Condition
-              </p>
+              </Link>
+              <Link
+                href={"/support-and-faq"}
+                className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter"
+              >
+                Support & Faq
+              </Link>
             </div>
           </div>
         </section>

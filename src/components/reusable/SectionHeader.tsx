@@ -15,7 +15,7 @@ const SectionHeader = ({
   titleClassName = "",
   descriptionClassName = "",
   showBlobs = true,
-  minHeight = "lg:h-105",
+  minHeight = "lg:h-80",
 }: SectionHeaderProps) => {
   return (
     <div
@@ -40,8 +40,8 @@ const SectionHeader = ({
 
         {showBlobs && (
           <>
-            <div className="w-[130.537px] lg:w-[294.537px] h-[180.934px] lg:h-[416.934px] rotate-[-80.577deg] rounded-[416.934px] bg-linear-to-b from-[#A1BAFF] to-[#FFF] blur-[50px] absolute left-0 -bottom-22 overflow-hidden" />
-            <div className="w-[130.537px] lg:w-[294.537px] h-[180.934px] lg:h-[416.934px] rotate-[80.577deg] rounded-[416.934px] bg-linear-to-b from-[#A1BAFF] to-[#FFF] blur-[50px] absolute right-0 -bottom-22 overflow-hidden" />
+            <div className="w-[110.537px] lg:w-[214.537px] h-[180.934px] lg:h-[416.934px] rotate-[-80.577deg] rounded-[416.934px] bg-linear-to-b from-[#A1BAFF] to-[#FFF] blur-[50px] absolute left-0 -bottom-22 overflow-hidden" />
+            <div className="w-[110.537px] lg:w-[214.537px] h-[180.934px] lg:h-[416.934px] rotate-[80.577deg] rounded-[416.934px] bg-linear-to-b from-[#A1BAFF] to-[#FFF] blur-[50px] absolute right-0 -bottom-22 overflow-hidden" />
           </>
         )}
       </section>
