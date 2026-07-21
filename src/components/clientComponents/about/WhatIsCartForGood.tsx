@@ -9,11 +9,11 @@ export const WhatIsCartForGood = () => {
             What is CartForGood
           </h1>
           <p className="text-sm md:text-base text-[#4A4C56] text-center leading-[160%] tracking-[0.08px]">
-            CartForGood is a free shopping platform that allows you to support
-            charitable causes while shopping from your favorite online stores.
-            There are no extra costs and no need for manual donations — you
-            simply shop as you normally would, and a portion of the commission
-            is automatically contributed to charity.
+            CartForGood is a free shopping app and website. Shop online at
+            Amazon, Walmart, Target, Home Depot, and more through CartForGood.
+            The stores pay us a small commission when you do. You pay nothing
+            extra. The price you see is always the same price you pay. We share
+            a portion of what they give us with charity every month.
           </p>
         </div>
       </Container>

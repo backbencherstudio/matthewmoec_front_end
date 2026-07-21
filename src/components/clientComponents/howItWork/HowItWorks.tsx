@@ -13,7 +13,7 @@ const HowItWorks = () => {
       />
 
       <SimpleSteps />
-      <AfilliateLinks />
+      {/* <AfilliateLinks /> */}
       <WhyCartForGood />
       <TakeEveryWhere />
     </div>

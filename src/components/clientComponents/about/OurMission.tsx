@@ -2,7 +2,7 @@ import Container from "@/components/clientComponents/homePage/Container";
 
 export default function OurMission() {
   const items = [
-    "Make charitable giving effortless and automatic by turning your everyday actions into meaningful impact without any extra steps.",
+    "Make charitable giving effortless by turning your everyday actions into meaningful impact without any extra steps.",
     "Ensure every action taken by users contributes to a clear and measurable impact.",
     "Build trust through complete transparency in how donations are earned and shared.",
     "Create a system where small individual actions come together to make a meaningful difference.",
@@ -16,7 +16,7 @@ export default function OurMission() {
             Our Mission
           </h2>
           <p className="text-center text-[#1A2A56] text-lg leading-[132%] tracking-[0.09px] mb-4 lg:mb-10">
-            You shop, we give back every month — completely free, with no ads
+            You shop, we give back every month - completely free, with no ads
             and no tracking.
           </p>
           <hr className="border-gray-200 mb-8" />

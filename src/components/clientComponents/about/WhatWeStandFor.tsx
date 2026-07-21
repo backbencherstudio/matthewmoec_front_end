@@ -11,7 +11,7 @@ const features = [
     icon: <Love2Icon className="h-7 w-7" />,
     title: "Transparent",
     description:
-      "Every confirmed donation posted publicly. Real receipts, numbers. No vague 'portion' claims.",
+      "Every confirmed donation posted publicly. Real receipts, numbers.",
   },
   {
     icon: <EffortlessIcon className="h-7 w-7" />,

@@ -71,7 +71,7 @@ const GivingBack = () => {
                 Shop as Usual
               </h2>
               <p className="text-center text-[#7D828F] text-[16px] font-normal leading-[150%] font-inter">
-                Same prices. Same products. we earn a small commission in the
+                Same prices. Same products. We earn a small commission in the
                 background.
               </p>
             </div>

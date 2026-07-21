@@ -70,28 +70,28 @@ const WhyPeopleUse = () => {
           <div className="flex flex-col gap-4 justify-center items-center h-full">
             <div className="flex  items-center gap-4 p-2 md:p-4 lg:p-6 rounded-[16px] border-[0.3px] border-[#E9E9EA] bg-white shadow-[0_2px_6px_0_rgba(0,0,0,0.04)] w-78 ">
               <div className="flex w-11 h-11 p-2.5 justify-center items-center rounded-[8px] bg-[#E6EFFF]">
-                <PointerIcon />
+                <PointerIcon></PointerIcon>
               </div>
               <h1 className="text-[#1A2A56] text-[16px] font-normal leading-[124%] tracking-[0.08px] font-inter">
-                100% free to use
+                No ads or data collection
               </h1>
             </div>
 
             <div className="flex  items-center gap-4 p-2 md:p-4 lg:p-6 rounded-[16px] border-[0.3px] border-[#E9E9EA] bg-white shadow-[0_2px_6px_0_rgba(0,0,0,0.04)] w-78 ">
               <div className="flex w-11 h-11 p-2.5 justify-center items-center rounded-[8px] bg-[#E6EFFF]">
-                <PointerIcon />
+                <PointerIcon></PointerIcon>
               </div>
               <h1 className="text-[#1A2A56] text-[16px] font-normal leading-[124%] tracking-[0.08px] font-inter">
-                Works on all devices
+                Supports charities monthly
               </h1>
             </div>
 
             <div className="flex  items-center gap-4 p-2 md:p-4 lg:p-6 rounded-[16px] border-[0.3px] border-[#E9E9EA] bg-white shadow-[0_2px_6px_0_rgba(0,0,0,0.04)] w-78 ">
               <div className="flex w-11 h-11 p-2.5 justify-center items-center rounded-[8px] bg-[#E6EFFF]">
-                <PointerIcon />
+                <PointerIcon></PointerIcon>
               </div>
               <h1 className="text-[#1A2A56] text-[16px] font-normal leading-[124%] tracking-[0.08px] font-inter">
-                Accessible for all ages
+                Transparent monthly receipts
               </h1>
             </div>
           </div>

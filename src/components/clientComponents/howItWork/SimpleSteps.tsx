@@ -47,7 +47,8 @@ const SimpleSteps = () => {
                   <p className="text-[#7D828F] text-center font-inter text-[16px] font-normal leading-[150%]">
                     Choose from Amazon, Walmart, Target, Home Depot, Chewy,
                     Wayfair, Etsy, or eBay. Each tap opens the store in your
-                    EXTERNAL browser with your affiliate link embedded.
+                    external browser, charity gets a portion every time. change
+                    to this.
                   </p>
                 </div>
               </div>
@@ -81,9 +82,10 @@ const SimpleSteps = () => {
                   </h1>
 
                   <p className="text-[#7D828F] text-center font-inter text-[16px] font-normal leading-[150%]">
-                    A verified portion of every commission goes directly to
-                    charity. Confirmed receipts posted publicly. Full
-                    transparency — every single month.
+                    A portion of commissions received goes to charity every
+                    month. Every donation is posted publicly with a full receipt
+                    the same day it goes out. Full transparency, every single
+                    month.
                   </p>
                 </div>
               </div>

@@ -6,7 +6,7 @@ const AfilliateLinks = () => {
       <section className="flex flex-col items-center gap-12 py-4 md:py-8 lg:py-20 self-stretch bg-[#FFF]">
         <div>
           <h1 className="text-[#1A2A56] text-center font-inter text-[24px] md:text-[32px] lg:text-[40px] font-semibold leading-[124%] tracking-[0.2px] mb-1.5 lg:mb-4">
-            How affiliate links work
+            Why CartForGood is Different.
           </h1>
           <p className="text-[#4A4C56] text-center font-inter text-[18px] font-normal leading-[132%] tracking-[0.09px]">
             Shop from your favorite stores and help support charity — all with

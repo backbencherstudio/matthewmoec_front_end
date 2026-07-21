@@ -97,21 +97,36 @@ const Footer = () => {
                 CartForGood
               </h1>
               <div className="flex  pr-5 flex-col justify-center items-start gap-1 lg:gap-2 shrink-0 self-stretch">
-                <h1 className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter">
+                <Link
+                  href={"/"}
+                  className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter"
+                >
                   Home
-                </h1>
-                <h1 className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter">
+                </Link>
+                <Link
+                  href={"/how-it-works"}
+                  className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter"
+                >
                   How It Works
-                </h1>
-                <h1 className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter">
+                </Link>
+                <Link
+                  href={"/charity"}
+                  className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter"
+                >
                   Charity Calendar
-                </h1>
-                <h1 className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter">
+                </Link>
+                <Link
+                  href={"/receipts"}
+                  className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter"
+                >
                   Monthly Receipts
-                </h1>
-                <h1 className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter">
+                </Link>
+                <Link
+                  href={"/about"}
+                  className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter"
+                >
                   About
-                </h1>
+                </Link>
               </div>
             </div>
 
