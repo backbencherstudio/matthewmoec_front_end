@@ -5,7 +5,7 @@ export default function PrivacyPolicyPage() {
     <div>
       <SectionHeader
         title="Privacy Policy"
-        description="Your privacy matters to us. Learn how CartForGood collects, uses, and protects your information."
+        description="Your privacy matters to us. Learn how CartForGood handles information when you use our app and website."
       />
 
       <section className="py-12 md:py-16 lg:py-20 px-4 md:px-8 lg:px-20 max-w-4xl mx-auto">
@@ -16,9 +16,8 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
               Welcome to CartForGood. We are committed to protecting your
-              personal information and your right to privacy. This Privacy
-              Policy explains how we collect, use, disclose, and safeguard your
-              information when you visit our platform and use our services.
+              privacy. This Privacy Policy explains how CartForGood handles
+              information when you use our app and website.
             </p>
           </div>
 
@@ -26,67 +25,101 @@ export default function PrivacyPolicyPage() {
             <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
               Information We Collect
             </h2>
-            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px] mb-4">
-              We may collect the following types of information when you use our
-              services:
+            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
+              CartForGood does not collect any personal information. We do not
+              require you to create an account. We do not require you to sign
+              up. We do not collect your name, email address, phone number,
+              payment information, or any other personal data. CartForGood does
+              not track you. You are never the product.
             </p>
-            <ul className="list-disc pl-6 space-y-2 text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
-              <li>
-                <strong>Personal Information:</strong> Name, email address,
-                phone number, shipping address, and payment information when you
-                make a purchase.
-              </li>
-              <li>
-                <strong>Account Information:</strong> Username, password, and
-                profile preferences when you create an account.
-              </li>
-              <li>
-                <strong>Transaction Data:</strong> Details about your purchases,
-                donations, and charitable contributions.
-              </li>
-              <li>
-                <strong>Device & Usage Information:</strong> IP address, browser
-                type, operating system, and browsing behavior on our platform.
-              </li>
-            </ul>
           </div>
 
           <div>
             <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
-              How We Use Your Information
-            </h2>
-            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px] mb-4">
-              We use the information we collect for the following purposes:
-            </p>
-            <ul className="list-disc pl-6 space-y-2 text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
-              <li>To process your orders and donations securely.</li>
-              <li>
-                To communicate with you about your account, transactions, and
-                charitable impact.
-              </li>
-              <li>To improve our platform, services, and user experience.</li>
-              <li>
-                To send you updates, promotions, and information about causes
-                you care about (with your consent).
-              </li>
-              <li>
-                To comply with legal obligations and prevent fraudulent
-                activities.
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
-              Sharing Your Information
+              How The App Works
             </h2>
             <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
-              We do not sell your personal information to third parties. We may
-              share your information with trusted service providers who assist
-              us in operating our platform, processing payments, and delivering
-              orders. These partners are contractually obligated to protect your
-              data. We may also disclose information when required by law or to
-              protect our rights.
+              When you tap a store button in the CartForGood app or website you
+              are redirected to the retailer's own website in your external
+              browser. Any information you provide during your purchase on the
+              retailer's website is governed by that retailer's own privacy
+              policy. CartForGood has no access to your purchase information,
+              your payment details, or your personal data.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
+              Anonymous Analytics
+            </h2>
+            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
+              CartForGood tracks the number of times each store button is
+              tapped. This is anonymous count data only. No personal information
+              is associated with these counts. We use this information to
+              understand which stores are most popular and improve the
+              CartForGood experience.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
+              Communications
+            </h2>
+            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
+              CartForGood does not collect email addresses. Charity nominations
+              are submitted through a form on our website. No personal contact
+              information is required to submit a nomination. CartForGood does
+              not send marketing emails or newsletters of any kind. If personal
+              information is accidentally submitted through our charity
+              nomination form it will not be stored, shared, or used for any
+              purpose. It will be deleted immediately upon discovery.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
+              Affiliate Disclosure
+            </h2>
+            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
+              CartForGood participates in affiliate programs with retailers
+              including Amazon, Walmart, Target, Home Depot, and others. When
+              you tap a store button and make a purchase on the retailer's
+              website CartForGood may earn a small commission at no extra cost
+              to you. This commission funds CartForGood operations and
+              charitable donations. CartForGood is a participant in the Amazon
+              Services LLC Associates Program, an affiliate advertising program
+              designed to provide a means for sites to earn advertising fees by
+              advertising and linking to Amazon.com.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
+              Cookies
+            </h2>
+            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
+              CartForGood does not set any cookies for affiliate tracking
+              purposes. When you tap a store button and are redirected to a
+              retailer's website that retailer may set cookies on their own
+              domain to track the referral and commission. CartForGood has no
+              access to or control over cookies set by retailer websites.
+              CartForGood's website may use basic cookies necessary for the
+              website to function properly. We do not use tracking cookies or
+              advertising cookies. We do not use cookies to collect personal
+              information.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
+              Third Party Platforms
+            </h2>
+            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
+              When you download CartForGood from the Apple App Store or Google
+              Play Store those platforms may collect data according to their own
+              privacy policies. CartForGood has no control over and no access to
+              data collected by Apple or Google. Please review their privacy
+              policies for more information.
             </p>
           </div>
 
@@ -95,30 +128,53 @@ export default function PrivacyPolicyPage() {
               Data Security
             </h2>
             <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
-              We implement industry-standard security measures, including SSL
-              encryption, secure payment gateways, and regular security audits
-              to protect your personal information. However, no method of
-              transmission over the Internet is 100% secure, and we cannot
-              guarantee absolute security.
+              We use standard HTTPS encryption for all network requests.
+              CartForGood does not store personal data so there is no personal
+              data at risk.
             </p>
           </div>
 
           <div>
             <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
-              Your Rights & Choices
+              Children's Privacy
             </h2>
-            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px] mb-4">
-              You have the right to:
+            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
+              CartForGood is intended for users 13 years of age and older. We do
+              not knowingly collect any information from children under 13. If
+              you are under 13 please do not use CartForGood.
             </p>
-            <ul className="list-disc pl-6 space-y-2 text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
-              <li>Access, update, or delete your personal information.</li>
-              <li>Opt out of marketing communications at any time.</li>
-              <li>Request a copy of the data we hold about you.</li>
-              <li>
-                Withdraw consent where we rely on your consent to process your
-                data.
-              </li>
-            </ul>
+          </div>
+
+          <div>
+            <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
+              Third Party Links
+            </h2>
+            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
+              CartForGood contains links to third party retailer websites. We
+              are not responsible for the privacy practices of those websites.
+              We encourage you to review the privacy policy of any retailer you
+              visit through CartForGood.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
+              Changes To This Policy
+            </h2>
+            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
+              We may update this Privacy Policy from time to time. Any changes
+              will be posted on this page with an updated date.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
+              Governing Law
+            </h2>
+            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
+              This Privacy Policy is governed by the laws of the Commonwealth of
+              Massachusetts, United States.
+            </p>
           </div>
 
           <div>
@@ -126,13 +182,20 @@ export default function PrivacyPolicyPage() {
               Contact Us
             </h2>
             <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
-              If you have any questions or concerns about this Privacy Policy,
-              please contact us at{" "}
+              If you have any questions about this Privacy Policy please contact
+              us at{" "}
               <a
-                href="mailto:support@cartforgood.com"
+                href="mailto:cartforgood@gmail.com"
                 className="text-[#395CBC] hover:underline font-medium"
               >
-                support@cartforgood.com
+                cartforgood@gmail.com
+              </a>
+              . For help and frequently asked questions visit{" "}
+              <a
+                href="https://cartforgood.com/support"
+                className="text-[#395CBC] hover:underline font-medium"
+              >
+                cartforgood.com/support
               </a>
               .
             </p>
