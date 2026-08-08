@@ -5,6 +5,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { Toaster } from "sonner";
 import "./globals.css";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -56,7 +57,9 @@ export default function RootLayout({
       <body className="flex flex-col inter-font" id="bodyy">
         <div id="google_translate_element" className="hidden"></div>
         <Providers>
+          <Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
           <TranslatePatchProvider>{children}</TranslatePatchProvider>
+          </Suspense>
         </Providers>
         <Toaster position="top-right" richColors />
       </body>
