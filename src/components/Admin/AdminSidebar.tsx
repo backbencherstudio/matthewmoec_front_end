@@ -66,6 +66,12 @@ const navItems = [
     basePath: "/admin/analysis",
   },
   {
+    label: "Campaign",
+    icon: AnalysisIcon,
+    href: "/admin/campaign",
+    basePath: "/admin/campaign`",
+  },
+  {
     label: "Settings",
     icon: Settings,
     href: "/admin/settings",

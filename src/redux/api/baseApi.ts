@@ -35,6 +35,7 @@ const baseApi = createApi({
     "Analytics",
     "Settings",
     "Config",
+    "Campaign",
   ],
   endpoints: () => ({}),
 });
