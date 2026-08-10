@@ -1,10 +1,10 @@
 // components/campaign-dashboard/CampaignPagination.tsx
-'use client';
+"use client";
 
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 interface CampaignPaginationProps {
-  pagination: {
+  pagination?: {
     page: number;
     limit: number;
     total: number;
@@ -15,8 +15,11 @@ interface CampaignPaginationProps {
   onPageChange: (page: number) => void;
 }
 
-export default function CampaignPagination({ pagination, onPageChange }: CampaignPaginationProps) {
-  if (pagination.total_pages <= 1) return null;
+export default function CampaignPagination({
+  pagination,
+  onPageChange,
+}: CampaignPaginationProps) {
+  if (!pagination || pagination.total_pages <= 1) return null;
 
   const start = (pagination.page - 1) * pagination.limit + 1;
   const end = Math.min(pagination.page * pagination.limit, pagination.total);
@@ -24,8 +27,8 @@ export default function CampaignPagination({ pagination, onPageChange }: Campaig
   return (
     <div className="px-6 py-4 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div className="text-sm text-gray-600">
-        Showing <span className="font-medium">{start}</span> to{' '}
-        <span className="font-medium">{end}</span> of{' '}
+        Showing <span className="font-medium">{start}</span> to{" "}
+        <span className="font-medium">{end}</span> of{" "}
         <span className="font-medium">{pagination.total}</span> results
       </div>
       <div className="flex gap-2">

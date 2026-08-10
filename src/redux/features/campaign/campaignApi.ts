@@ -8,6 +8,8 @@ export interface CampaignClick {
   utm_source: string;
   utm_medium: string;
   utm_campaign: string;
+  utm_content: string | null;
+  store_id: string | null;
   session_id: string;
   ip_address: string | null;
   user_agent: string | null;
@@ -19,6 +21,15 @@ export interface CampaignClick {
   click_count: number;
   created_at: string;
   updated_at: string;
+  store: {
+    id: string;
+    name: string;
+    slug: string;
+    logo: string;
+    link: string;
+    sub_text_note: string;
+    status: string;
+  } | null;
 }
 
 export interface CampaignAnalyticsResponse {
@@ -36,6 +47,9 @@ export interface CampaignAnalyticsResponse {
     summary: {
       total_clicks: number;
       total_click_count: number;
+      store_clicks: number;
+      store_click_percentage: number;
+      top_store: string;
       unique_campaigns: number;
     };
     campaign_groups: Array<{
@@ -46,6 +60,9 @@ export interface CampaignAnalyticsResponse {
       utm_campaign: string;
       utm_source: string;
       utm_medium: string;
+      store_id: string | null;
+      store_name: string;
+      store_slug: string | null;
     }>;
   };
 }
@@ -64,28 +81,61 @@ export interface TodayStats {
   unique_campaigns: number;
 }
 
-export interface FilterOptions {
-  campaigns: string[];
-  sources: string[];
+// ============ NEW: Summary API Types ============
+
+export interface CampaignSummaryResponse {
+  success: boolean;
+  data: {
+    period: {
+      from: string;
+      to: string;
+    };
+    total_clicks: {
+      count: number;
+      click_events: number;
+      previous_period: number;
+      percentage_change: number;
+      trend: 'up' | 'down' | 'stable';
+    };
+    top_store: {
+      id: string;
+      name: string;
+      slug: string;
+      logo: string;
+      clicks: number;
+      percentage: number;
+    };
+    summary: {
+      total_store_clicks: number;
+      store_click_percentage: number;
+      unique_campaigns: number;
+      unique_sources: number;
+    };
+  };
 }
 
-// redux/api/campaignApi.ts
+export interface SummaryParams {
+  from?: string;
+  to?: string;
+}
+
+// ============ Track Campaign Data ============
 
 export interface TrackCampaignData {
   utm_source: string;
   utm_medium: string;
   utm_campaign: string;
   utm_term?: string;
-  utm_content?: string;      // ✅ Keep for ad/creative tracking
-  store_id: string;           // ✅ NEW: Store identifier
+  utm_content?: string;      // Store/Ad creative name
+  store_id: string;           // Store identifier
   session_id: string;
   landing_page: string;
   referrer?: string;
   device_type: string;
   browser: string;
   os: string;
-  // ❌ REMOVED: tracked_at (backend will auto-add)
 }
+
 // ============ API ============
 
 const campaignApi = baseApi.injectEndpoints({
@@ -107,11 +157,26 @@ const campaignApi = baseApi.injectEndpoints({
           cleanParams.limit = params.limit;
 
         return {
-          // The base URL is always the same
-          url: "/admin/campaign/analytics",
+          url: "/campaign/analytics",
           method: "GET",
-          // Axios/RTK Query will automatically append the cleanParams as a query string
-          // If cleanParams is empty, no query string will be added.
+          params: cleanParams,
+        };
+      },
+      providesTags: ["Campaign"],
+    }),
+
+    // ✅ NEW: Get campaign summary for dashboard cards
+    getCampaignSummary: builder.query<
+      CampaignSummaryResponse,
+      SummaryParams
+    >({
+      query: (params) => {
+        const cleanParams: Record<string, any> = {};
+        if (params?.from) cleanParams.from = params.from;
+        if (params?.to) cleanParams.to = params.to;
+        return {
+          url: "/campaign/analytics/summary",
+          method: "GET",
           params: cleanParams,
         };
       },
@@ -121,7 +186,7 @@ const campaignApi = baseApi.injectEndpoints({
     // Get today's stats
     getTodayStats: builder.query<TodayStats, void>({
       query: () => ({
-        url: "/admin/campaign/today",
+        url: "/campaign/today",
         method: "GET",
       }),
       providesTags: ["Campaign"],
@@ -130,7 +195,7 @@ const campaignApi = baseApi.injectEndpoints({
     // Get sources list
     getSources: builder.query<any, void>({
       query: () => ({
-        url: "/admin/campaign/sources",
+        url: "/campaign/sources",
         method: "GET",
       }),
       providesTags: ["Campaign"],
@@ -139,13 +204,13 @@ const campaignApi = baseApi.injectEndpoints({
     // Get campaigns list
     getCampaigns: builder.query<any, void>({
       query: () => ({
-        url: "/admin/campaign/campaigns",
+        url: "/campaign/campaigns",
         method: "GET",
       }),
       providesTags: ["Campaign"],
     }),
 
-    // Track campaign visit
+    // Track campaign visit (store click)
     trackCampaignVisit: builder.mutation<void, TrackCampaignData>({
       query: (data) => ({
         url: "/campaign/track",
@@ -154,6 +219,29 @@ const campaignApi = baseApi.injectEndpoints({
       }),
       invalidatesTags: ["Campaign"],
     }),
+
+
+    // ✅ NEW: Export campaign data as CSV
+    exportCampaignCSV: builder.query<Blob, CampaignFilterParams>({
+      query: (params) => {
+        // Create a clean object by filtering out empty values
+        const cleanParams: Record<string, any> = {};
+        if (params?.campaign) cleanParams.campaign = params.campaign;
+        if (params?.source) cleanParams.source = params.source;
+        if (params?.date_from) cleanParams.date_from = params.date_from;
+        if (params?.date_to) cleanParams.date_to = params.date_to;
+        if (params?.page && params.page > 1) cleanParams.page = params.page;
+        if (params?.limit && params.limit !== 10) cleanParams.limit = params.limit;
+
+        return {
+          url: "/campaign/export/csv",
+          method: "GET",
+          params: cleanParams,
+          responseHandler: (response:any) => response.blob(), // ✅ Handle binary response
+        };
+      },
+      providesTags: ["Campaign"],
+    }),
   }),
 });
 
@@ -161,10 +249,12 @@ const campaignApi = baseApi.injectEndpoints({
 
 export const {
   useGetCampaignAnalyticsQuery,
+  useGetCampaignSummaryQuery,  
   useGetTodayStatsQuery,
-  useGetSourcesQuery, // ✅ New export
-  useGetCampaignsQuery, // ✅ New export
+  useGetSourcesQuery,
+  useGetCampaignsQuery,
   useTrackCampaignVisitMutation,
+  useLazyExportCampaignCSVQuery,
 } = campaignApi;
 
 export default campaignApi;
