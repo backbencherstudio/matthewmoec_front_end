@@ -69,7 +69,8 @@ const navItems = [
     label: "Campaign",
     icon: AnalysisIcon,
     href: "/admin/campaign",
-    basePath: "/admin/campaign`",
+     basePath: "/admin/campaign",  // ✅ Fixed
+
   },
   {
     label: "Settings",

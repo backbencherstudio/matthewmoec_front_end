@@ -11,7 +11,7 @@ export default function ClientLayout({
 }>) {
 
   // Auto-track all page views with UTMs
-  useCampaignTracking();
+  // useCampaignTracking();
   return (
     <div>
       <div>

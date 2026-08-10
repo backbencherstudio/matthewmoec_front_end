@@ -10,6 +10,7 @@ import { Search } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import Container from "./Container";
+import { useStoreClickTracking } from "@/hooks/useStoreClickTracking";
 
 type Store = {
   id: string;
@@ -23,8 +24,8 @@ type Store = {
 
 const TrustedStores = () => {
   const [search, setSearch] = useState("");
-
   const debouncedSearch = useDebounce(search, 500);
+
   const {
     data: stores,
     isLoading,
@@ -32,7 +33,20 @@ const TrustedStores = () => {
   } = useGetAllStoresQuery({ search: debouncedSearch });
 
   const [clickStore] = useClickStoreMutation();
+  const { trackStoreClick } = useStoreClickTracking(); 
 
+   const handleStoreClick = async (storeId: string, storeLink: string) => {
+    // ✅ Track the store click
+    await trackStoreClick(storeId);
+    console.log(`Store click tracked for store ID: ${storeId}`);
+    
+    // ✅ Track store click in your existing system
+    await clickStore(storeId);
+    
+    // ✅ Open the store link in new tab
+    window.open(storeLink, '_blank', 'noopener,noreferrer');
+  };
+  
   if (isLoading) {
     return (
       <div className="bg-[#F0F3F9]">
@@ -140,7 +154,10 @@ const TrustedStores = () => {
                   <div className="text-center">
                     <a
                       href={store?.link}
-                      onClick={() => clickStore(store.id)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleStoreClick(store.id, store.link);
+                      }}  
                       target="_blank"
                       rel="noopener noreferrer"
                       className="group w-full px-4 py-2 flex items-center justify-center text-sm text-[#395CBC] hover:text-blue-700 rounded-full cursor-pointer border border-[#395CBC] hover:shadow-md"

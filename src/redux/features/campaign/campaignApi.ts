@@ -69,21 +69,23 @@ export interface FilterOptions {
   sources: string[];
 }
 
+// redux/api/campaignApi.ts
+
 export interface TrackCampaignData {
   utm_source: string;
   utm_medium: string;
   utm_campaign: string;
   utm_term?: string;
-  utm_content?: string;
+  utm_content?: string;      // ✅ Keep for ad/creative tracking
+  store_id: string;           // ✅ NEW: Store identifier
   session_id: string;
   landing_page: string;
   referrer?: string;
   device_type: string;
   browser: string;
   os: string;
-  tracked_at: string;
+  // ❌ REMOVED: tracked_at (backend will auto-add)
 }
-
 // ============ API ============
 
 const campaignApi = baseApi.injectEndpoints({
