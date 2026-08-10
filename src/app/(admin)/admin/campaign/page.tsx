@@ -62,7 +62,7 @@ export default function CampaignDashboardPage() {
     data: summaryData,
     isLoading: isLoadingSummary,
     refetch: refetchSummary,
-  } = useGetCampaignSummaryQuery();
+  } = useGetCampaignSummaryQuery(monthRange);
 
   const [triggerExport, { isFetching: isExporting }] =
     useLazyExportCampaignCSVQuery();
