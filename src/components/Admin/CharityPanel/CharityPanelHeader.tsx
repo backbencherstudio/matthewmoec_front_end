@@ -48,7 +48,7 @@ export default function CharityPanelHeader() {
   return (
     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
       <h1 className="text-[#1A2A56] text-2xl sm:text-[28px] font-bold leading-[124%] tracking-[0.16px]">
-        Charity Panel
+        Good Causes Panel
       </h1>
 
       <div className="flex items-center gap-2">

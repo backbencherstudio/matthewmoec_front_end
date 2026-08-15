@@ -33,7 +33,7 @@ export default function TermsAndConditionPage() {
               products, process any purchases, or handle any payment
               information. Retailers pay CartForGood a small commission when you
               make a purchase through our links at no additional cost to you. A
-              portion of that commission is donated to charity every month.
+              portion of that commission is donated to good causes every month.
             </p>
           </div>
 
@@ -92,13 +92,27 @@ export default function TermsAndConditionPage() {
 
           <div>
             <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
+              Advertising and Analytics
+            </h2>
+            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
+              CartForGood may use standard advertising and analytics tools,
+              including the Meta (Facebook/Instagram) Pixel, to measure ad
+              performance and understand how visitors use our website. We do not
+              collect, store, or sell your personal information. Our advertising
+              partners may use standard tools to measure ad performance; this
+              does not give us access to your personal data or browsing history.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
               Charitable Donations
             </h2>
             <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
               CartForGood donates a portion of the commissions it earns from
-              retailers to charity every month. Donation amounts are based on
-              commissions actually received and confirmed by CartForGood. They
-              are not guaranteed in advance and may vary month to month.
+              retailers to good causes every month. Donation amounts are based
+              on commissions actually received and confirmed by CartForGood.
+              They are not guaranteed in advance and may vary month to month.
               Retailers pay commissions on varying schedules typically between
               30 and 60 days after purchase and after return windows have
               closed. There is a startup period before CartForGood's first
@@ -119,10 +133,9 @@ export default function TermsAndConditionPage() {
               America fighting hunger in communities across the country.
               December goes entirely to Toys for Tots bringing joy to children
               in need during the holiday season. All other months the recipient
-              charity is selected through a live public drawing streamed on our
+              is selected through a community selection event streamed on our
               social media channels on the first of each month. CartForGood
-              reserves the right to modify the charity calendar with reasonable
-              notice.
+              reserves the right to modify the calendar with reasonable notice.
             </p>
           </div>
 
@@ -144,16 +157,16 @@ export default function TermsAndConditionPage() {
 
           <div>
             <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
-              Charity Wheel Rules
+              Charity Selection Rules
             </h2>
             <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
-              Each local charity may win the Little Wheel a maximum of two times
-              per calendar year. After two wins in a calendar year a charity is
-              removed from the wheel until January 1st of the following year.
-              The maximum donation per charity per Little Wheel win is $2,500.
-              CartForGood determines the number of charity winners each month
-              based on the total commissions received. CartForGood reserves the
-              right to adjust these rules as the platform grows.
+              Each local charity may be selected a maximum of two times per
+              calendar year. After two selections in a calendar year a charity
+              is set aside until January 1st of the following year. The maximum
+              donation per charity per selection is $2,500. CartForGood
+              determines the number of charity recipients each month based on
+              the total commissions received. CartForGood reserves the right to
+              adjust these rules as the platform grows.
             </p>
           </div>
 
@@ -288,7 +301,7 @@ export default function TermsAndConditionPage() {
 
           <div className="pt-4">
             <p className="text-[#888888] font-inter text-[12px] md:text-[14px] font-normal leading-[160%] tracking-[0.07px] italic">
-              Last updated: July 2026
+              Last updated: August 2026
             </p>
           </div>
         </div>

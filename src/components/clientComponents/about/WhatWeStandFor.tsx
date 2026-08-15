@@ -23,7 +23,7 @@ const features = [
     icon: <PrivateIcon className="h-7 w-7" />,
     title: "Private",
     description:
-      "No user accounts. No tracking. No data collected. Your shopping history stays completely yours.",
+      "No ads, no accounts, nothing personal collected or kept on our end.",
   },
   {
     icon: <AccessibleIcon className="h-7 w-7" />,

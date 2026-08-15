@@ -203,7 +203,7 @@ export default function AddReceiptModal({
 
             {/* Organization / Charity */}
             <div>
-              <label className="label-edit">Organization/ Charity</label>
+              <label className="label-edit">Last Month's Cause</label>
               <input
                 type="text"
                 placeholder="Feeding America"
@@ -211,7 +211,7 @@ export default function AddReceiptModal({
                   errors.charity ? "border-red-400" : "border-[#ECEFF3]"
                 }`}
                 {...register("charity", {
-                  required: "Charity name is required",
+                  required: "Last Month's Cause is required",
                 })}
               />
               {errors.charity && (

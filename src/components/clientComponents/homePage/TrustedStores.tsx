@@ -96,11 +96,10 @@ const TrustedStores = () => {
             <div className="flex flex-col md:flex-row justify-between items-center">
               <div>
                 <h1 className="text-[#1A2A56] text-[2rem] md:text-[2.5rem] lg:text-[3.35rem]">
-                  Explore trusted stores.One Tap.
+                  Explore trusted stores. One Tap.
                 </h1>
                 <p>
-                  Every button opens in your EXTERNAL browser — affiliate
-                  tracking guaranteed.
+                  Every button opens in your browser. A portion goes to good causes every time.
                 </p>
               </div>
 

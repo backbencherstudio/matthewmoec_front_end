@@ -57,7 +57,7 @@ const WhyPeopleUse = () => {
 
           <div className="relative py:4 lg:py-0">
             <Image
-              src="/mobile.png"
+              src="/mobile2.png"
               height={400}
               width={400}
               alt="mobile"

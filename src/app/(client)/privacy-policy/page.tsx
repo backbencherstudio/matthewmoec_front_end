@@ -26,11 +26,13 @@ export default function PrivacyPolicyPage() {
               Information We Collect
             </h2>
             <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
-              CartForGood does not collect any personal information. We do not
-              require you to create an account. We do not require you to sign
-              up. We do not collect your name, email address, phone number,
-              payment information, or any other personal data. CartForGood does
-              not track you. You are never the product.
+              CartForGood does not require you to create an account. We do not
+              require you to sign up. We do not collect your name, email
+              address, phone number, payment information, or any other personal
+              data. We do not collect, store, or sell your personal information.
+              Our advertising partners may use standard tools to measure ad
+              performance; this does not give us access to your personal data or
+              browsing history.
             </p>
           </div>
 
@@ -58,6 +60,26 @@ export default function PrivacyPolicyPage() {
               is associated with these counts. We use this information to
               understand which stores are most popular and improve the
               CartForGood experience.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
+              Advertising
+            </h2>
+            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
+              CartForGood may use standard advertising tools, such as the Meta
+              (Facebook/Instagram) Pixel, to measure how our ads are performing
+              and to reach people who may be interested in CartForGood. These
+              tools may collect anonymous, aggregated information about ad
+              interactions and general website visits for advertising
+              measurement purposes. We do not collect, store, or sell your
+              personal information. Our advertising partners may use standard
+              tools to measure ad performance; this does not give us access to
+              your personal data or browsing history. If you would like to
+              control how advertising platforms use this information, you can
+              adjust your ad preferences directly through that platform (for
+              example, Meta's own Ad Settings).
             </p>
           </div>
 
@@ -98,15 +120,18 @@ export default function PrivacyPolicyPage() {
               Cookies
             </h2>
             <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
-              CartForGood does not set any cookies for affiliate tracking
-              purposes. When you tap a store button and are redirected to a
-              retailer's website that retailer may set cookies on their own
-              domain to track the referral and commission. CartForGood has no
-              access to or control over cookies set by retailer websites.
-              CartForGood's website may use basic cookies necessary for the
-              website to function properly. We do not use tracking cookies or
-              advertising cookies. We do not use cookies to collect personal
-              information.
+              CartForGood does not set cookies for affiliate tracking purposes.
+              When you tap a store button and are redirected to a retailer's
+              website that retailer may set cookies on their own domain to track
+              the referral and commission. CartForGood has no access to or
+              control over cookies set by retailer websites. CartForGood's
+              website may use basic cookies necessary for the website to
+              function properly, as well as standard advertising cookies (such
+              as the Meta Pixel) to measure ad performance, as described above
+              in the Advertising section. We do not collect, store, or sell your
+              personal information. Our advertising partners may use standard
+              tools to measure ad performance; this does not give us access to
+              your personal data or browsing history.
             </p>
           </div>
 
@@ -129,8 +154,8 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px]">
               We use standard HTTPS encryption for all network requests.
-              CartForGood does not store personal data so there is no personal
-              data at risk.
+              CartForGood does not store personal data itself, so there is no
+              personal data at risk on our end.
             </p>
           </div>
 
@@ -203,7 +228,7 @@ export default function PrivacyPolicyPage() {
 
           <div className="pt-4">
             <p className="text-[#888888] font-inter text-[12px] md:text-[14px] font-normal leading-[160%] tracking-[0.07px] italic">
-              Last updated: July 2026
+              Last updated: August 2026
             </p>
           </div>
         </div>

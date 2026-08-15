@@ -21,8 +21,7 @@ const HeroSection = () => {
             {/* Left Section */}
             <div className="flex-1 text-center md:text-left relative">
               <h1 className="text-[1.5rem] xl:text-[2.75rem] font-semibold text-[#1A2A56] leading-[120%] tracking-[0.5%] lg:w-[30ch] xl:w-[30ch]">
-                Shop normally. Help others. Shop Your Favorite Stores. Give Back
-                Automatically.
+                Shop normally. Help others. Shop Your Favorite Stores. Give Back.
               </h1>
               <p className="text-[12px] lg:text-lg mt-4 text-[#1A2A56] xl:w-[50ch]">
                 Tap a store, shop as usual, and we donate a portion to charity

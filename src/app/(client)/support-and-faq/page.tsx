@@ -8,42 +8,42 @@ const faqData = [
   {
     question: "What is CartForGood?",
     answer:
-      "CartForGood is a free shopping app and website that turns your everyday online purchases into charitable donations at no extra cost to you. You tap a store button, shop normally on the retailer's website, and the store pays CartForGood a small commission. We share a portion of that commission with charity every month. You pay nothing extra. Ever.",
+      "CartForGood is a free shopping app and website that turns your everyday online purchases into support for good causes at no extra cost to you. You tap a store button, shop normally on the retailer's website, and the store pays CartForGood a small commission. We share a portion of that commission with good causes every month. You pay nothing extra. Ever.",
   },
   {
     question: "How does the donation process work?",
     answer:
-      "When you tap a store button in CartForGood and make a purchase on the retailer's website the retailer pays CartForGood a small commission from their marketing budget. You pay nothing extra. The price you see is always the same price you pay. CartForGood collects these commissions and donates a portion to charity on the first of every month. Every donation is posted publicly on our website with a receipt the same day it goes out.",
+      "When you tap a store button in CartForGood and make a purchase on the retailer's website the retailer pays CartForGood a small commission from their marketing budget. You pay nothing extra. The price you see is always the same price you pay. CartForGood collects these commissions and donates a portion to good causes on the first of every month. Every donation is posted publicly on our website with a receipt the same day it goes out.",
   },
   {
-    question: "Which charities does CartForGood support?",
+    question: "Which causes does CartForGood support?",
     answer:
-      "Three months are permanently reserved. July goes entirely to Tunnels to Towers Foundation. November goes entirely to Feeding America. December goes entirely to Toys for Tots. All other months CartForGood spins a charity wheel live on Facebook, Instagram, and TikTok on the first of the month. Local community organizations are selected through the Little Wheel. You can nominate local charities through the nomination form on our website.",
+      "Three months are permanently reserved. July goes entirely to Tunnels to Towers Foundation. November goes entirely to Feeding America. December goes entirely to Toys for Tots. All other months CartForGood holds a community selection event live on Facebook, Instagram, and TikTok on the first of the month. Local community organizations are selected through this process. You can nominate local causes through the nomination form on our website.",
   },
   {
-    question: "Can I choose which charity receives my donation?",
+    question: "Can I choose which cause receives my donation?",
     answer:
-      "You do not choose a specific charity for each purchase. CartForGood donates to the monthly featured charity from the total commissions received that month. However you can nominate local charities for the Little Wheel through our website. The community influences which local organizations get helped every month.",
+      "You do not choose a specific cause for each purchase. CartForGood donates to the monthly featured cause from the total commissions received that month. However you can nominate local causes through our website. The community influences which local organizations get helped every month.",
   },
   {
-    question: "How do I nominate a local charity?",
+    question: "How do I nominate a local cause?",
     answer:
-      "Go to cartforgood.com and find the charity nomination form. Fill in the charity name, website, address, and contact information. CartForGood will verify the charity is a registered 501c3 organization before adding them to the Little Wheel. Each charity may only be nominated once. We are not able to respond to every nomination individually.",
+      "Go to cartforgood.com and find the nomination form. Fill in the organization name, website, address, and contact information. CartForGood will verify the organization is a registered 501c3 before adding them for consideration. Each organization may only be nominated once. We are not able to respond to every nomination individually.",
   },
   {
-    question: "How many times can a charity win the Little Wheel?",
+    question: "How many times can a cause be selected?",
     answer:
-      "Each local charity may win the Little Wheel a maximum of two times per calendar year. After two wins they are removed from the wheel until January 1st of the following year. The maximum donation per charity per Little Wheel win is $2,500. CartForGood determines the number of winners each month based on total commissions received.",
+      "Each local cause may be selected a maximum of two times per calendar year. After two selections they are set aside until January 1st of the following year. The maximum donation per cause per selection is $2,500. CartForGood determines the number of recipients each month based on total commissions received.",
   },
   {
-    question: "When does CartForGood donate to charity?",
+    question: "When does CartForGood donate?",
     answer:
       "Donations go out on the first of every month from commissions that have been received and confirmed. Retailers pay commissions on varying schedules typically between 30 and 60 days after purchase. They also wait for return windows to close before releasing payment. There is a startup period before CartForGood's first donation goes out. After that a donation goes out every single month without exception.",
   },
   {
     question: "Where can I see the donations?",
     answer:
-      "Every donation to charity is posted publicly at cartforgood.com/receipts with a full receipt the same day it goes out. You can see exactly which charity received money and how much.",
+      "Every donation is posted publicly at cartforgood.com/receipts with a full receipt the same day it goes out. You can see exactly which organization received money and how much.",
   },
   {
     question: "Does CartForGood work for online orders picked up in store?",
@@ -58,7 +58,7 @@ const faqData = [
   {
     question: "Is my personal information secure?",
     answer:
-      "CartForGood does not collect any personal information. No accounts are required. No sign up is needed. No personal data is stored or shared. CartForGood does not track you. You are never the product. When you tap a store button and shop on the retailer's website that retailer's own privacy policy governs any information you provide them.",
+      "CartForGood does not require an account. No sign up is needed. We do not collect, store, or sell your personal information. Our advertising partners may use standard tools to measure ad performance; this does not give us access to your personal data or browsing history. When you tap a store button and shop on the retailer's website that retailer's own privacy policy governs any information you provide them.",
   },
   {
     question: "Do I need to create an account?",
@@ -68,7 +68,7 @@ const faqData = [
   {
     question: "Does CartForGood track my shopping or purchases?",
     answer:
-      "No. CartForGood does not track your shopping activity, purchases, or personal data. The only data CartForGood tracks is the number of times each store button is tapped. This is anonymous count data only. No personal information is associated with these counts.",
+      "CartForGood itself does not collect, store, or sell your personal information. The main data CartForGood tracks directly is the anonymous number of times each store button is tapped. We may also use standard advertising tools, like the Meta Pixel, to measure how our ads are performing; these tools do not give CartForGood access to your personal data or browsing history.",
   },
   {
     question: "What stores are available?",
@@ -128,10 +128,20 @@ export default function SupportAndFaqPage() {
             <h2 className="text-[#1A2A56] font-inter text-[20px] md:text-[24px] lg:text-[28px] font-semibold leading-[130%] tracking-[0.14px] mb-4">
               Contact Us
             </h2>
-            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px] mb-4">
-              {`Have a question not listed here? Email us and we'll get back to you as soon as possible.`}
+            <p className="text-[#4A4A4A] font-inter text-[14px] md:text-[16px] font-normal leading-[160%] tracking-[0.08px] mb-2">
+              Have a question not listed here? Email us at{" "}
+              <a
+                href="mailto:cartforgood@gmail.com"
+                className="text-[#395CBC] hover:underline font-medium"
+              >
+                cartforgood@gmail.com
+              </a>{" "}
+              and we will get back to you as soon as possible.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <p className="text-[#888888] font-inter text-[12px] md:text-[14px] font-normal leading-[160%] tracking-[0.07px] italic mt-2">
+              Last updated: August 2026
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 mt-4">
               <a
                 href="mailto:cartforgood@gmail.com"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-[#395CBC] text-white font-inter text-[14px] md:text-[16px] font-medium leading-[100%] rounded-[30px] hover:bg-[#2A4A9E] transition-colors"
@@ -139,10 +149,10 @@ export default function SupportAndFaqPage() {
                 Email Support
               </a>
               <a
-                href="mailto:cartforgood@gmail.com"
+                href="https://cartforgood.com/support"
                 className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-[#395CBC] text-[#395CBC] font-inter text-[14px] md:text-[16px] font-medium leading-[100%] rounded-[30px] hover:bg-[#F0F4FF] transition-colors"
               >
-                cartforgood@gmail.com
+                Visit Support Page
               </a>
             </div>
           </div>
