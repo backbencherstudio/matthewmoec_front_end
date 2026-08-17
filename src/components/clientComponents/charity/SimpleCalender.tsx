@@ -29,15 +29,14 @@ const SimpleCalender = () => {
     <div>
       <section className="flex flex-col gap-12 p-4 md:p-8 lg:p-20 self-stretch bg-[#FFF]">
         {/* Header */}
-        <div>
+        {/* <div>
           <h1 className="text-[#1A2A56] font-inter text-[24px] md:text-[32px] lg:text-[40px] font-semibold leading-[124%] tracking-[0.2px] mb-1.5 lg:mb-4">
             How It Works in 4 Simple Steps
           </h1>
           <p className="text-[#4A4C56] font-inter text-[18px] font-normal leading-[132%] tracking-[0.09px]">
-            Shop from your favorite stores and help support charity — all with
-            just a few taps.
+            Shop from your favorite stores and help support good causes — all with just a few taps
           </p>
-        </div>
+        </div> */}
 
         <div>
           {/* Cards Grid */}

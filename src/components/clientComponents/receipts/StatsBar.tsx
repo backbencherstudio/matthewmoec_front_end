@@ -15,13 +15,13 @@ const StatsBar = () => {
       value: isLoading
         ? "..."
         : formatCurrency(data?.data?.total_donation_from_charity || 0),
-      label: "Total Donated (All Time)",
+      label: "Total shared (all time)",
     },
     {
       value: isLoading
         ? "..."
         : (data?.data?.total_unique_charity_support || 0).toString(),
-      label: "Charities Supported",
+      label: "Causes supported",
     },
     {
       value: isLoading

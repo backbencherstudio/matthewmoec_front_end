@@ -24,8 +24,7 @@ const HeroSection = () => {
                 Shop normally. Help others. Shop Your Favorite Stores. Give Back.
               </h1>
               <p className="text-[12px] lg:text-lg mt-4 text-[#1A2A56] xl:w-[50ch]">
-                Tap a store, shop as usual, and we donate a portion to charity
-                every month.
+                Tap a store, shop as usual, and we share a portion with selected local organizations every month.
               </p>
               <div className="mt-8 space-x-4 md:space-y-2 space-y-2.5 w-50 md:w-full mx-auto md:mx-0">
                 <a
@@ -88,7 +87,7 @@ const HeroSection = () => {
           <div className="text-white grid grid-cols-1 sm:grid-cols-2  lg:flex justify-between lg:h-26 items-center gap-4 py-8  sm:py-8 md:py-6 lg:py-0 ">
             {/* <p className="text-[1rem]   "></p> */}
             <p className="text-[1rem]   ">
-              Last Month’s Confirmed Donation Amount
+              Last month shared
             </p>
             <p className="text-[2rem]  font-bold ">
               ${charityData?.data?.[0]?.donation_amount || "0"}
@@ -96,7 +95,7 @@ const HeroSection = () => {
             <ArrowRight className="text-[1.5rem] " />
             <p className="text-[1rem]   ">
               {charityData?.data?.[0]?.charity_organization_name ||
-                "Charity Name"}
+                "This month’s cause"}
             </p>
             <p className="text-[2rem]  font-bold ">
               ${charityData?.data?.[1]?.donation_amount || "0"}
@@ -104,7 +103,7 @@ const HeroSection = () => {
             <ArrowRight className="text-[1.5rem] " />
             <p className="text-[1rem]   ">
               {charityData?.data?.[1]?.charity_organization_name ||
-                "Charity Name"}
+                "This month’s cause"}
             </p>
             <p className="rounded-full border py-2 px-4">
               {" "}

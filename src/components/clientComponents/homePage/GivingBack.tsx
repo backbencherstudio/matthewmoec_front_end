@@ -52,8 +52,7 @@ const GivingBack = () => {
                 Tap a Store
               </h2>
               <p className="text-center text-[#7D828F] text-[16px] font-normal leading-[150%] font-inter">
-                Choose from our growing list of stores.Opens in external browser
-                tracking guaranteed.
+                Choose from our growing list of stores. Opens in your browser
               </p>
             </div>
 
@@ -87,11 +86,10 @@ const GivingBack = () => {
                 />
               </div>
               <h2 className="text-center text-[#1A2A56] text-[24px] font-bold leading-normal font-inter">
-                We Donate
+                We Share
               </h2>
               <p className="text-center text-[#7D828F] text-[16px] font-normal leading-[150%] font-inter">
-                A portion goes to charity every month. Publicly posted, fully
-                transparent.
+               A portion goes to selected local organizations every month. Publicly posted, fully transparent.
               </p>
             </div>
           </div>

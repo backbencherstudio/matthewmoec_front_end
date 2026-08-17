@@ -25,7 +25,7 @@ const Footer = () => {
 
               <p className="text-[#A5A5AB] text-[16px] font-normal leading-[160%] tracking-[0.08px] font-inter max-w-xs">
                 A simple shopping platform that turns everyday purchases into
-                charitable impact.
+                support for good causes.
               </p>
 
               <h1 className="text-[#FFF] text-[24px] font-semibold leading-[130%] tracking-[0.12px] font-inter">
@@ -113,7 +113,7 @@ const Footer = () => {
                   href={"/charity"}
                   className="text-[#A5A5AB] font-normal text-[16px] leading-[160%] tracking-[0.08px] font-inter"
                 >
-                  Charity Calendar
+                  Causes
                 </Link>
                 <Link
                   href={"/receipts"}

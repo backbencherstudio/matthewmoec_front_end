@@ -11,7 +11,7 @@ const features = [
     icon: <Love2Icon className="h-7 w-7" />,
     title: "Transparent",
     description:
-      "Every confirmed donation posted publicly. Real receipts, numbers.",
+      "Every confirmed share posted publicly. Real receipts, real numbers.",
   },
   {
     icon: <EffortlessIcon className="h-7 w-7" />,
@@ -23,13 +23,13 @@ const features = [
     icon: <PrivateIcon className="h-7 w-7" />,
     title: "Private",
     description:
-      "No ads, no accounts, nothing personal collected or kept on our end.",
+      "No account required. Nothing personal stored by us.",
   },
   {
     icon: <AccessibleIcon className="h-7 w-7" />,
     title: "Accessible",
     description:
-      "18pt minimum fonts. WCAG 2.1 compliant. Designed for all ages including elderly users.",
+      "Easy to read and simple to use — for every age.",
   },
 ];
 
