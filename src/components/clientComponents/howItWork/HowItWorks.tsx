@@ -8,7 +8,7 @@ const HowItWorks = () => {
     <div>
       <SectionHeader
         title="How CartForGood Works."
-        description="Discover top brands, shop through trusted store links, and help fund real charity — at no extra cost to you."
+        description="Discover top brands, shop through trusted store links, and help support good causes — at no extra cost to you."
       />
 
       <SimpleSteps />

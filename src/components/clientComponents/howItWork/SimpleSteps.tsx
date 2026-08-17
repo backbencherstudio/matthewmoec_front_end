@@ -45,10 +45,7 @@ const SimpleSteps = () => {
                   </h1>
 
                   <p className="text-[#7D828F] text-center font-inter text-[16px] font-normal leading-[150%]">
-                    Choose from Amazon, Walmart, Target, Home Depot, Chewy,
-                    Wayfair, Etsy, or eBay. Each tap opens the store in your
-                    external browser, charity gets a portion every time. change
-                    to this.
+                    Choose from Amazon, Walmart, Target, Home Depot, Chewy. Wayfair, Etsy, eBay, and more. Each tap opens the store in your browser. A portion supports selected local organizations.
                   </p>
                 </div>
               </div>
@@ -78,14 +75,11 @@ const SimpleSteps = () => {
 
                 <div>
                   <h1 className="text-[#1A2A56] text-center font-inter text-[18px] md:text-[20px] lg:text-[24px] font-semibold leading-[140%] mb-4">
-                    We Donate Every Month
+                    We Share Every Month
                   </h1>
 
                   <p className="text-[#7D828F] text-center font-inter text-[16px] font-normal leading-[150%]">
-                    A portion of commissions received goes to charity every
-                    month. Every donation is posted publicly with a full receipt
-                    the same day it goes out. Full transparency, every single
-                    month.
+                  A portion of commissions received goes to selected local organizations every month. Every share is posted publicly with a full receipt. Full transparency, every single month.
                   </p>
                 </div>
               </div>

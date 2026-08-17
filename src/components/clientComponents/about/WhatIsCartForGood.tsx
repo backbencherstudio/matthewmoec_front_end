@@ -12,8 +12,7 @@ export const WhatIsCartForGood = () => {
             CartForGood is a free shopping app and website. Shop online at
             Amazon, Walmart, Target, Home Depot, and more through CartForGood.
             The stores pay us a small commission when you do. You pay nothing
-            extra. The price you see is always the same price you pay. We share
-            a portion of what they give us with charity every month.
+            extra. The price you see is always the same price you pay. We share a portion of what they give us with selected local organizations every month.
           </p>
         </div>
       </Container>

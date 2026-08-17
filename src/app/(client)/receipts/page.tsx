@@ -8,7 +8,7 @@ export default function page() {
     <div>
       <SectionHeader
         title="Monthly Receipts"
-        description="Verified records of our monthly donations."
+        description="Verified records of our monthly support."
       />
       <StatsBar />
       <MonthlyReceipts />

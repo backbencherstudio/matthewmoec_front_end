@@ -6,8 +6,8 @@ const Charity = () => {
   return (
     <div>
       <SectionHeader
-        title="Charity Calendar"
-        description="Every confirmed donation is posted here publicly. No vague estimates — real numbers, real receipts."
+        title="Causes Calendar"
+        description="Every confirmed share is posted here publicly. No vague estimates — real numbers, real receipts."
       />
 
       <SimpleCalender />

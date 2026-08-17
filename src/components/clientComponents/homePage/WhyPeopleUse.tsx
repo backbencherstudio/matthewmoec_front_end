@@ -73,7 +73,7 @@ const WhyPeopleUse = () => {
                 <PointerIcon></PointerIcon>
               </div>
               <h1 className="text-[#1A2A56] text-[16px] font-normal leading-[124%] tracking-[0.08px] font-inter">
-                No ads or data collection
+                No account required. No personal data stored by us.
               </h1>
             </div>
 
@@ -82,7 +82,7 @@ const WhyPeopleUse = () => {
                 <PointerIcon></PointerIcon>
               </div>
               <h1 className="text-[#1A2A56] text-[16px] font-normal leading-[124%] tracking-[0.08px] font-inter">
-                Supports charities monthly
+                Supports good causes monthly
               </h1>
             </div>
 
