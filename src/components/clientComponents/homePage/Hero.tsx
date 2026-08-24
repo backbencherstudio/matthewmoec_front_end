@@ -12,6 +12,7 @@ const HeroSection = () => {
   const { data } = useGetLinksQuery("");
   const { data: charityData } = useGetCharityQuery("");
   console.log(charityData);
+  
   return (
     <div className="min-hscre">
       <section className="relative pt-6 md:p-8 lg:pt-24 overflow-hidden ">
